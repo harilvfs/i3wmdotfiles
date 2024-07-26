@@ -39,8 +39,8 @@ These are my personal dotfiles for the i3 window manager.
 ## Screenshots
 
 <div align="center"><table><tr><td>Desktop Clear</td><td>Desktop Busy</td></tr><tr><td>
-<img src="https://github.com/Justus0405/i3wm-dotfiles/assets/143542687/9b622c96-3b1d-4f45-88a1-db4771b4491e"/></td><td>
-<img src="https://github.com/Justus0405/i3wm-dotfiles/assets/143542687/7692a7af-d621-4142-b63a-baeb354c0933"/></td></tr>
+<img src="https://github.com/aayushx402/Linux-Background/blob/main/i3/2024-07-26_11-52.png"/></td><td>
+<img src="https://github.com/aayushx402/Linux-Background/blob/main/i3/2024-07-26_12-07.png"/></td></tr>
 </table></div>
 
 <div align = left><br><br>
