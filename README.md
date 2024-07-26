@@ -105,3 +105,11 @@ These are my personal dotfiles for the i3 window manager.
 
 <div align = left><br><br>
 
+## Credits
+
+ - fastfetch : https://github.com/ChrisTitusTech/mybash
+ - kitty : https://github.com/ChrisTitusTech/linutil
+ - rofi : https://github.com/typecraft-dev/dotfiles
+ - GTK : https://github.com/catppuccin/gtk
+ - SDDM : https://github.com/catppuccin/sddm
+
