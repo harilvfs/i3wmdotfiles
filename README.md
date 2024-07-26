@@ -8,4 +8,4 @@ These are my personal dotfiles for the i3 window manager.
 
 ### Wallpapers
 - [Homescreen](https://github.com/aayushx402/Linux-Background/blob/main/i3/ign_evening.png)
-- [Loginscreen](https://github.com/aayushx402/Linux-Background/blob/main/i3/catpuccin%20sddm.webp)
+- [Loginscreen](https://raw.githubusercontent.com/aayushx402/Linux-Background/main/i3/macchiato.webp)
