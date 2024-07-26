@@ -7,6 +7,13 @@
   <img src="https://github.com/aayushx402/Linux-Background/blob/main/i3/macchiato.webp" alt="Macchiato Screenshot" width="600px" style="margin: 10px;"/>
 </div>
 
+<div style="display: flex; flex-direction: column; align-items: center; justify-content: center; height: 100vh;">
+  <img src="https://github.com/aayushx402/Linux-Background/blob/main/i3/2024-07-26_11-51.png" alt="Desktop Screenshot" width="600px" style="margin: 10px;"/>
+  <img src="https://github.com/aayushx402/Linux-Background/blob/main/i3/2024-07-26_11-53.png" alt="Desktop Screenshot" width="600px" style="margin: 10px;"/>
+  <img src="https://github.com/aayushx402/Linux-Background/blob/main/i3/macchiato.webp" alt="Macchiato Screenshot" width="600px" style="margin: 10px;"/>
+</div>
+
+
 <h2>🎨 Wallpapers</h2>
 <ul>
   <li><strong>Homescreen:</strong> <a href="https://raw.githubusercontent.com/aayushx402/Linux-Background/main/i3/ign_evening.webp">View</a></li>
