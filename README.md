@@ -112,11 +112,15 @@
 
 <div align = left><br><br>
 
-## Credits
+<h2>🔗 Credits</h2>
 
- - fastfetch : https://github.com/ChrisTitusTech/mybash
- - kitty : https://github.com/ChrisTitusTech/linutil
- - rofi : https://github.com/typecraft-dev/dotfiles
- - GTK : https://github.com/catppuccin/gtk
- - SDDM : https://github.com/catppuccin/sddm
+<p>Big thanks to these amazing projects that helped shape my setup:</p>
+
+<ul>
+  <li><strong>Fastfetch</strong> - <a href="https://github.com/ChrisTitusTech/mybash" target="_blank" rel="noopener noreferrer">GitHub Repository</a></li>
+  <li><strong>Kitty</strong> - <a href="https://github.com/ChrisTitusTech/linutil" target="_blank" rel="noopener noreferrer">GitHub Repository</a></li>
+  <li><strong>Rofi</strong> - <a href="https://github.com/typecraft-dev/dotfiles" target="_blank" rel="noopener noreferrer">GitHub Repository</a></li>
+  <li><strong>GTK</strong> - <a href="https://github.com/catppuccin/gtk" target="_blank" rel="noopener noreferrer">GitHub Repository</a></li>
+  <li><strong>SDDM</strong> - <a href="https://github.com/catppuccin/sddm" target="_blank" rel="noopener noreferrer">GitHub Repository</a></li>
+</ul>
 
