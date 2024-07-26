@@ -1,11 +1,10 @@
 <h1>🌈 i3-CatDotfiles</h1>
 <p>These are my personalized dotfiles for the i3 window manager, featuring a beautiful Catppuccin theme.</p>
 
-<div style="text-align: center;">
-  <img src="https://github.com/aayushx402/Linux-Background/blob/main/i3/2024-07-26_11-51.png" alt="Desktop Screenshot" width="600px" style="margin: 10px;"/>
-  <img src="https://github.com/aayushx402/Linux-Background/blob/main/i3/2024-07-26_11-53.png" alt="Desktop Screenshot" width="600px" style="margin: 10px;"/>
-  <img src="https://github.com/aayushx402/Linux-Background/blob/main/i3/macchiato.webp" alt="Macchiato Screenshot" width="600px" style="margin: 10px;"/>
-</div>
+![screenshot](https://github.com/aayushx402/Linux-Background/blob/main/i3/20240726_131459.png)
+![screenshot](https://github.com/aayushx402/Linux-Background/blob/main/i3/2024-07-26_11-51.png)
+![screenshot](https://github.com/aayushx402/Linux-Background/blob/main/i3/2024-07-26_11-53.png)
+![screenshot](https://github.com/aayushx402/Linux-Background/blob/main/i3/macchiato.webp)
 
 <h2>🎨 Wallpapers</h2>
 <ul>
