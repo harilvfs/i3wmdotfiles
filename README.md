@@ -42,7 +42,7 @@
 
 <div align="center"><table><tr><td>Desktop Clear</td><td>Desktop Busy</td></tr><tr><td>
 <img src="https://github.com/aayushx402/Linux-Background/blob/main/i3/2024-07-26_11-52.png"/></td><td>
-<img src="https://github.com/aayushx402/Linux-Background/blob/main/i3/2024-07-26_12-07.png"/></td></tr>
+<img src="https://github.com/aayushx402/Linux-Background/blob/main/i3/2024-07-26_11-53.png"/></td></tr>
 </table></div>
 
 <div align = left><br><br>
