@@ -8,7 +8,7 @@
         }
     },
     "display": {
-        "separator": "   ",
+        "separator": " → ",
         "color": "cyan"
     },
     "modules": [
