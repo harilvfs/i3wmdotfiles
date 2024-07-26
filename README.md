@@ -26,3 +26,11 @@ These are my personal dotfiles for the i3 window manager.
 - `flameshot`
 - `lxappearance`
 - `thunar`
+
+#### Set Wallpaper using `nitrogen`
+
+#### Change Theme, Icons and Mouse Cursor from `lxappearance`
+- *Widget Theme* : `Catppuccin-Mocha-Standard`
+- *Icon Theme* : `Papirus-Dark`
+- *Mouse Cursor* : `Qogir-Dark`
+
