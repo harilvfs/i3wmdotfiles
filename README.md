@@ -50,7 +50,7 @@ These are my personal dotfiles for the i3 window manager.
 | Keys | Action |
 | :--  | :-- |
 | <kbd>Super</kbd> + <kbd>RETURN / ENTER</kbd> | launch kitty (terminal)
-| <kbd>Super</kbd> + <kbd>D</kbd> | launch rofi (application launcher)
+| <kbd>Super</kbd> + <kbd>D</kbd> | launch rofi/dmenu (application launcher)
 | <kbd>Super</kbd> + <kbd>E</kbd> | launch thunar (filemanager)
 | <kbd>Super</kbd> + <kbd>B</kbd> | launch brave (browser)
 | <kbd>Super</kbd> + <kbd>N</kbd> | screenshot selected area (flameshot)
