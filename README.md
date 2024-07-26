@@ -9,3 +9,20 @@ These are my personal dotfiles for the i3 window manager.
 ### Wallpapers
 - [Homescreen](https://raw.githubusercontent.com/aayushx402/Linux-Background/main/i3/ign_evening.webp)
 - [Loginscreen](https://raw.githubusercontent.com/aayushx402/Linux-Background/main/i3/macchiato.webp)
+
+### Dependencies
+- `polybar`
+- `dmenu`
+- `rofi`
+- `alacritty`
+- `kitty`
+- `picom`
+- `maim`
+- `light`
+- `imwheel`
+- `nitrogen`
+- `polkit-gnome`
+- `xclip`
+- `flameshot`
+- `lxappearance`
+- `thunar`
