@@ -21,7 +21,7 @@
 #   |_| |_| |_|\___|_| |_| |_|\___|
 #                                  
 
-font pango:monospace 5
+font pango:FiraCodeNerdFont 5
 
 default_border pixel 0
 gaps inner 0px
@@ -51,10 +51,18 @@ exec --no-startup-id nm-applet
 exec --no-startup-id blueman-applet
 exec --no-startup-id $HOME/.screenlayout/default.sh
 
-exec_always --no-startup-id $HOME/.config/polybar/launch.sh
 exec_always --no-startup-id nitrogen --restore &
 
 for_window [class="gnome-calculator"] floating enable
+
+#####################################################################################################################
+#################                          picom and wallpaper                                      #################
+#####################################################################################################################
+
+#if you want transparency on non-focused windows, ...
+exec_always --no-startup-id picom --config ~/.config/picom.conf
+exec_always --no-startup-id ~/.config/i3/scripts/mouse.sh
+
 
 #
 #  _  __          _     _           _     
@@ -78,14 +86,17 @@ floating_modifier $mod
 # or left-clicking anywhere into the window while holding the floating modifier.
 tiling_drag modifier titlebar
 
-# Use pactl to adjust volume in PulseAudio.
-bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ +10%
-bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ -10%
-bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute @DEFAULT_SINK@ toggle
-bindsym XF86AudioMicMute exec --no-startup-id pactl set-source-mute @DEFAULT_SOURCE@ toggle
+#####################################################################################################################
+#################                          audio settings                                           #################
+#####################################################################################################################
+
+bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ +10% && $refresh_i3status
+bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ -10% && $refresh_i3status
+bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute @DEFAULT_SINK@ toggle && $refresh_i3status
+bindsym XF86AudioMicMute exec --no-startup-id pactl set-source-mute @DEFAULT_SOURCE@ toggle && $refresh_i3status
 
 # start a apps
-bindsym $mod+Return exec --no-startup-id kitty
+bindsym $mod+Return exec --no-startup-id alacritty
 bindsym $mod+b exec --no-startup-id brave
 bindsym $mod+e exec --no-startup-id thunar
 bindsym $mod+n exec --no-startup-id "flameshot gui"
@@ -216,3 +227,30 @@ mode "resize" {
 }
 
 bindsym $mod+r mode "resize"
+
+
+# Sreen brightness controls
+bindsym XF86MonBrightnessUp exec light -A 1 # increase screen brightness
+bindsym XF86MonBrightnessDown exec light -U 1 # decrease screen brightness
+
+bar {
+   	height 20
+	position top
+    font pango:FiraCodeNerdFont 10
+	status_command i3status
+    tray_padding 1
+    strip_workspace_numbers yes
+
+    colors {
+            separator  #1f222d
+            background #1f222d
+            statusline #81a1c1
+
+            #                   border  background text
+            focused_workspace  #1f222d #1f222d    #81a1c1
+            active_workspace   #1f222d #252936    #5e81ac
+            inactive_workspace #1f222d #1f222d    #4c566a
+            urgent_workspace   #1f222d #1f222d    #ee829f
+            binding_mode       #1f222d #81a1c1    #2e3440
+    }
+}
