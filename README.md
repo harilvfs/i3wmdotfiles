@@ -11,9 +11,15 @@
 ![screenshot](https://github.com/aayushx402/Linux-Background/blob/main/i3/2024-07-26_11-53.png)
 ![screenshot](https://github.com/aayushx402/Linux-Background/blob/main/i3/macchiato.webp)
 
-<strong>Added Nord Theme For Alacritty and i3Status</strong>
+<strong>✨ Added Nord Theme For Alacritty and i3Status ❄️</strong>
 
 ![screenshot](https://github.com/aayushx402/Linux-Background/blob/main/Nordic%20Theme/2024-08-02_11-32.png) ![screenshot](https://github.com/aayushx402/Linux-Background/blob/main/Nordic%20Theme/2024-08-02_11-39.png)
+
+<p>
+    <img src="https://github.com/aayushx402/Linux-Background/blob/main/Nordic%20Theme/2024-08-02_11-32.png" alt="screenshot" style="display:inline-block; width:49%;">
+    <img src="https://github.com/aayushx402/Linux-Background/blob/main/Nordic%20Theme/2024-08-02_11-39.png" alt="screenshot" style="display:inline-block; width:49%;">
+</p>
+
 
 
 
