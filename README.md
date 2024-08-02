@@ -63,7 +63,7 @@
 
 | Keys | Action |
 | :--  | :-- |
-| <kbd>Super</kbd> + <kbd>RETURN / ENTER</kbd> | launch kitty (terminal)
+| <kbd>Super</kbd> + <kbd>RETURN / ENTER</kbd> | launch kitty/alacritty (terminal)
 | <kbd>Super</kbd> + <kbd>D</kbd> | launch rofi/dmenu (application launcher)
 | <kbd>Super</kbd> + <kbd>E</kbd> | launch thunar (filemanager)
 | <kbd>Super</kbd> + <kbd>B</kbd> | launch brave (browser)
