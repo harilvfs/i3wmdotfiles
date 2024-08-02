@@ -23,19 +23,24 @@
 
 font pango:FiraCodeNerdFont 5
 
-default_border pixel 0
-gaps inner 0px
-gaps outer 0px
+default_border pixel 1
+gaps inner 10px
+gaps outer 1px
 smart_gaps inverse_outer
 
-# class                 border  backgr. text    indicator child_border
-client.focused          #cba6f7 #cba6f7 #ffffff #cba6f7   #cba6f7
-client.focused_inactive #cba6f7 #cba6f7 #ffffff #cba6f7   #cba6f7
-client.unfocused        #1E1E2E #1E1E2E #888888 #1E1E2E   #1E1E2E
-client.urgent           #f38ba8 #f38ba8 #ffffff #f38ba8   #f38ba8
-client.placeholder      #000000 #0c0c0c #ffffff #000000   #0c0c0c
 
-client.background       #ffffff
+##START THEMING WM
+
+    # Window color settings
+    # class                 border  backgr. text    indicator
+    client.focused          #81a1c1 #81a1c1 #ffffff #81a1c1
+    client.unfocused        #2e3440 #1f222d #888888 #1f222d
+    client.focused_inactive #2e3440 #1f222d #888888 #1f222d
+    client.placeholder      #2e3440 #1f222d #888888 #1f222d
+    client.urgent           #900000 #900000 #ffffff #900000
+
+    client.background       #242424
+
 
 #
 #     _         _            _             _   
