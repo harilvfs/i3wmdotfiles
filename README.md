@@ -11,6 +11,13 @@
 ![screenshot](https://github.com/aayushx402/Linux-Background/blob/main/i3/2024-07-26_11-53.png)
 ![screenshot](https://github.com/aayushx402/Linux-Background/blob/main/i3/macchiato.webp)
 
+<strong>✨ Added Nord Theme For Alacritty and i3Status ❄️</strong>
+
+<p>
+    <img src="https://github.com/aayushx402/Linux-Background/blob/main/Nordic%20Theme/2024-08-02_11-32.png" alt="screenshot" style="display:inline-block; width:49%;">
+    <img src="https://github.com/aayushx402/Linux-Background/blob/main/Nordic%20Theme/2024-08-02_11-39.png" alt="screenshot" style="display:inline-block; width:49%;">
+</p>
+
 <h2>🎨 Wallpapers</h2>
 <ul>
   <li><strong>Homescreen:</strong> <a href="https://raw.githubusercontent.com/aayushx402/Linux-Background/main/i3/ign_evening.webp">View</a></li>
@@ -18,6 +25,7 @@
 </ul>
 
 ### Dependencies
+- `i3status`
 - `polybar`
 - `dmenu`
 - `rofi`
@@ -56,7 +64,7 @@
 
 | Keys | Action |
 | :--  | :-- |
-| <kbd>Super</kbd> + <kbd>RETURN / ENTER</kbd> | launch kitty (terminal)
+| <kbd>Super</kbd> + <kbd>RETURN / ENTER</kbd> | launch kitty/alacritty (terminal)
 | <kbd>Super</kbd> + <kbd>D</kbd> | launch rofi/dmenu (application launcher)
 | <kbd>Super</kbd> + <kbd>E</kbd> | launch thunar (filemanager)
 | <kbd>Super</kbd> + <kbd>B</kbd> | launch brave (browser)
