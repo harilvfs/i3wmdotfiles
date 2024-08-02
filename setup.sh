@@ -12,17 +12,16 @@ ENDCOLOR="\e[0m"
 # Header
 echo -e "${BLUE}"
 cat <<"EOF"
-+---------------------------------------------------------+
-|                                                         |
-|        █████╗  █████╗ ██╗   ██╗██╗   ██╗██╗  ██╗        |
-|       ██╔══██╗██╔══██╗██║   ██║██║   ██║██║ ██╔╝        |
-|       ███████║███████║██║   ██║██║   ██║█████╔╝         |
-|       ██╔══██║██╔══██║╚██╗ ██╔╝╚██╗ ██╔╝██╔═██╗         |
-|       ██║  ██║██║  ██║ ╚████╔╝  ╚████╔╝ ██║  ██╗        |
-|       ╚═╝  ╚═╝╚═╝  ╚═╝  ╚═══╝    ╚═══╝  ╚═╝  ╚═╝        |
-|                                                         |
-|    Welcome to Aayush's i3 Setup Script                  |
-+---------------------------------------------------------+
+                                                         
+        █████╗  █████╗ ██╗   ██╗██╗   ██╗██╗  ██╗        
+       ██╔══██╗██╔══██╗██║   ██║██║   ██║██║ ██╔╝        
+       ███████║███████║██║   ██║██║   ██║█████╔╝         
+       ██╔══██║██╔══██║╚██╗ ██╔╝╚██╗ ██╔╝██╔═██╗         
+       ██║  ██║██║  ██║ ╚████╔╝  ╚████╔╝ ██║  ██╗        
+       ╚═╝  ╚═╝╚═╝  ╚═╝  ╚═══╝    ╚═══╝  ╚═╝  ╚═╝        
+                                                         
+         Welcome to Aayush's i3 Setup Script                  |
+
 EOF
 echo -e "${ENDCOLOR}"
 
@@ -190,6 +189,47 @@ sudo systemctl disable gdm
 sudo systemctl disable lightdm
 sudo systemctl enable sddm
 
-# 10. Finished setup
-echo -e "${GREEN}Setup complete. Please reboot your system to see the changes or press Mod + Shift + R to reload i3wm.${ENDCOLOR}"
+# 10. Additional theming options
+echo -e "${GREEN}Choose additional theming options:${ENDCOLOR}"
+options=("Catppuccin GTK Theme" "Catppuccin Icon Theme" "Both" "None")
+select opt in "${options[@]}"; do
+    case $opt in
+        "Catppuccin GTK Theme")
+            echo -e "${GREEN}Applying Catppuccin GTK Theme...${ENDCOLOR}"
+            THEME_DIR="$HOME/.local/share/themes/Catppuccin-Mocha-Standard-Lavender"
+            mkdir -p $THEME_DIR
+            git clone https://github.com/catppuccin/gtk $THEME_DIR
+            gsettings set org.gnome.desktop.interface gtk-theme "Catppuccin-Mocha-Standard-Lavender"
+            break
+            ;;
+        "Catppuccin Icon Theme")
+            echo -e "${GREEN}Applying Catppuccin Icon Theme...${ENDCOLOR}"
+            ICON_DIR="$HOME/.local/share/icons/Catppuccin-Mocha"
+            mkdir -p $ICON_DIR
+            git clone https://github.com/catppuccin/icons $ICON_DIR
+            gsettings set org.gnome.desktop.interface icon-theme "Catppuccin-Mocha"
+            break
+            ;;
+        "Both")
+            echo -e "${GREEN}Applying Catppuccin GTK and Icon Themes...${ENDCOLOR}"
+            THEME_DIR="$HOME/.local/share/themes/Catppuccin-Mocha-Standard-Lavender"
+            mkdir -p $THEME_DIR
+            git clone https://github.com/catppuccin/gtk $THEME_DIR
+            gsettings set org.gnome.desktop.interface gtk-theme "Catppuccin-Mocha-Standard-Lavender"
+            
+            ICON_DIR="$HOME/.local/share/icons/Catppuccin-Mocha"
+            mkdir -p $ICON_DIR
+            git clone https://github.com/catppuccin/icons $ICON_DIR
+            gsettings set org.gnome.desktop.interface icon-theme "Catppuccin-Mocha"
+            break
+            ;;
+        "None")
+            echo -e "${GREEN}Skipping additional theming...${ENDCOLOR}"
+            break
+            ;;
+        *) echo "Invalid option $REPLY";;
+    esac
+done
 
+# 11. Finished setup
+echo -e "${GREEN}Setup complete. Please reboot your system to see the changes or press Mod + Shift + R to reload i3wm.${ENDCOLOR}"
