@@ -13,6 +13,8 @@
 
 <strong>Added Nord Theme For Alacritty And i3Status</strong>
 
+![screenshot](https://github.com/aayushx402/Linux-Background/blob/main/Nordic%20Theme/2024-08-02_11-32.png) ![screenshot](https://github.com/aayushx402/Linux-Background/blob/main/Nordic%20Theme/2024-08-02_11-39.png)
+
 
 
 <h2>🎨 Wallpapers</h2>
