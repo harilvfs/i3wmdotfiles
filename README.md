@@ -33,7 +33,7 @@
 - `kitty`
 - `picom`
 - `maim`
-- `light`
+- `fish`
 - `imwheel`
 - `nitrogen`
 - `polkit-gnome`
