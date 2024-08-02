@@ -11,6 +11,10 @@
 ![screenshot](https://github.com/aayushx402/Linux-Background/blob/main/i3/2024-07-26_11-53.png)
 ![screenshot](https://github.com/aayushx402/Linux-Background/blob/main/i3/macchiato.webp)
 
+<strong>Added Nord Theme For Alacritty And i3Status</strong>
+
+
+
 <h2>🎨 Wallpapers</h2>
 <ul>
   <li><strong>Homescreen:</strong> <a href="https://raw.githubusercontent.com/aayushx402/Linux-Background/main/i3/ign_evening.webp">View</a></li>
