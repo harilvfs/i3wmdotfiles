@@ -4,7 +4,7 @@
 
 <p>Welcome to my collection of <strong>personalized dotfiles</strong> for the <strong>i3 window manager</strong>! 🎨</p>
 
-<p>These dotfiles come with a stunning <strong>Catppuccin theme</strong> that enhances your workspace with a beautiful, cohesive look.</p>
+<p>These dotfiles come with a stunning <strong>Catppuccin theme & Nordic theme</strong> that enhances your workspace with a beautiful, cohesive look.</p>
 
 
 ![screenshot](https://github.com/aayushx402/Linux-Background/blob/main/i3/2024-07-26_11-51.png)
