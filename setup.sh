@@ -185,9 +185,6 @@ EOF'
 echo -e "${GREEN}Enabling system services...${ENDCOLOR}"
 systemctl --user enable pipewire pipewire-pulse
 sudo systemctl enable NetworkManager
-sudo systemctl disable gdm
-sudo systemctl disable lightdm
-sudo systemctl enable sddm
 
 # 10. Additional theming options
 echo -e "${GREEN}Choose additional theming options:${ENDCOLOR}"
