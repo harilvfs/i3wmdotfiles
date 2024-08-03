@@ -15,7 +15,7 @@
 
 <p>
     <img src="https://github.com/aayushx402/Linux-Background/blob/main/Nordic%20Theme/2024-08-02_11-32.png" alt="screenshot" style="display:inline-block; width:49%;">
-    <img src="https://github.com/aayushx402/Linux-Background/blob/main/i3/2024-08-03_00-07.png" alt="screenshot" style="display:inline-block; width:49%;">
+    <img src="https://github.com/aayushx402/Linux-Background/blob/main/i3/2024-08-04_01-32.png" alt="screenshot" style="display:inline-block; width:49%;">
 </p>
 
 <h3>🚀 Quick Setup</h3>
