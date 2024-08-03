@@ -56,9 +56,9 @@ chmod +x setup.sh
 #### Set Wallpaper using `nitrogen`
 
 #### Change Theme, Icons and Mouse Cursor from `lxappearance`
-- *Widget Theme* : `NordArc-Theme`
-- *Icon Theme* : `NordArc`
-- *Mouse Cursor* : `Capitaine Cursors - White`
+- *Widget Theme* : `NordArc-Theme` / `Catppuccin-Moncha-Standard`
+- *Icon Theme* : `NordArc` / `Papirus`
+- *Mouse Cursor* : `Capitaine Cursors - White`  / `Qogir`
 
 <div align = left><br><br>
  
