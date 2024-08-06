@@ -18,7 +18,7 @@ general {
 order += "memory"
 order += "load"
 #order += "disk /"
-order += "disk /home"
+#order += "disk /home"
 #order += "wireless _first_"
 #order += "ethernet _first_"
 #order += "battery 0"
@@ -39,11 +39,11 @@ memory {
 }
 
 load {
-    format = "[ 🖥️ load: %1min, %5min, %15min ]"
+        format = "CPU: %1min"
 }
 
-disk /home {
-    format = "🗄️~ %free"
+disk "/" {
+        format = "%avail"
 }
 
 wireless _first_ {
