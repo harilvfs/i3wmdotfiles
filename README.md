@@ -18,9 +18,6 @@
     <img src="https://github.com/aayushx402/i3-CatDotfiles/blob/main/preview%20images/2024-08-07_22-18.png" alt="screenshot" style="display:inline-block; width:49%;">
 </p>
 
-![screenshot](https://github.com/aayushx402/i3-CatDotfiles/blob/main/preview%20images/2024-08-07_22-14.png)
-![screenshot](https://github.com/aayushx402/i3-CatDotfiles/blob/main/preview%20images/2024-08-07_22-18.png)
-
 <h3>🚀 Quick Setup</h3>
 
 <p>Use the following script to set up my i3 configuration. Note that I'm still working on it, so it might not work on all systems. If you have issues, you can manually apply my dotfiles:</p>
