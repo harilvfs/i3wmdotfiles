@@ -14,9 +14,12 @@
 <strong>✨ Added Nord Theme For Alacritty and i3Status ❄️</strong>
 
 <p>
-    <img src="https://github.com/aayushx402/Linux-Background/blob/main/Nordic%20Theme/2024-08-02_11-32.png" alt="screenshot" style="display:inline-block; width:49%;">
-    <img src="https://github.com/aayushx402/Linux-Background/blob/main/i3/2024-08-04_01-32.png" alt="screenshot" style="display:inline-block; width:49%;">
+    <img src="https://github.com/aayushx402/i3-CatDotfiles/blob/main/preview%20images/2024-08-07_22-14.png" alt="screenshot" style="display:inline-block; width:49%;">
+    <img src="https://github.com/aayushx402/i3-CatDotfiles/blob/main/preview%20images/2024-08-07_22-18.png" alt="screenshot" style="display:inline-block; width:49%;">
 </p>
+
+![screenshot](https://github.com/aayushx402/i3-CatDotfiles/blob/main/preview%20images/2024-08-07_22-14.png)
+![screenshot](https://github.com/aayushx402/i3-CatDotfiles/blob/main/preview%20images/2024-08-07_22-18.png)
 
 <h3>🚀 Quick Setup</h3>
 
