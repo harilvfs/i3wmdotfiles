@@ -2,8 +2,8 @@
 
 font pango:FiraCodeNerdFont 5
 default_border pixel 0
-gaps inner 0px
-gaps outer 0px
+gaps inner 5px
+gaps outer 5px
 smart_gaps inverse_outer
 
 
@@ -220,13 +220,13 @@ bar {
 	position top
     font pango:FiraCodeNerdFont 10
 	status_command i3status
-    tray_padding 1
+    tray_padding 1 
     strip_workspace_numbers yes
 
     colors {
             separator  #1f222d
             background #1f222d
-            statusline #ffffff
+            statusline #81a1c1
 
             #                   border  background text
             focused_workspace  #1f222d #1f222d    #81a1c1
