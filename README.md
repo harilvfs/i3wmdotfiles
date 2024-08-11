@@ -57,8 +57,8 @@ chmod +x setup.sh
 
 #### Change Theme, Icons and Mouse Cursor from `lxappearance`
 - *Widget Theme* : `NordArc-Theme` / `Catppuccin-Moncha-Standard`
-- *Icon Theme* : `NordArc` / `Papirus`
-- *Mouse Cursor* : `Capitaine Cursors - White`  / `Qogir`
+- *Icon Theme* : `NordArc` / `Nordzy`
+- *Mouse Cursor* : `Capitaine Cursors - Light`  / `Qogir`
 
 <div align = left><br><br>
  
