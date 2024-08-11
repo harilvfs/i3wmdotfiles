@@ -117,18 +117,23 @@ done
 # 7. Apply i3 dotfiles
 echo -e "${GREEN}Applying i3 dotfiles...${ENDCOLOR}"
 sudo -v
-git clone https://github.com/aayushx402/i3-CatDotfiles ~/.config/i3-CatDotfiles
-cd ~/.config/i3-CatDotfiles
 
-for dir in *; do
-    if [ -d "$HOME/.config/$dir" ]; then
-        echo -e "${BLUE}Directory $dir already exists. Replacing...${ENDCOLOR}"
-        rm -rf "$HOME/.config/$dir"
+# Clone the repository to a temporary directory
+TEMP_DIR=$(mktemp -d)
+git clone https://github.com/aayushx402/i3-CatDotfiles $TEMP_DIR
+
+# Loop through the directories in the repository
+for dir in $(ls -d $TEMP_DIR/*/); do
+    dir_name=$(basename "$dir")
+    if [ -d "$HOME/.config/$dir_name" ]; then
+        echo -e "${BLUE}Directory $dir_name already exists. Replacing...${ENDCOLOR}"
+        rm -rf "$HOME/.config/$dir_name"
     fi
     cp -r "$dir" "$HOME/.config/"
 done
 
-rm -rf ~/.config/i3-CatDotfiles
+# Clean up the temporary directory
+rm -rf $TEMP_DIR
 
 # 8. Apply SDDM Catppuccin theme
 apply_sddm_theme() {
