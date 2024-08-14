@@ -28,6 +28,9 @@ chmod +x setup.sh
 ./setup.sh
 </code></pre>
 
+Or just run this curl command:
+<pre><code>curl -fsSL https://raw.githubusercontent.com/aayushx402/i3-CatDotfiles/main/setup.sh | sh </code></pre>
+
 <h2>🎨 Wallpapers</h2>
 <ul>
   <li><strong>Homescreen:</strong> <a href="https://raw.githubusercontent.com/aayushx402/Linux-Background/main/i3/ign_evening.webp">View</a></li>
