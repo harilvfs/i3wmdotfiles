@@ -73,7 +73,7 @@ element-icon {
    padding: 0 4px;
    margin: 0 5px 0 0;
    text-color: @foreground;
-   font: "Sora Regular 10";
+   font: "Sora Regular 12";
 }
 
 configuration {
