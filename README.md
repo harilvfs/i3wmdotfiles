@@ -34,6 +34,13 @@ chmod +x setup.sh
   <li><strong>Loginscreen:</strong> <a href="https://raw.githubusercontent.com/aayushx402/Linux-Background/main/i3/macchiato.webp">View</a></li>
 </ul>
 
+### Nord Background
+To use the Nord background, clone the repository with the following command:
+
+```bash
+git clone https://github.com/ChrisTitusTech/nord-background
+```
+
 ### Dependencies
 - `i3status`
 - `polybar`
