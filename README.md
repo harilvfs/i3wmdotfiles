@@ -74,15 +74,16 @@ git clone https://github.com/ChrisTitusTech/nord-background
 
 <div align = left><br><br>
 
-#### Defaults Apps
-- *Broswer* : `Thorium` / `Brave`
-- *FileManager* : `Nemo` / `Thunar`
-- *CodeEditor* : `Cursor` / `Vim`
-- *ScreenshotTool* : `Flameshot`
-- *Terminal* : `Alacritty` / `Kitty`
-- *Lanchur* : `Rofi` / `Dmenu`
-- *StatusBar* : `Polybar` / `i3status`
-- *Shell* : `Bash` / `Zsh`
+### 🚀 Default Apps
+
+- **Browser:** `Thorium` / `Brave`
+- **File Manager:** `Nemo` / `Thunar`
+- **Code Editor:** `Cursor` / `Vim`
+- **Screenshot Tool:** `Flameshot`
+- **Terminal:** `Alacritty` / `Kitty`
+- **Launcher:** `Rofi` / `Dmenu`
+- **Status Bar:** `Polybar` / `i3status`
+- **Shell:** `Bash` / `Zsh`
 
 ## Keybinds
 
