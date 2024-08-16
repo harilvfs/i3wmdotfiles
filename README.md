@@ -65,15 +65,6 @@ git clone https://github.com/ChrisTitusTech/nord-background
 - `lxappearance`
 - `thunar`
 
-#### Set Wallpaper using `nitrogen`
-
-#### Change Theme, Icons and Mouse Cursor from `lxappearance`
-- *Widget Theme* : `NordArc-Theme` / `Catppuccin-Moncha-Standard`
-- *Icon Theme* : `NordArc` / `Nordzy`
-- *Mouse Cursor* : `Capitaine Cursors - Light`  / `Qogir`
-
-<div align = left><br><br>
-
 ### 🚀 Default Apps
 
 - **Browser:** `Thorium` / `Brave`
@@ -85,6 +76,15 @@ git clone https://github.com/ChrisTitusTech/nord-background
 - **Status Bar:** `Polybar` / `i3status`
 - **Shell:** `Bash` / `Zsh`
 
+#### Set Wallpaper using `nitrogen`
+
+#### Change Theme, Icons and Mouse Cursor from `lxappearance`
+- *Widget Theme* : `NordArc-Theme` / `Catppuccin-Moncha-Standard`
+- *Icon Theme* : `NordArc` / `Nordzy`
+- *Mouse Cursor* : `Capitaine Cursors - Light`  / `Qogir`
+
+<div align = left><br><br>
+    
 ## Keybinds
 
 | Keys | Action |
