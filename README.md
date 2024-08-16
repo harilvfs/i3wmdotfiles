@@ -18,7 +18,7 @@
 </p>
 
 > [!IMPORTANT]
-> Note that the Keybindings is based on my Personal Uses So Remember to change the Keybindings after Installation 
+> Note That The Keybindings is Based On My Personal Uses So Remember To Change The Keybindings After Installation 
 
 <h3>🚀 Quick Setup</h3>
 
