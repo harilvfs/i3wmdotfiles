@@ -34,19 +34,6 @@ chmod +x setup.sh
 Or just run this curl command:
 <pre><code>curl -fsSL https://raw.githubusercontent.com/aayushx402/i3-CatDotfiles/main/setup.sh | sh </code></pre>
 
-<h2>🎨 Wallpapers</h2>
-<ul>
-  <li><strong>Homescreen:</strong> <a href="https://raw.githubusercontent.com/aayushx402/Linux-Background/main/i3/ign_evening.webp">View</a></li>
-  <li><strong>Loginscreen:</strong> <a href="https://raw.githubusercontent.com/aayushx402/Linux-Background/main/i3/macchiato.webp">View</a></li>
-</ul>
-
-### Nord Background
-To use the Nord background, clone the repository with the following command:
-
-```bash
-git clone https://github.com/ChrisTitusTech/nord-background
-```
-
 ### Dependencies
 - `i3status`
 - `polybar`
@@ -76,6 +63,18 @@ git clone https://github.com/ChrisTitusTech/nord-background
 - **Status Bar:** `Polybar` / `i3status`
 - **Shell:** `Bash` / `Zsh`
 
+<h2>🎨 Wallpapers</h2>
+<ul>
+<li><strong>Homescreen:</strong> <a href="https://raw.githubusercontent.com/aayushx402/Linux-Background/main/i3/ign_evening.webp">View</a></li>
+<li><strong>Loginscreen:</strong> <a href="https://raw.githubusercontent.com/aayushx402/Linux-Background/main/i3/macchiato.webp">View</a></li>
+</ul>
+
+### Nord Background
+To use the Nord background, clone the repository with the following command:
+
+```bash
+git clone https://github.com/ChrisTitusTech/nord-background
+```
 #### Set Wallpaper using `nitrogen`
 
 #### Change Theme, Icons and Mouse Cursor from `lxappearance`
