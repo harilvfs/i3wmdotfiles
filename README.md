@@ -146,8 +146,6 @@ git clone https://github.com/ChrisTitusTech/nord-background
 
 <h2>🔗 Credits</h2>
 
-<p>Big thanks to these amazing projects that helped shape my setup:</p>
-
 <ul>
   <li><strong>Fastfetch</strong> - <a href="https://github.com/ChrisTitusTech/mybash" target="_blank" rel="noopener noreferrer">ChrisTitusTech</a></li>
   <li><strong>Alacritty</strong> - <a href="https://github.com/ChrisTitusTech/dwm-titus" target="_blank" rel="noopener noreferrer">ChrisTitusTech</a></li>
@@ -161,6 +159,6 @@ href="https://github.com/Justus0405/i3wm-dotfiles" target="_blank" rel="noopener
 
 <h2>Special Thanks</h2>
 
-<p>A huge shoutout to <strong><a href="https://github.com/Justus0405/i3wm-dotfiles" target="_blank" rel="noopener noreferrer">Justus0405</a></strong> & <strong><a href="https://github.com/TheDistroHopper/i3wm-nord" target="_blank" rel="noopener noreferrer">TheDistroHopper</a></strong> for their <strong>i3wm dotfiles</strong></p>
+<p>Shoutout to <strong><a href="https://github.com/Justus0405/i3wm-dotfiles" target="_blank" rel="noopener noreferrer">Justus0405</a></strong> & <strong><a href="https://github.com/TheDistroHopper/i3wm-nord" target="_blank" rel="noopener noreferrer">TheDistroHopper</a></strong> for their <strong>i3wm dotfiles</strong></p>
 
 
