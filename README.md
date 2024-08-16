@@ -73,7 +73,17 @@ git clone https://github.com/ChrisTitusTech/nord-background
 - *Mouse Cursor* : `Capitaine Cursors - Light`  / `Qogir`
 
 <div align = left><br><br>
- 
+
+#### Defaults Apps
+- *Broswer* : `Thorium` / `Brave`
+- *FileManager* : `Nemo` / `Thunar`
+- *CodeEditor* : `Cursor` / `Vim`
+- *ScreenshotTool* : `Flameshot`
+- *Terminal* : `Alacritty` / `Kitty`
+- *Lanchur* : `Rofi` / `Dmenu`
+- *StatusBar* : `Polybar` / `i3status`
+- *Shell* : `Bash` / `Zsh`
+
 ## Keybinds
 
 | Keys | Action |
