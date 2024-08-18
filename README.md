@@ -4,8 +4,8 @@
 
 ![screenshot](https://github.com/aayushx402/Linux-Background/blob/main/i3/20240726_131459.png)
 <p><strong>Nord BG Credit</strong> <a href="https://github.com/TheDistroHopper" target="_blank" rel="noopener noreferrer">TheDistroHopper</a></p>
-![screenshot](https://github.com/aayushx402/i3-CatDotfiles/blob/main/preview%20images/i3wm-nord.png)
 
+![screenshot](https://github.com/aayushx402/i3-CatDotfiles/blob/main/preview%20images/i3wm-nord.png)
 
 ![screenshot](https://github.com/aayushx402/i3-CatDotfiles/blob/main/preview%20images/2024-08-19_01-30.png)
 ![screenshot](https://github.com/aayushx402/i3-CatDotfiles/blob/main/preview%20images/2024-08-19_01-32_1.png)
