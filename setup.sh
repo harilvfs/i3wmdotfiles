@@ -33,7 +33,7 @@ sudo pacman -Syuu --noconfirm
 echo -e "${GREEN}Installing dependencies...${ENDCOLOR}"
 sudo pacman -S --noconfirm \
     i3status polybar fish dmenu rofi alacritty kitty picom maim imwheel \
-    nitrogen polkit-gnome xclip flameshot lxappearance thunar
+    nitrogen variety polkit-gnome xclip flameshot lxappearance thunar
 
 # 3. Choose file manager
 echo -e "${GREEN}Choose your preferred file manager:${ENDCOLOR}"

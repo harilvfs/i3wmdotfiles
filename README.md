@@ -56,6 +56,7 @@ Or just run this curl command:
 - `fish`
 - `imwheel`
 - `nitrogen`
+- `variety`
 - `polkit-gnome`
 - `xclip`
 - `flameshot`
