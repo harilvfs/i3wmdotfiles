@@ -4,6 +4,7 @@
 <p>These dotfiles come with <strong>Catppuccin theme & Nordic theme</strong> </p>
 
 ![screenshot](https://github.com/aayushx402/i3-CatDotfiles/blob/main/preview%20images/2024-08-14_23-57.png)
+![screenshot](https://github.com/aayushx402/i3-CatDotfiles/blob/main/preview%20images/i3wm-nord.png)
 
 <strong>Added Nord Theme For Alacritty and i3Status ❄️</strong>
 
