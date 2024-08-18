@@ -1,10 +1,7 @@
 ![screenshot](https://github.com/aayushx402/Linux-Background/blob/main/i3/20240726_131459.png)
-<h1>🌈 i3-CatDotfiles</h1>
-<h2>🌟 Personalized Dotfiles for i3 Window Manager</h2>
+<h1>i3-CatDotfiles</h1>
 
-<p>Welcome to my collection of <strong>personalized dotfiles</strong> for the <strong>i3 window manager</strong>! 🎨</p>
-
-<p>These dotfiles come with a stunning <strong>Catppuccin theme & Nordic theme</strong> that enhances your workspace with a beautiful, cohesive look.</p>
+<p>These dotfiles come with <strong>Catppuccin theme & Nordic theme</strong> </p>
 
 ![screenshot](https://github.com/aayushx402/i3-CatDotfiles/blob/main/preview%20images/2024-08-14_23-57.png)
 
