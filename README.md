@@ -1,10 +1,7 @@
 ![screenshot](https://github.com/aayushx402/Linux-Background/blob/main/i3/20240726_131459.png)
-<h1>🌈 i3-CatDotfiles</h1>
-<h2>🌟 Personalized Dotfiles for i3 Window Manager</h2>
+<h1>i3-CatDotfiles</h1>
 
-<p>Welcome to my collection of <strong>personalized dotfiles</strong> for the <strong>i3 window manager</strong>! 🎨</p>
-
-<p>These dotfiles come with a stunning <strong>Catppuccin theme & Nordic theme</strong> that enhances your workspace with a beautiful, cohesive look.</p>
+<p>These dotfiles come with <strong>Catppuccin theme & Nordic theme</strong> </p>
 
 ![screenshot](https://github.com/aayushx402/i3-CatDotfiles/blob/main/preview%20images/2024-08-14_23-57.png)
 
@@ -22,7 +19,7 @@
 - [i3-i3status](https://github.com/aayushx402/i3-CatDotfiles/tree/main/i3-i3status) - i3wm config with i3status setup.
 - [i3-polybar](https://github.com/aayushx402/i3-CatDotfiles/tree/main/i3-polybar) - i3wm config with polybar setup
 - [i3status-nord](https://github.com/aayushx402/i3-CatDotfiles/tree/main/i3status-nord) - i3status with nord theme
-- [i3status-nordic-2](https://github.com/aayushx402/i3-CatDotfiles/tree/main/i3status-normal) - i3status config with nordic theme but it is bit tweak.
+- [i3status-nordic-2](https://github.com/aayushx402/i3-CatDotfiles/tree/main/i3status-nordic-2) - i3status config with nordic theme but it is bit tweak.
 - [polybar-catppuccin](https://github.com/aayushx402/i3-CatDotfiles/tree/main/polybar-catppuccin) - Polybar config with catppuccin theme
 - [polybar-nordic](https://github.com/aayushx402/i3-CatDotfiles/tree/main/polybar-nordic) - Polybar config with nordic theme
 - [rofi-catppuccin](https://github.com/aayushx402/i3-CatDotfiles/tree/main/rofi-catppuccin) - Rofi config with additional catppuccin theme.
