@@ -14,6 +14,7 @@
 <img src="https://github.com/aayushx402/i3-CatDotfiles/blob/main/preview%20images/2024-08-19_01-36.png" alt="screenshot" style="display:inline-block; width:49%;">
 </p>
 
+![screenshot](https://raw.githubusercontent.com/aayushx402/images/main/i3/macchiato.webp)
 
 ### Config File Overview
 
