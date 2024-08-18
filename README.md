@@ -17,15 +17,17 @@
 
 ### Config File Overview
 
-- [fastfetch-png](https://github.com/aayushx402/i3-CatDotfiles/tree/main/fastfetch-png) - This config file comes with some extra PNGs. Just a heads-up: image rendering doesn’t work in Alacritty, so it’s best to use Kitty for this one.
-- [fastfetch](https://github.com/aayushx402/i3-CatDotfiles/tree/main/fastfetch) - This is the regular config. You can use it with Alacritty too.
-- [i3-i3status](https://github.com/aayushx402/i3-CatDotfiles/tree/main/i3-i3status) - Here’s the i3 config, including the i3 status setup.
-- [i3-polybar](https://github.com/aayushx402/i3-CatDotfiles/tree/main/i3-polybar) - This one’s the i3 config with a polybar setup.
-- [i3status-nord](https://github.com/aayushx402/i3-CatDotfiles/tree/main/i3status-nord) - This is the i3status config featuring a Nordic theme.
-- [i3status-normal](https://github.com/aayushx402/i3-CatDotfiles/tree/main/i3status-normal) - Here’s the standard i3status config.
-- [rofi-catppuccin](https://github.com/aayushx402/i3-CatDotfiles/tree/main/rofi-catppuccin) - This is the Rofi config with a Catppuccin theme.
-- [rofi-nordic](https://github.com/aayushx402/i3-CatDotfiles/tree/main/rofi-nordic) - This Rofi config features a Nordic theme.
-- [rofi](https://github.com/aayushx402/i3-CatDotfiles/tree/main/rofi) - This is the standard Rofi config.
+- [fastfetch-png](https://github.com/aayushx402/i3-CatDotfiles/tree/main/fastfetch-png) - Fastfetch config with png add ones, Remember alacritty doesn't support image rendering so perfer kitty.    
+- [fastfetch](https://github.com/aayushx402/i3-CatDotfiles/tree/main/fastfetch) - Fastfetch config with some changes.
+- [i3-i3status](https://github.com/aayushx402/i3-CatDotfiles/tree/main/i3-i3status) - i3wm config with i3status setup.
+- [i3-polybar](https://github.com/aayushx402/i3-CatDotfiles/tree/main/i3-polybar) - i3wm config with polybar setup
+- [i3status-nord](https://github.com/aayushx402/i3-CatDotfiles/tree/main/i3status-nord) - i3status with nord theme
+- [i3status-nordic-2](https://github.com/aayushx402/i3-CatDotfiles/tree/main/i3status-normal) - i3status config with nordic theme but it is bit tweak.
+- [polybar-catppuccin](https://github.com/aayushx402/i3-CatDotfiles/tree/main/polybar-catppuccin) - Polybar config with catppuccin theme
+- [polybar-nordic](https://github.com/aayushx402/i3-CatDotfiles/tree/main/polybar-nordic) - Polybar config with nordic theme
+- [rofi-catppuccin](https://github.com/aayushx402/i3-CatDotfiles/tree/main/rofi-catppuccin) - Rofi config with additional catppuccin theme.
+- [rofi-nordic](https://github.com/aayushx402/i3-CatDotfiles/tree/main/rofi-nordic) - Rofi config with nordic theme
+- [rofi](https://github.com/aayushx402/i3-CatDotfiles/tree/main/rofi) - Rofi config with catppuccin normal theme
 
 > [!IMPORTANT]
 > Note that the keybindings are based on my personal uses, so remember to change them after installation.
