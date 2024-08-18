@@ -3,6 +3,7 @@
 <p>These dotfiles come with <strong>Catppuccin theme & Nordic theme</strong> </p>
 
 ![screenshot](https://github.com/aayushx402/Linux-Background/blob/main/i3/20240726_131459.png)
+<p><strong>Nord BG Credit</strong> <a href="https://github.com/TheDistroHopper" target="_blank" rel="noopener noreferrer">TheDistroHopper</a></p>
 ![screenshot](https://github.com/aayushx402/i3-CatDotfiles/blob/main/preview%20images/i3wm-nord.png)
 
 
