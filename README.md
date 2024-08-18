@@ -22,7 +22,7 @@
 - [i3-i3status](https://github.com/aayushx402/i3-CatDotfiles/tree/main/i3-i3status) - i3wm config with i3status setup.
 - [i3-polybar](https://github.com/aayushx402/i3-CatDotfiles/tree/main/i3-polybar) - i3wm config with polybar setup
 - [i3status-nord](https://github.com/aayushx402/i3-CatDotfiles/tree/main/i3status-nord) - i3status with nord theme
-- [i3status-nordic-2](https://github.com/aayushx402/i3-CatDotfiles/tree/main/i3status-normal) - i3status config with nordic theme but it is bit tweak.
+- [i3status-nordic-2](https://github.com/aayushx402/i3-CatDotfiles/tree/main/i3status-nordic-2) - i3status config with nordic theme but it is bit tweak.
 - [polybar-catppuccin](https://github.com/aayushx402/i3-CatDotfiles/tree/main/polybar-catppuccin) - Polybar config with catppuccin theme
 - [polybar-nordic](https://github.com/aayushx402/i3-CatDotfiles/tree/main/polybar-nordic) - Polybar config with nordic theme
 - [rofi-catppuccin](https://github.com/aayushx402/i3-CatDotfiles/tree/main/rofi-catppuccin) - Rofi config with additional catppuccin theme.
