@@ -7,12 +7,12 @@
 
 ![screenshot](https://github.com/aayushx402/i3-CatDotfiles/blob/main/preview%20images/i3wm-nord.png)
 
-![screenshot](https://github.com/aayushx402/i3-CatDotfiles/blob/main/preview%20images/2024-08-19_01-30.png)
+![screenshot](https://github.com/aayushx402/i3-CatDotfiles/blob/main/preview%20images/2024-08-19_15-23.png)
 ![screenshot](https://github.com/aayushx402/i3-CatDotfiles/blob/main/preview%20images/2024-08-19_01-32_1.png)
 
 <p>
 <img src="https://github.com/aayushx402/i3-CatDotfiles/blob/main/preview%20images/2024-08-14_23-57.png" alt="screenshot" style="display:inline-block; width:49%;">
-<img src="https://github.com/aayushx402/i3-CatDotfiles/blob/main/preview%20images/2024-08-19_01-36.png" alt="screenshot" style="display:inline-block; width:49%;">
+<img src="https://github.com/aayushx402/i3-CatDotfiles/blob/main/preview%20images/2024-08-19_15-23_1.png" alt="screenshot" style="display:inline-block; width:49%;">
 </p>
 
 ![screenshot](https://raw.githubusercontent.com/aayushx402/images/main/i3/macchiato.webp)
