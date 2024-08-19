@@ -91,67 +91,67 @@ git clone https://github.com/ChrisTitusTech/nord-background
 - *Icon Theme* : `NordArc` / `Nordzy`
 - *Mouse Cursor* : `Capitaine Cursors - Light`  / `Qogir`
 
-<div align = left><br><br>
-    
+<div align="left">
+
 ## Keybinds
 
-| Keys | Action |
-| :--  | :-- |
-| <kbd>Super</kbd> + <kbd>RETURN / ENTER</kbd> | launch kitty/alacritty (terminal)
-| <kbd>Super</kbd> + <kbd>D</kbd> | launch rofi/dmenu (application launcher)
-| <kbd>Super</kbd> + <kbd>E</kbd> | launch thunar (filemanager)
-| <kbd>Super</kbd> + <kbd>B</kbd> | launch brave (browser)
-| <kbd>Super</kbd> + <kbd>N</kbd> | screenshot selected area (flameshot)
-| <kbd>Super</kbd> + <kbd>M</kbd> | screenshot entire screen (flameshot)
-| <kbd>Super</kbd> + <kbd>Q</kbd> | quit active/focused window
-| <kbd>ALT</kbd> + <kbd>TAB</kbd> | switch windows
+### Launchers
+| Key Combo | Action |
+|:---------:|:-------|
+| <kbd>Super</kbd> + <kbd>Enter</kbd> | Open Terminal (Kitty/Alacritty) |
+| <kbd>Super</kbd> + <kbd>D</kbd> | Open App Launcher (Rofi/dmenu) |
+| <kbd>Super</kbd> + <kbd>E</kbd> | Open File Manager (Thunar) |
+| <kbd>Super</kbd> + <kbd>B</kbd> | Open Browser (Brave) |
 
-<br>
+### Screenshots
+| Key Combo | Action |
+|:---------:|:-------|
+| <kbd>Super</kbd> + <kbd>N</kbd> | Screenshot Selected Area (Flameshot) |
+| <kbd>Super</kbd> + <kbd>M</kbd> | Screenshot Entire Screen (Flameshot) |
 
-| Keys | Action |
-| :--  | :-- |
-| <kbd>Super</kbd> + <kbd>NUMBER</kbd> | switch to workspace
-| <kbd>Super</kbd> + <kbd>SHIFT</kbd> + <kbd>NUMBER</kbd> | move focused container to workspace
-| <kbd>Super</kbd> + <kbd>SHIFT</kbd> + <kbd>C</kbd> | reload the configuration file
-| <kbd>Super</kbd> + <kbd>SHIFT</kbd> + <kbd>R</kbd> | restart i3
-| <kbd>Super</kbd> + <kbd>Shift</kbd> + <kbd>E</kbd> | quit i3 session
+### Window Management
+| Key Combo | Action |
+|:---------:|:-------|
+| <kbd>Super</kbd> + <kbd>Q</kbd> | Close Focused Window |
+| <kbd>Alt</kbd> + <kbd>Tab</kbd> | Switch Windows |
+| <kbd>Super</kbd> + <kbd>Number</kbd> | Switch Workspace |
+| <kbd>Super</kbd> + <kbd>Shift</kbd> + <kbd>Number</kbd> | Move Container to Workspace |
+| <kbd>Super</kbd> + <kbd>Shift</kbd> + <kbd>C</kbd> | Reload Config |
+| <kbd>Super</kbd> + <kbd>Shift</kbd> + <kbd>R</kbd> | Restart i3 |
+| <kbd>Super</kbd> + <kbd>Shift</kbd> + <kbd>E</kbd> | Exit i3 Session |
 
-<br>
+### Navigation
+| Key Combo | Action |
+|:---------:|:-------|
+| <kbd>Super</kbd> + <kbd>J</kbd> | Focus Left |
+| <kbd>Super</kbd> + <kbd>K</kbd> | Focus Down |
+| <kbd>Super</kbd> + <kbd>L</kbd> | Focus Up |
+| <kbd>Super</kbd> + <kbd>O</kbd> | Focus Right |
 
-| Keys | Action |
-| :--  | :-- |
-| <kbd>Super</kbd> + <kbd>J</kbd> | focus left
-| <kbd>Super</kbd> + <kbd>K</kbd> | focus down
-| <kbd>Super</kbd> + <kbd>L</kbd> | focus up
-| <kbd>Super</kbd> + <kbd>O</kbd> | focus right
+### Moving Windows
+| Key Combo | Action |
+|:---------:|:-------|
+| <kbd>Super</kbd> + <kbd>Shift</kbd> + <kbd>J</kbd> | Move Left |
+| <kbd>Super</kbd> + <kbd>Shift</kbd> + <kbd>K</kbd> | Move Down |
+| <kbd>Super</kbd> + <kbd>Shift</kbd> + <kbd>L</kbd> | Move Up |
+| <kbd>Super</kbd> + <kbd>Shift</kbd> + <kbd>O</kbd> | Move Right |
 
-<br>
+### Layouts
+| Key Combo | Action |
+|:---------:|:-------|
+| <kbd>Super</kbd> + <kbd>H</kbd> | Split Horizontally |
+| <kbd>Super</kbd> + <kbd>V</kbd> | Split Vertically |
+| <kbd>Super</kbd> + <kbd>F</kbd> | Toggle Fullscreen |
 
-| Keys | Action |
-| :--  | :-- |
-| <kbd>Super</kbd> + <kbd>Shift</kbd> + <kbd>J</kbd> | move left
-| <kbd>Super</kbd> + <kbd>Shift</kbd> + <kbd>K</kbd> | move down
-| <kbd>Super</kbd> + <kbd>Shift</kbd> + <kbd>L</kbd> | move up
-| <kbd>Super</kbd> + <kbd>Shift</kbd> + <kbd>O</kbd> | move right
+### Tiling/Floating
+| Key Combo | Action |
+|:---------:|:-------|
+| <kbd>Super</kbd> + <kbd>Shift</kbd> + <kbd>Space</kbd> | Toggle Tiling/Floating |
+| <kbd>Super</kbd> + <kbd>Space</kbd> | Switch Focus between Tiling/Floating |
+| <kbd>Super</kbd> + <kbd>A</kbd> | Focus Parent Container |
+| <kbd>Super</kbd> + <kbd>D</kbd> | Focus Child Container |
 
-<br>
-
-| Keys | Action |
-| :--  | :-- |
-| <kbd>Super</kbd> + <kbd>H</kbd> | split in horizontal orientation
-| <kbd>Super</kbd> + <kbd>V</kbd> | split in vertical orientation
-| <kbd>Super</kbd> + <kbd>F</kbd> | enter fullscreen mode for the focused container
-
-<br>
-
-| Keys | Action |
-| :--  | :-- |
-| <kbd>Super</kbd> + <kbd>SHIFT</kbd> + <kbd>SPACE</kbd> | toggle tiling / floating
-| <kbd>Super</kbd> + <kbd>SPACE</kbd> | change focus between tiling / floating windows
-| <kbd>Super</kbd> + <kbd>A</kbd> | focus the parent container
-| <kbd>Super</kbd> + <kbd>D</kbd> | focus the child container
-
-<div align = left><br><br>
+</div>
 
 <h2>🔗 Credits</h2>
 
