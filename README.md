@@ -36,7 +36,7 @@
 
 <h3>🚀 Quick Setup</h3>
 
-<p>Use the following script to set up my i3 configuration. Note that I'm still working on it, so it might not work on all systems. If you have issues, you can manually apply my dotfiles:</p>
+<p>Use the following script to set up my i3 configuration.If you encounter any issues, feel free to submit an issue:</p>
 
 <pre><code>sudo pacman -Syy git
 git clone https://github.com/aayushx402/i3-CatDotfiles
