@@ -7,7 +7,8 @@
 
 ![screenshot](https://github.com/aayushx402/i3-CatDotfiles/blob/main/preview%20images/i3wm-nord.png)
 
-![screenshot](https://github.com/aayushx402/i3-CatDotfiles/blob/main/preview%20images/2024-08-20_00-40.png)
+![screenshot](https://github.com/aayushx402/i3-CatDotfiles/blob/main/preview%20images/2024-08-21_22-03.png)
+![screenshot](https://github.com/aayushx402/i3-CatDotfiles/blob/main/preview%20images/2024-08-21_22-05.png)
 
 <p>
 <img src="https://github.com/aayushx402/i3-CatDotfiles/blob/main/preview%20images/2024-08-14_23-57.png" alt="screenshot" style="display:inline-block; width:49%;">
