@@ -233,7 +233,7 @@ select opt in "${options[@]}"; do
     esac
 done
 
-# Grub Setup
+#11 Grub Setup
 # Heading: GRUB Setup
 
 # Clone the repository
