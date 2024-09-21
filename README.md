@@ -1,3 +1,5 @@
+**This project has switched to Codeberg.** <br> [![Switched to Codeberg](https://img.shields.io/badge/Switched_to-Codeberg-blue?style=for-the-badge&logo=codeberg&logoColor=white)](https://codeberg.org/aayushchalise/i3dotfile)
+
 <p align="center"><strong>i3wm Dotfiles</strong>
 
 <p align="center">These dotfiles come with <strong>Catppuccin & Nordic theme</strong>
