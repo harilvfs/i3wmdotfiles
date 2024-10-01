@@ -2,34 +2,34 @@
 
 <p align="center">These dotfiles come with <strong>Catppuccin & Nordic theme</strong>
 
-![screenshot](https://github.com/aayushx402/Linux-Background/blob/main/i3/20240726_131459.png)
+![screenshot](https://github.com/harilvfs/assets/blob/main/i3/20240726_131459.png)
 <p align="center"><strong>Nord BG Credit</strong> <a href="https://github.com/TheDistroHopper" target="_blank" rel="noopener noreferrer">TheDistroHopper</a>
 
-![screenshot](https://github.com/aayushx402/i3-CatDotfiles/blob/main/preview%20images/i3wm-nord.png)
+![screenshot](https://github.com/harilvfs/i3wmdotfiles/blob/main/preview%20images/i3wm-nord.png)
 
-![screenshot](https://github.com/aayushx402/i3-CatDotfiles/blob/main/preview%20images/2024-08-21_22-03.png)
-![screenshot](https://github.com/aayushx402/i3-CatDotfiles/blob/main/preview%20images/2024-08-21_22-05.png)
+![screenshot](https://github.com/harilvfs/i3wmdotfiles/blob/main/preview%20images/2024-08-21_22-03.png)
+![screenshot](https://github.com/harilvfs/i3wmdotfiles/blob/main/preview%20images/2024-08-21_22-05.png)
 
 <p>
-<img src="https://github.com/aayushx402/i3-CatDotfiles/blob/main/preview%20images/2024-08-14_23-57.png" alt="screenshot" style="display:inline-block; width:49%;">
-<img src="https://github.com/aayushx402/i3-CatDotfiles/blob/main/preview%20images/2024-08-19_15-23_1.png" alt="screenshot" style="display:inline-block; width:49%;">
+<img src="https://github.com/harilvfs/i3wmdotfiles/blob/main/preview%20images/2024-08-14_23-57.png" alt="screenshot" style="display:inline-block; width:49%;">
+<img src="https://github.com/harilvfs/i3wmdotfiles/blob/main/preview%20images/2024-08-19_15-23_1.png" alt="screenshot" style="display:inline-block; width:49%;">
 </p>
 
-![screenshot](https://raw.githubusercontent.com/aayushx402/images/main/i3/macchiato.webp)
+![screenshot](https://raw.githubusercontent.com/harilvfs/assets/main/i3/macchiato.webp)
 
 ### Config File Overview
 
-- [fastfetch-png](https://github.com/aayushx402/i3-CatDotfiles/tree/main/fastfetch-png) - Fastfetch config with png add ones, Remember alacritty doesn't support image rendering so perfer kitty.    
-- [fastfetch](https://github.com/aayushx402/i3-CatDotfiles/tree/main/fastfetch) - Fastfetch config with some changes.
-- [i3-i3status](https://github.com/aayushx402/i3-CatDotfiles/tree/main/i3-i3status) - i3wm config with i3status setup.
-- [i3-polybar](https://github.com/aayushx402/i3-CatDotfiles/tree/main/i3-polybar) - i3wm config with polybar setup
-- [i3status-nord](https://github.com/aayushx402/i3-CatDotfiles/tree/main/i3status-nord) - i3status with nord theme
-- [i3status-nordic-2](https://github.com/aayushx402/i3-CatDotfiles/tree/main/i3status-nordic-2) - i3status config with nordic theme but it is bit tweak.
-- [polybar-catppuccin](https://github.com/aayushx402/i3-CatDotfiles/tree/main/polybar-catppuccin) - Polybar config with catppuccin theme
-- [polybar-nordic](https://github.com/aayushx402/i3-CatDotfiles/tree/main/polybar-nordic) - Polybar config with nordic theme
-- [rofi-catppuccin](https://github.com/aayushx402/i3-CatDotfiles/tree/main/rofi-catppuccin) - Rofi config with additional catppuccin theme.
-- [rofi-nordic](https://github.com/aayushx402/i3-CatDotfiles/tree/main/rofi-nordic) - Rofi config with nordic theme
-- [rofi](https://github.com/aayushx402/i3-CatDotfiles/tree/main/rofi) - Rofi config with catppuccin normal theme
+- [fastfetch-png](https://github.com/harilvfs/i3wmdotfiles/tree/main/fastfetch-png) - Fastfetch config with png add ones, Remember alacritty doesn't support image rendering so perfer kitty.    
+- [fastfetch](https://github.com/harilvfs/i3wmdotfiles/tree/main/fastfetch) - Fastfetch config with some changes.
+- [i3-i3status](https://github.com/harilvfs/i3wmdotfiles/tree/main/i3-i3status) - i3wm config with i3status setup.
+- [i3-polybar](https://github.com/harilvfs/i3wmdotfiles/tree/main/i3-polybar) - i3wm config with polybar setup
+- [i3status-nord](https://github.com/harilvfs/i3wmdotfiles/tree/main/i3status-nord) - i3status with nord theme
+- [i3status-nordic-2](https://github.com/harilvfs/i3wmdotfiles/tree/main/i3status-nordic-2) - i3status config with nordic theme but it is bit tweak.
+- [polybar-catppuccin](https://github.com/harilvfs/i3wmdotfiles//tree/main/polybar-catppuccin) - Polybar config with catppuccin theme
+- [polybar-nordic](https://github.com/harilvfs/i3wmdotfiles/tree/main/polybar-nordic) - Polybar config with nordic theme
+- [rofi-catppuccin](https://github.com/harilvfs/i3wmdotfiles/tree/main/rofi-catppuccin) - Rofi config with additional catppuccin theme.
+- [rofi-nordic](https://github.com/harilvfs/i3wmdotfiles/tree/main/rofi-nordic) - Rofi config with nordic theme
+- [rofi](https://github.com/harilvfs/i3wmdotfiles/tree/main/rofi) - Rofi config with catppuccin normal theme
 
 > [!IMPORTANT]
 > Note that the keybindings are based on my personal uses, so remember to change them after installation.
