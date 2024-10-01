@@ -38,9 +38,8 @@
 
 <p>Use the following script to set up my i3 configuration.If you encounter any issues, feel free to submit an issue:</p>
 
-<pre><code>sudo pacman -Syy git
-git clone https://github.com/aayushx402/i3-CatDotfiles
-cd i3-CatDotfiles
+<pre><code>git clone https://github.com/harilvfs/i3wmdotfiles
+cd i3wmdotfiles
 chmod +x setup.sh
 ./setup.sh
 </code></pre>
