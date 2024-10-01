@@ -45,7 +45,7 @@ chmod +x setup.sh
 </code></pre>
 
 Or just run this curl command:
-<pre><code>curl -fsSL https://raw.githubusercontent.com/aayushx402/i3-CatDotfiles/main/setup.sh | sh </code></pre>
+<pre><code>curl -fsSL https://raw.githubusercontent.com/harilvfs/i3wmdotfiles/main/setup.sh | sh </code></pre>
 
 ### Dependencies
 - `i3status`
