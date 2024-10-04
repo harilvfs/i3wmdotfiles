@@ -31,9 +31,7 @@ sudo pacman -Syuu --noconfirm
 
 # 2. Install dependencies
 echo -e "${GREEN}Installing dependencies...${ENDCOLOR}"
-sudo pacman -S --noconfirm \
-    i3status polybar fish dmenu rofi alacritty kitty picom maim imwheel \
-    nitrogen variety polkit-gnome xclip flameshot lxappearance thunar
+sudo pacman -S --noconfirm i3 i3status polybar fish dmenu rofi alacritty kitty picom maim imwheel nitrogen variety polkit-gnome xclip flameshot lxappearance thunar xorg-server xorg-xinit xorg-xrandr xorg-xsetroot xorg-xset gtk3 gnome-settings-daemon lightdm lightdm-gtk-greeter
 
 # 3. Choose file manager
 echo -e "${GREEN}Choose your preferred file manager:${ENDCOLOR}"
