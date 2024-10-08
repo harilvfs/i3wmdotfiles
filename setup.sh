@@ -1,39 +1,74 @@
 #!/bin/bash
 
-# Clear the terminal
 clear
 
-# Define colors
-RED="\e[31m"
 GREEN="\e[32m"
 BLUE="\e[34m"
 ENDCOLOR="\e[0m"
 
-# Header
 echo -e "${BLUE}"
 cat <<"EOF"
----------------------------------------------------
- █████╗  █████╗ ██╗   ██╗██╗   ██╗███████╗██╗  ██╗
-██╔══██╗██╔══██╗╚██╗ ██╔╝██║   ██║██╔════╝██║  ██║
-███████║███████║ ╚████╔╝ ██║   ██║███████╗███████║
-██╔══██║██╔══██║  ╚██╔╝  ██║   ██║╚════██║██╔══██║
-██║  ██║██║  ██║   ██║   ╚██████╔╝███████║██║  ██║
-╚═╝  ╚═╝╚═╝  ╚═╝   ╚═╝    ╚═════╝ ╚══════╝╚═╝  ╚═╝
----------------------------------------------------
-      Welcome to Aayush's i3 Setup Script 
----------------------------------------------------
+-----------------------------------------------------------------------------
+
+██╗██████╗ ██╗    ██╗███╗   ███╗    ███████╗███████╗████████╗██╗   ██╗██████╗ 
+██║╚════██╗██║    ██║████╗ ████║    ██╔════╝██╔════╝╚══██╔══╝██║   ██║██╔══██╗
+██║ █████╔╝██║ █╗ ██║██╔████╔██║    ███████╗█████╗     ██║   ██║   ██║██████╔╝
+██║ ╚═══██╗██║███╗██║██║╚██╔╝██║    ╚════██║██╔══╝     ██║   ██║   ██║██╔═══╝ 
+██║██████╔╝╚███╔███╔╝██║ ╚═╝ ██║    ███████║███████╗   ██║   ╚██████╔╝██║     
+╚═╝╚═════╝  ╚══╝╚══╝ ╚═╝     ╚═╝    ╚══════╝╚══════╝   ╚═╝    ╚═════╝ ╚═╝     
+                                                                              
+-----------------------------------------------------------------------------
+                 This will only install necessary dependencies                
+          For dotfiles, check my repo: github.com/harilvfs/i3wmdotfiles          
+-----------------------------------------------------------------------------
 EOF
 echo -e "${ENDCOLOR}"
 
-# 1. Update the system
+read -p "Do you want to continue with the installation? (y/n): " confirm
+if [[ ! $confirm =~ ^[Yy]$ ]]; then
+    echo "Installation aborted."
+    exit 1
+fi
+
 echo -e "${GREEN}Updating the system...${ENDCOLOR}"
 sudo pacman -Syuu --noconfirm
 
-# 2. Install dependencies
+echo -e "${GREEN}Installing Paru...${ENDCOLOR}"
+git clone https://aur.archlinux.org/paru.git
+cd paru || exit
+makepkg -si --noconfirm
+cd .. || exit
+
+echo -e "${GREEN}Choose your preferred browser to install:${ENDCOLOR}"
+browsers=("Brave" "Firefox" "Chromium" "None")
+select browser in "${browsers[@]}"; do
+    case $browser in
+        "Brave")
+            echo -e "${GREEN}Installing Brave browser with Paru...${ENDCOLOR}"
+            paru -S --noconfirm brave-bin
+            break
+            ;;
+        "Firefox")
+            echo -e "${GREEN}Installing Firefox...${ENDCOLOR}"
+            sudo pacman -S --noconfirm firefox
+            break
+            ;;
+        "Chromium")
+            echo -e "${GREEN}Installing Chromium...${ENDCOLOR}"
+            sudo pacman -S --noconfirm chromium
+            break
+            ;;
+        "None")
+            echo -e "${GREEN}Skipping browser installation...${ENDCOLOR}"
+            break
+            ;;
+        *) echo "Invalid option $REPLY";;
+    esac
+done
+
 echo -e "${GREEN}Installing dependencies...${ENDCOLOR}"
 sudo pacman -S --noconfirm i3 i3status polybar fish dmenu rofi alacritty kitty picom maim imwheel nitrogen variety polkit-gnome xclip flameshot lxappearance thunar xorg-server xorg-xinit xorg-xrandr xorg-xsetroot xorg-xset gtk3 gnome-settings-daemon lightdm lightdm-gtk-greeter
 
-# 3. Choose file manager
 echo -e "${GREEN}Choose your preferred file manager:${ENDCOLOR}"
 options=("Thunar" "Nemo" "Dolphin")
 select opt in "${options[@]}"; do
@@ -54,86 +89,12 @@ select opt in "${options[@]}"; do
     esac
 done
 
-# 4. Choose browser
-echo -e "${GREEN}Choose your preferred browser:${ENDCOLOR}"
-options=("Brave" "Firefox" "Thorium")
-select opt in "${options[@]}"; do
-    case $opt in
-        "Brave")
-            sudo pacman -S --noconfirm brave
-            break
-            ;;
-        "Firefox")
-            sudo pacman -S --noconfirm firefox
-            break
-            ;;
-        "Thorium")
-            wget https://aur.archlinux.org/cgit/aur.git/snapshot/thorium-browser-bin.tar.gz
-            tar -xvf thorium-browser-bin.tar.gz
-            cd thorium-browser-bin
-            makepkg -si --noconfirm
-            cd ..
-            rm -rf thorium-browser-bin thorium-browser-bin.tar.gz
-            break
-            ;;
-        *) echo "Invalid option $REPLY";;
-    esac
-done
-
-# 5. Apply Catppuccin theme with lxappearance
 echo -e "${GREEN}Applying Catppuccin theme...${ENDCOLOR}"
 THEME_DIR="$HOME/.local/share/themes/catppuccin-macchiato"
 mkdir -p $THEME_DIR
 git clone https://github.com/catppuccin/openbox $THEME_DIR
 lxappearance
 
-# 6. Choose i3status or Polybar
-echo -e "${GREEN}Choose your status bar:${ENDCOLOR}"
-options=("i3status (comes preloaded with i3)" "Polybar (may consume more resources)")
-select opt in "${options[@]}"; do
-    case $opt in
-        "i3status (comes preloaded with i3)")
-            sudo pacman -S --noconfirm i3status
-            mkdir -p ~/.config/i3status
-            wget -O ~/.config/i3status/config https://raw.githubusercontent.com/aayushx402/i3-CatDotfiles/main/i3%20status/config
-            break
-            ;;
-        "Polybar (may consume more resources)")
-            sudo pacman -S --noconfirm polybar
-            mkdir -p ~/.config/polybar
-            wget -O ~/.config/polybar/config.ini https://raw.githubusercontent.com/aayushx402/i3-CatDotfiles/main/polybar/config.ini
-            wget -O ~/.config/polybar/brightness.sh https://raw.githubusercontent.com/aayushx402/i3-CatDotfiles/main/polybar/brightness.sh
-            wget -O ~/.config/polybar/gen_i3_ws-icon_list.sh https://raw.githubusercontent.com/aayushx402/i3-CatDotfiles/main/polybar/gen_i3_ws-icon_list.sh
-            wget -O ~/.config/polybar/launch.sh https://raw.githubusercontent.com/aayushx402/i3-CatDotfiles/main/polybar/launch.sh
-            chmod +x ~/.config/polybar/launch.sh
-            break
-            ;;
-        *) echo "Invalid option $REPLY";;
-    esac
-done
-
-# 7. Apply i3 dotfiles
-echo -e "${GREEN}Applying i3 dotfiles...${ENDCOLOR}"
-sudo -v
-
-# Clone the repository to a temporary directory
-TEMP_DIR=$(mktemp -d)
-git clone https://github.com/aayushx402/i3-CatDotfiles $TEMP_DIR
-
-# Loop through the directories in the repository
-for dir in $(ls -d $TEMP_DIR/*/); do
-    dir_name=$(basename "$dir")
-    if [ -d "$HOME/.config/$dir_name" ]; then
-        echo -e "${BLUE}Directory $dir_name already exists. Replacing...${ENDCOLOR}"
-        rm -rf "$HOME/.config/$dir_name"
-    fi
-    cp -r "$dir" "$HOME/.config/"
-done
-
-# Clean up the temporary directory
-rm -rf $TEMP_DIR
-
-# 8. Apply SDDM Catppuccin theme
 apply_sddm_theme() {
     echo -e "${BLUE}"
     cat <<"EOF"
@@ -184,12 +145,10 @@ EOF'
     echo -e "${GREEN}SDDM theme setup complete.${ENDCOLOR}"
 }
 
-# 9. Enable system services
 echo -e "${GREEN}Enabling system services...${ENDCOLOR}"
 systemctl --user enable pipewire pipewire-pulse
 sudo systemctl enable NetworkManager
 
-# 10. Additional theming options
 echo -e "${GREEN}Choose additional theming options:${ENDCOLOR}"
 options=("Catppuccin GTK Theme" "Catppuccin Icon Theme" "Both" "None")
 select opt in "${options[@]}"; do
@@ -231,36 +190,25 @@ select opt in "${options[@]}"; do
     esac
 done
 
-#11 Grub Setup
-# Heading: GRUB Setup
-
-# Clone the repository
 echo "Cloning repository..."
-git clone https://github.com/aayushx402/i3-CatDotfiles
+git clone https://github.com/harilvfs/i3wmdotfiles
 
-# Change directory to the cloned repo
-cd i3-CatDotfiles/grub
+cd i3wmdotfiles/grub || exit
 
-# Copy the GRUB theme to the appropriate directory
 echo "Copying GRUB theme..."
 sudo cp -r CyberRe /usr/share/grub/themes
 
-# Update the GRUB configuration
 echo "Updating GRUB configuration..."
 sudo sed -i 's|^GRUB_THEME=.*|GRUB_THEME="/usr/share/grub/themes/CyberRe/theme.txt"|' /etc/default/grub
 
-# Check if the system is Arch Linux
 if grep -q "Arch" /etc/os-release; then
-    # Regenerate the GRUB configuration for Arch Linux
     echo "Generating GRUB configuration for Arch Linux..."
     sudo grub-mkconfig -o /boot/grub/grub.cfg
 else
-    # Update GRUB for other distributions
     echo "Updating GRUB..."
     sudo update-grub
 fi
 
 echo "GRUB setup completed successfully!"
 
-# 12. Finished setup
-echo -e "${GREEN}Setup complete. Please reboot your system to see the changes or press Mod + Shift + R to reload i3wm.${ENDCOLOR}"
+echo -e "${GREEN}Setup complete. Please reboot your system.${ENDCOLOR}"
