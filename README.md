@@ -1,6 +1,6 @@
 <p align="center"><strong>i3wm Dotfiles</strong>
 
-<p align="center">These dotfiles come with <strong>Catppuccin & Nordic theme</strong>
+<p align="center">These dotfiles come with <img src="https://img.shields.io/badge/Theme-Catppuccin-blue?colorA=363a4f&colorB=b7bdf8&style=for-the-badge"> <img src="https://img.shields.io/badge/Theme-Nord-blue?style=for-the-badge&colorA=4c566a&colorB=88c0d0">
 
 ![screenshot](https://github.com/harilvfs/assets/blob/main/i3/20240726_131459.png)
 <p align="center"><strong>Nord BG Credit</strong> <a href="https://github.com/TheDistroHopper" target="_blank" rel="noopener noreferrer">TheDistroHopper</a>
