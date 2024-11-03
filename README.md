@@ -38,7 +38,7 @@
 
 <h3>🚀 Quick Setup</h3>
 
-<p>Use the following script to set up my i3 configuration.If you encounter any issues, feel free to submit an issue:</p>
+<p>Use the following script to install dependencies for i3wm.If you encounter any issues, feel free to submit an issue:</p>
 
 <pre><code>git clone https://github.com/harilvfs/i3wmdotfiles
 cd i3wmdotfiles/
