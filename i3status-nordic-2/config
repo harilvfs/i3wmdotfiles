@@ -69,15 +69,15 @@ disk "/" {
 }
 
 load {
-        format = "CPU: %1min"
+        format = " CPU: %1min"
 }
 
 memory {
-        format = "  Mem %used"
+        format = "  Mem %used"
         threshold_degraded = "1G"
         format_degraded = "MEMORY < %available"
 }
 
 tztime local {
-        format = "   %a %d-%m-%Y    %r  "
+        format = "  %a %d-%m-%Y   %r  "
 }
