@@ -48,6 +48,11 @@ exec_always --no-startup-id picom --config ~/.config/picom.conf
 exec_always --no-startup-id ~/.config/i3/scripts/mouse.sh
 
 
+
+### Wallpapers
+
+exec --no-startup-id sh -c "feh --randomize --bg-fill ~/Downloads/nord-background/*"
+
 #
 #  _  __          _     _           _     
 # | |/ /___ _   _| |__ (_)_ __   __| |___ 
@@ -261,4 +266,4 @@ mode "$mode_gaps_outer" {
 
 
 
-
+exec --no-startup-id pasystray
