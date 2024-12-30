@@ -4,9 +4,9 @@ iatest=$(expr index "$-" i)
 #######################################################
 # SOURCED ALIAS'S AND SCRIPTS BY zachbrowne.me
 #######################################################
-if [ -f /usr/bin/fastfetch ]; then
-	fastfetch
-fi
+#if [ -f /usr/bin/fastfetch ]; then
+#	fastfetch
+#fi
 # Source global definitions
 if [ -f /etc/bashrc ]; then
 	. /etc/bashrc
@@ -534,7 +534,6 @@ function whatsmyip () {
     curl -s ifconfig.me
 }
 
-# View Apache logs
 apachelog() {
 	if [ -f /etc/httpd/conf/httpd.conf ]; then
 		cd /var/log/httpd && ls -xAh && multitail --no-repeat -c -s 2 /var/log/httpd/*_log
@@ -651,8 +650,13 @@ export PATH=$PATH:"$HOME/.local/bin:$HOME/.cargo/bin:/var/lib/flatpak/exports/bi
 
 eval "$(starship init bash)"
 eval "$(zoxide init bash)"
- 
-nitch
+
+if [ -z "$TMUX" ]; then
+   tmux attach -d || tmux new
+fi
+
+nerdfetch
 
 alias termdown="termdown --title Countdown --time-format %H:%M:%S --text \"T i m e i s u p\""
+
 
