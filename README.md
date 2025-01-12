@@ -19,19 +19,16 @@
 
 ![screenshot](https://raw.githubusercontent.com/harilvfs/assets/main/i3/macchiato.webp)
 
-### Config File Overview
+### Explore Configuration Branches
 
-- [fastfetch-png](https://github.com/harilvfs/i3wmdotfiles/tree/main/fastfetch-png) - Fastfetch config with png add ones, Remember alacritty doesn't support image rendering so perfer kitty.    
-- [fastfetch](https://github.com/harilvfs/i3wmdotfiles/tree/main/fastfetch) - Fastfetch config with some changes.
-- [i3-i3status](https://github.com/harilvfs/i3wmdotfiles/tree/main/i3-i3status) - i3wm config with i3status setup.
-- [i3-polybar](https://github.com/harilvfs/i3wmdotfiles/tree/main/i3-polybar) - i3wm config with polybar setup
-- [i3status-nord](https://github.com/harilvfs/i3wmdotfiles/tree/main/i3status-nord) - i3status with nord theme
-- [i3status-nordic-2](https://github.com/harilvfs/i3wmdotfiles/tree/main/i3status-nordic-2) - i3status config with nordic theme but it is bit tweak.
-- [polybar-catppuccin](https://github.com/harilvfs/i3wmdotfiles//tree/main/polybar-catppuccin) - Polybar config with catppuccin theme
-- [polybar-nordic](https://github.com/harilvfs/i3wmdotfiles/tree/main/polybar-nordic) - Polybar config with nordic theme
-- [rofi-catppuccin](https://github.com/harilvfs/i3wmdotfiles/tree/main/rofi-catppuccin) - Rofi config with additional catppuccin theme.
-- [rofi-nordic](https://github.com/harilvfs/i3wmdotfiles/tree/main/rofi-nordic) - Rofi config with nordic theme
-- [rofi](https://github.com/harilvfs/i3wmdotfiles/tree/main/rofi) - Rofi config with catppuccin normal theme
+- **Catppuccin Configs:** [GitHub Link](https://github.com/harilvfs/i3wmdotfiles/tree/catppuccin)  
+- **Nord Configs:** [GitHub Link](https://github.com/harilvfs/i3wmdotfiles/tree/nord)  
+
+> [!NOTE] 
+>
+> All main i3 configurations are organized into separate branches to avoid conflicts and provide a cleaner, more structured experience. Check out the branches for a better understanding of each configuration.
+
+for more check the branches all the main configs of i3 are in seprate branches to avoid the conflicts and for making clean and better understanding
 
 > [!IMPORTANT]
 > Note that the keybindings are based on my personal uses, so remember to change them after installation.
