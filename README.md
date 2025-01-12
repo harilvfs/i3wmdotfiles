@@ -56,12 +56,15 @@ Or just run this curl command:
 - `fish`
 - `imwheel`
 - `nitrogen`
-- `variety`
 - `polkit-gnome`
 - `xclip`
 - `flameshot`
 - `lxappearance`
 - `thunar`
+- `gnome-keyrings`
+- `nvim`
+- `pystray`
+- `nm-applet`
 
 ### 🚀 Default Apps
 
@@ -85,7 +88,7 @@ git clone https://github.com/ChrisTitusTech/nord-background
 #### Change Theme, Icons and Mouse Cursor from `lxappearance`
 - *Widget Theme* : `NordArc-Theme` / `Catppuccin-Moncha-Standard`
 - *Icon Theme* : `NordArc` / `Nordzy`
-- *Mouse Cursor* : `Capitaine Cursors - Light`  / `Qogir`
+- *Mouse Cursor* : `Capitaine Cursors - Light`  / `Bibata-Modern-Ice`
 
 <div align="left">
 
