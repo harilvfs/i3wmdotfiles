@@ -28,8 +28,6 @@
 >
 > All main i3 configurations are organized into separate branches to avoid conflicts and provide a cleaner, more structured experience. Check out the branches for a better understanding of each configuration.
 
-for more check the branches all the main configs of i3 are in seprate branches to avoid the conflicts and for making clean and better understanding
-
 > [!IMPORTANT]
 > Note that the keybindings are based on my personal uses, so remember to change them after installation.
 
