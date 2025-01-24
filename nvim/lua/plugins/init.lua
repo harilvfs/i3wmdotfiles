@@ -123,8 +123,13 @@ return {
     -- Markview for markdown preview
   {
     "OXY2DEV/markview.nvim",
-    lazy = false,
-    cmd = "MarkviewOpen",
+    lazy = false,      -- Recommended
+    -- ft = "markdown" -- If you decide to lazy-load anyway
+
+    dependencies = {
+        "nvim-treesitter/nvim-treesitter",
+        "nvim-tree/nvim-web-devicons"
+    }
   },
 
     -- Dropbar for breadcrumbs
@@ -140,10 +145,28 @@ return {
     "wurli/visimatch.nvim",
     lazy = false,
     opts = {}
-}
+  },
 
+  {
+    "z0mbix/vim-shfmt",
+    lazy=false,
+  },
 
+  {
+    "rachartier/tiny-glimmer.nvim",
+    lazy = false,
+    event = "VeryLazy",
+    opts = {
+        -- your configuration
+    },
+  },
 
+  {
+    "nvzone/typr",
+    dependencies = "nvzone/volt",
+    opts = {},
+    cmd = { "Typr", "TyprStats" },
+  }
   -- {
   -- 	"nvim-treesitter/nvim-treesitter",
   -- 	opts = {
@@ -153,4 +176,4 @@ return {
   -- 		},
   -- 	},
   -- },
-}
+  }
