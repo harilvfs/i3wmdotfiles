@@ -21,7 +21,9 @@ sudo pacman -S --noconfirm \
     i3 i3status polybar fish dmenu rofi alacritty kitty picom maim \
     imwheel nitrogen polkit-gnome xclip flameshot lxappearance thunar \
     xorg-server xorg-xinit xorg-xrandr xorg-xsetroot xorg-xset gtk3 \
-    gnome-settings-daemon gnome-keyrings neovim
+    gnome-settings-daemon gnome-keyring neovim kvantum fastfetch fish \
+    zsh ttf-meslo-nerd noto-fonts-emoji ttf-joypixels ttf-jetbrains-mono \
+    starship network-manager-applet blueman pasystray
 
 # TODO: Add script to configure and set up dotfiles
 echo -e "${GREEN}TODO: Add dotfiles setup script here.${ENDCOLOR}"
