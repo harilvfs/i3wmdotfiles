@@ -87,6 +87,7 @@ git clone https://github.com/ChrisTitusTech/nord-background
 #### Set Wallpaper using `nitrogen`
 
 #### Change Theme, Icons and Mouse Cursor from `lxappearance`
+- **Download themes and icons from my repositories**: [Themes Repository](https://github.com/harilvfs/themes) | [Icons Repository](https://github.com/harilvfs/icons).
 - *Widget Theme* : `NordArc-Theme` / `Catppuccin-Moncha-Standard`
 - *Icon Theme* : `NordArc` / `Nordzy`
 - *Mouse Cursor* : `Capitaine Cursors - Light`  / `Bibata-Modern-Ice`
