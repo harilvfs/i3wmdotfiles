@@ -99,7 +99,7 @@ git clone https://github.com/ChrisTitusTech/nord-background
 ### Launchers
 | Key Combo | Action |
 |:---------:|:-------|
-| <kbd>Super</kbd> + <kbd>Enter</kbd> | Open Terminal (Kitty/Alacritty) |
+| <kbd>Super</kbd> + <kbd>X</kbd> | Open Terminal (Kitty/Alacritty) |
 | <kbd>Super</kbd> + <kbd>D</kbd> | Open App Launcher (Rofi/dmenu) |
 | <kbd>Super</kbd> + <kbd>E</kbd> | Open File Manager (Thunar) |
 | <kbd>Super</kbd> + <kbd>B</kbd> | Open Browser (Brave) |
