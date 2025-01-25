@@ -61,10 +61,11 @@ Or just run this curl command:
 - `flameshot`
 - `lxappearance`
 - `thunar`
-- `gnome-keyrings`
-- `nvim`
-- `pystray`
+- `gnome-keyring`
+- `neovim`
+- `pasystray`
 - `nm-applet`
+- `zsh`
 
 ### 🚀 Default Apps
 
