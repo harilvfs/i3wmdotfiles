@@ -7,10 +7,84 @@ return {
 
   -- These are some examples, uncomment them if you want to see them work!
   {
-    "neovim/nvim-lspconfig",
-    config = function()
-      require "configs.lspconfig"
-    end,
+  "neovim/nvim-lspconfig",
+  lazy = false,
+  config = function()
+    local lspconfig = require("lspconfig")
+    local cmp_nvim_lsp = require("cmp_nvim_lsp")
+
+    local capabilities = cmp_nvim_lsp.default_capabilities()
+
+    local servers = {
+      "lua_ls",        -- Lua
+      "pyright",       -- Python
+      "clangd",        -- C/C++
+      "rust_analyzer", -- Rust
+      "bashls",        -- Bash
+      "jsonls",        -- JSON
+      "yamlls",        -- YAML
+    }
+
+    for _, server in ipairs(servers) do
+      local opts = {}
+
+      if server == "clangd" then
+        opts = {
+          capabilities = capabilities,
+          cmd = {
+            "clangd",
+            "--offset-encoding=utf-16",
+          },
+        }
+      end
+
+      lspconfig[server].setup(opts)
+    end
+  end
+  },
+
+  {
+  "williamboman/mason.nvim",
+  lazy = false,
+  config = function()
+    require("mason").setup()
+  end
+  },
+
+  {
+  "williamboman/mason-lspconfig.nvim",
+  lazy = false,
+  config = function()
+    require("mason-lspconfig").setup({
+      ensure_installed = {  -- Add more languages as needed
+        "lua_ls",        -- Lua
+        "pyright",       -- Python
+        "clangd",        -- C/C++
+        "rust_analyzer", -- Rust
+        "bashls",        -- Bash
+        "jsonls",        -- JSON
+        "yamlls",        -- YAML
+      },
+      automatic_installation = true,
+    })
+  end
+  },
+
+  {
+  "nvimtools/none-ls.nvim",
+  dependencies = { "nvim-lua/plenary.nvim" },
+  config = function()
+    local null_ls = require("null-ls")
+
+    null_ls.setup({
+      sources = {
+        null_ls.builtins.formatting.prettier, -- JS, HTML, CSS
+        null_ls.builtins.formatting.black,    -- Python
+        null_ls.builtins.formatting.stylua,   -- Lua
+        null_ls.builtins.formatting.shfmt,    -- Bash
+      }
+    })
+  end
   },
 
     -- Quick word search under cursor
@@ -166,7 +240,44 @@ return {
     dependencies = "nvzone/volt",
     opts = {},
     cmd = { "Typr", "TyprStats" },
+  },
+
+  {
+  "rachartier/tiny-inline-diagnostic.nvim",
+  lazy = false,
+  event = "LspAttach",  -- Load only when LSP starts
+  config = function()
+    require('tiny-inline-diagnostic').setup({
+      highlight = "DiagnosticVirtualTextError", -- Adjust highlight group
+      prefix = "⚠ ", -- Add a prefix if needed
+    })
+    vim.diagnostic.config({ virtual_text = false }) -- Disable native inline diagnostics
+  end
+  },
+
+  {
+  "akinsho/toggleterm.nvim",
+  lazy = false,
+  version = "*",
+  config = function()
+    require("toggleterm").setup({
+      float_opts = {
+        border = "rounded",
+        winblend = 0,  -- Keep transparency minimal
+        highlights = {
+          background = "NormalFloat",
+        },
+      },
+      shade_terminals = false, -- Prevents unwanted shading
+    })
+
+    -- Force floating terminal background to match normal editor background
+    vim.api.nvim_set_hl(0, "NormalFloat", { link = "Normal" })
+    vim.api.nvim_set_hl(0, "FloatBorder", { link = "Normal" })
+  end
   }
+
+
   -- {
   -- 	"nvim-treesitter/nvim-treesitter",
   -- 	opts = {
