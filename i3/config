@@ -85,7 +85,7 @@ bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute @DEFAULT_SINK@ to
 bindsym XF86AudioMicMute exec --no-startup-id pactl set-source-mute @DEFAULT_SOURCE@ toggle && $refresh_i3status
 
 # start a apps
-bindsym $mod+x exec --no-startup-id kitty;focus
+bindsym $mod+x exec --no-startup-id alacritty;focus
 bindsym $mod+b exec --no-startup-id brave 
 bindsym $mod+e exec --no-startup-id thunar
 bindsym $mod+n exec --no-startup-id "flameshot gui"
