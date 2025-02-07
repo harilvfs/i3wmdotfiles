@@ -1,10 +1,10 @@
                                   
 
-font pango:FiraCodeNerdFont 5
-default_border pixel 0
-gaps inner 5px
-gaps outer 5px
-smart_gaps inverse_outer
+font pango:Jetbrains Mono 5
+for_window [class="^.*"] border pixel 0
+gaps inner 0
+gaps outer 0
+#smart_gaps inverse_outer
 
 
 ##START THEMING WM
@@ -37,6 +37,9 @@ exec_always --no-startup-id nitrogen --restore &
 
 for_window [class="gnome-calculator"] floating enable
 
+# kill any hanging polybar processes
+exec_always --no-startup-id ~/.config/polybar/launch.sh
+
 #####################################################################################################################
 #################                          picom and wallpaper                                      #################
 #####################################################################################################################
@@ -45,6 +48,11 @@ for_window [class="gnome-calculator"] floating enable
 exec_always --no-startup-id picom --config ~/.config/picom.conf
 exec_always --no-startup-id ~/.config/i3/scripts/mouse.sh
 
+
+
+### Wallpapers
+
+exec --no-startup-id sh -c "feh --randomize --bg-fill ~/Pictures/wallpapers/*"
 
 #
 #  _  __          _     _           _     
@@ -78,14 +86,14 @@ bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute @DEFAULT_SINK@ to
 bindsym XF86AudioMicMute exec --no-startup-id pactl set-source-mute @DEFAULT_SOURCE@ toggle && $refresh_i3status
 
 # start a apps
-bindsym $mod+Return exec --no-startup-id alacritty
-bindsym $mod+b exec --no-startup-id thorium-broswer
+bindsym $mod+x exec --no-startup-id alacritty;focus
+bindsym $mod+b exec --no-startup-id brave 
 bindsym $mod+e exec --no-startup-id thunar
 bindsym $mod+n exec --no-startup-id "flameshot gui"
 bindsym $mod+m exec --no-startup-id "flameshot screen"
 
 # start rofi (as a program launcher)
-bindsym $mod+d exec "rofi -modi drun,run -show drun"
+bindsym $mod+r exec "rofi -modi drun,run -show drun"
 # start rofi (as a window switcher, ALT+TAB)
 bindsym Mod1+Tab exec "rofi -modi window,run -show window"
 
@@ -141,18 +149,19 @@ bindsym $mod+a focus parent
 
 # Define names for default workspaces for which we configure key bindings later on.
 # We use variables to avoid repeating the names in multiple places.
-set $ws1 "1: "
-set $ws2 "2: "
-set $ws3 "3: "
-set $ws4 "4: "
-set $ws5 "5: "
-set $ws6 "6: "
-set $ws7 "7: "
-set $ws8 "8: "
-set $ws9 "9: "
-set $ws10 "10: "
+set $ws1 "1"
+set $ws2 "2"
+set $ws3 "3"
+set $ws4 "4"
+set $ws5 "5"
+set $ws6 "6"
+set $ws7 "7"
+set $ws8 "8"
+set $ws9 "9"
+set $ws10 "10"
 
 # switch to workspace
+
 bindsym $mod+1 workspace number $ws1
 bindsym $mod+2 workspace number $ws2
 bindsym $mod+3 workspace number $ws3
@@ -191,7 +200,7 @@ mode "resize" {
         # Pressing right will grow the window’s width.
         # Pressing up will shrink the window’s height.
         # Pressing down will grow the window’s height.
-        bindsym j resize shrink width 10 px or 10 ppt
+        bindsym $mod+shift+j resize shrink width 10 px or 10 ppt
         bindsym k resize grow height 10 px or 10 ppt
         bindsym l resize shrink height 10 px or 10 ppt
         bindsym odiaeresis resize grow width 10 px or 10 ppt
@@ -202,13 +211,59 @@ mode "resize" {
         bindsym Up resize shrink height 1 px or 1 ppt
         bindsym Right resize grow width 1 px or 1 ppt
 
-        # back to normal: Enter or Escape or $mod+r
+        }
+
+# Sreen brightness controls
+bindsym XF86MonBrightnessUp exec light -A 1 # increase screen brightness
+bindsym XF86MonBrightnessDown exec light -U 1 # decrease screen brightness
+
+# bar toggle, hide or show
+bindsym $mod+i bar mode toggle
+
+bindsym $mod+shift+i bar mode invisible
+
+#####################################################################################################################
+#################                          i3 gaps change                                           #################
+#####################################################################################################################
+
+
+
+set $mode_gaps Gaps: (o) outer, (i) inner
+set $mode_gaps_outer Outer Gaps: +|-|0 (local), Shift + +|-|0 (global)
+set $mode_gaps_inner Inner Gaps: +|-|0 (local), Shift + +|-|0 (global)
+bindsym $mod+Shift+g mode "$mode_gaps"
+
+mode "$mode_gaps" {
+        bindsym o      mode "$mode_gaps_outer"
+        bindsym i      mode "$mode_gaps_inner"
         bindsym Return mode "default"
         bindsym Escape mode "default"
-        bindsym $mod+r mode "default"
 }
 
-bindsym $mod+r mode "resize"
+mode "$mode_gaps_inner" {
+        bindsym plus  gaps inner current plus 5
+        bindsym minus gaps inner current minus 5
+        bindsym 0     gaps inner current set 0
+
+        bindsym Shift+plus  gaps inner all plus 5
+        bindsym Shift+minus gaps inner all minus 5
+        bindsym Shift+0     gaps inner all set 0
+
+        bindsym Return mode "default"
+        bindsym Escape mode "default"
+}
+mode "$mode_gaps_outer" {
+        bindsym plus  gaps outer current plus 5
+        bindsym minus gaps outer current minus 5
+        bindsym 0     gaps outer current set 0
+
+        bindsym Shift+plus  gaps outer all plus 5
+        bindsym Shift+minus gaps outer all minus 5
+        bindsym Shift+0     gaps outer all set 0
+
+        bindsym Return mode "default"
+        bindsym Escape mode "default"
+}
 
 
 # Sreen brightness controls
@@ -241,4 +296,6 @@ bar {
 bindsym $mod+i bar mode toggle
 
 bindsym $mod+shift+i bar mode invisible
+
+exec --no-startup-id pasystray
 
