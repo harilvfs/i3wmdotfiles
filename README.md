@@ -30,7 +30,7 @@
 
 > [!NOTE] 
 >
-> All main i3 configurations are organized into separate branches to avoid conflicts and provide a cleaner, more structured experience. Check out the branches for a better understanding of each configuration.
+> Theme-specific configurations are placed in different branches of the repository to avoid conflicts. Make sure to check them out before using.
 
 > [!IMPORTANT]
 > Note that the keybindings are based on my personal uses, so remember to change them after installation.
@@ -48,6 +48,7 @@
 
 ### ⚡ One-Liner Installation
 
+> [!TIP]
 > Alternatively, run this command for a quick setup:
 >
 > ```bash
@@ -55,52 +56,67 @@
 > ```
 
 ### Dependencies
-- `i3status`
-- `polybar`
-- `dmenu`
-- `rofi`
-- `alacritty`
-- `kitty`
-- `picom`
-- `maim`
-- `fish`
-- `imwheel`
-- `nitrogen`
-- `polkit-gnome`
-- `xclip`
-- `flameshot`
-- `lxappearance`
-- `thunar`
-- `gnome-keyring`
-- `neovim`
-- `pasystray`
-- `nm-applet`
-- `zsh`
+
+> - `i3status`
+> - `polybar`
+> - `dmenu`
+> - `rofi`
+> - `alacritty`
+> - `kitty`
+> - `picom`
+> - `maim`
+> - `fish`
+> - `imwheel`
+> - `nitrogen`
+> - `polkit-gnome`
+> - `xclip`
+> - `flameshot`
+> - `lxappearance`
+> - `thunar`
+> - `gnome-keyring`
+> - `neovim`
+> - `pasystray`
+> - `network-manager-applet`
+> - `zsh`
+> - `feh`
+> - `ttf-meslo-nerd`
+> - `noto-fonts-emoji`
+> - `ttf-joypixels`
+> - `ttf-jetbrains-mono`
+> - `gnome-settings-daemon`
+> - `xorg-server`
+> - `xorg-xinit`
+> - `xorg-xrandr`
+> - `xorg-xset`
+> - `gtk3`
+> - `xterm`
 
 ### 🚀 Default Apps
 
-- **Browser:** `Thorium` / `Brave`
-- **File Manager:** `Nemo` / `Thunar`
-- **Code Editor:** `Cursor` / `Vim`
-- **Screenshot Tool:** `Flameshot`
-- **Terminal:** `Alacritty` / `Kitty`
-- **Launcher:** `Rofi` / `Dmenu`
-- **Status Bar:** `Polybar` / `i3status`
-- **Shell:** `Bash` / `Zsh`
+> - **Browser:** `Thorium` / `Brave`
+> - **File Manager:** `Nemo` / `Thunar`
+> - **Code Editor:** `Cursor` / `Vim`
+> - **Screenshot Tool:** `Flameshot`
+> - **Terminal:** `Alacritty` / `Kitty`
+> - **Launcher:** `Rofi` / `Dmenu`
+> - **Status Bar:** `Polybar` / `i3status`
+> - **Shell:** `Bash` / `Zsh`
 
-### Nord Background
-To use the Nord background, clone the repository with the following command:
+### Wallpapers
 
-```bash
-git clone https://github.com/ChrisTitusTech/nord-background
-```
-#### Set Wallpaper using `nitrogen` or `feh`
+> If you want additional wallpapers, clone this repository.
+> 
+> ```bash
+> git clone https://github.com/harilvfs/wallpapers
+> ```
+>
+> Set Wallpaper using `nitrogen` or `feh`
 
 #### Change Theme, Icons and Mouse Cursor from `lxappearance`
-- **Download `themes` and `icons` from my repositories**: [Themes Repository](https://github.com/harilvfs/themes) | [Icons Repository](https://github.com/harilvfs/icons).
-- *Widget Theme* : `NordArc-Theme` / `Catppuccin-Moncha-Standard`
-- *Icon Theme* : `NordArc` / `Nordzy`
-- *Mouse Cursor* : `Capitaine Cursors - Light`  / `Bibata-Modern-Ice`
+> - **Download `themes` and `icons` from my repositories**: [Themes Repository](https://github.com/harilvfs/themes) | [Icons Repository](https://github.com/harilvfs/icons).
+> - *Widget Theme* : `NordArc-Theme` / `Catppuccin-Moncha-Standard`
+> - *Icon Theme* : `NordArc` / `Nordzy`
+> - *Mouse Cursor* : `Capitaine Cursors - Light`  / `Bibata-Modern-Ice`
 
 <div align="left">
 
