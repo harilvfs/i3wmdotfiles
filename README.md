@@ -22,8 +22,8 @@
 <div align="center">
   <table><tr><td>
 
-[![Nordic](https://placehold.co/130x30/D9D9D9/476A84?text=Nordic-Blue&font=Oswald)](https://github.com/harilvfs/i3wmdotfiles/tree/nord)
-[![Catppuccin](https://placehold.co/130x30/b4befe/11111b?text=Catppuccin-Mocha&font=Oswald)](https://github.com/harilvfs/i3wmdotfiles/tree/catppuccin)
+[![Nordic](https://placehold.co/130x30/4c566a/88c0d0?text=Nordic&font=Oswald)](https://github.com/harilvfs/i3wmdotfiles/tree/nord)
+[![Catppuccin](https://placehold.co/130x30/b4befe/11111b?text=Catppuccin&font=Oswald)](https://github.com/harilvfs/i3wmdotfiles/tree/catppuccin)
 
   </td></tr></table>
 </div>
