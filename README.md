@@ -35,18 +35,24 @@
 > [!IMPORTANT]
 > Note that the keybindings are based on my personal uses, so remember to change them after installation.
 
-<h3>🚀 Quick Setup</h3>
+### 🚀 Quick Setup
 
-<p>Use the following script to install dependencies for i3wm.If you encounter any issues, feel free to submit an issue:</p>
+> Easily set up i3wm with the following script, which supports both Arch and Fedora-based systems. If you encounter any issues, feel free to [open an issue](https://github.com/harilvfs/i3wmdotfiles/issues).  
+>
+> ```bash
+> git clone https://github.com/harilvfs/i3wmdotfiles ~/i3wmdotfiles
+> cd ~/i3wmdotfiles
+> chmod +x setup.sh
+> ./setup.sh
+> ```
 
-<pre><code>git clone https://github.com/harilvfs/i3wmdotfiles
-cd i3wmdotfiles/
-chmod +x setup.sh
-./setup.sh
-</code></pre>
+### ⚡ One-Liner Installation
 
-Or just run this curl command:
-<pre><code>curl -fsSL https://raw.githubusercontent.com/harilvfs/i3wmdotfiles/main/setup.sh | sh </code></pre>
+> Alternatively, run this command for a quick setup:
+>
+> ```bash
+> bash <(curl -L https://raw.githubusercontent.com/harilvfs/i3wmdotfiles/main/setup.sh)
+> ```
 
 ### Dependencies
 - `i3status`
@@ -88,7 +94,7 @@ To use the Nord background, clone the repository with the following command:
 ```bash
 git clone https://github.com/ChrisTitusTech/nord-background
 ```
-#### Set Wallpaper using `nitrogen`
+#### Set Wallpaper using `nitrogen` or `feh`
 
 #### Change Theme, Icons and Mouse Cursor from `lxappearance`
 - **Download `themes` and `icons` from my repositories**: [Themes Repository](https://github.com/harilvfs/themes) | [Icons Repository](https://github.com/harilvfs/icons).
