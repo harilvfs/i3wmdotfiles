@@ -19,6 +19,15 @@
 
 ![screenshot](https://raw.githubusercontent.com/harilvfs/assets/main/i3/macchiato.webp)
 
+<div align="center">
+  <table><tr><td>
+
+[![Catppuccin-Latte](https://placehold.co/130x30/dd7878/eff1f5?text=Catppuccin-Latte&font=Oswald)](https://github.com/harilvfs/i3wmdotfiles/blob/main/preview%20images/2024-08-14_23-57.png)
+[![Catppuccin-Mocha](https://placehold.co/130x30/b4befe/11111b?text=Catppuccin-Mocha&font=Oswald)](https://github.com/harilvfs/i3wmdotfiles/blob/main/preview%20images/2024-08-19_15-23_1.png)
+
+  </td></tr></table>
+</div>
+
 ### Explore Configuration Branches
 
 - **Catppuccin Configs:** [GitHub Link](https://github.com/harilvfs/i3wmdotfiles/tree/catppuccin)  
