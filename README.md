@@ -4,21 +4,6 @@
 
 <p align="center"><img src="https://img.shields.io/badge/Theme-Catppuccin-blue?colorA=363a4f&colorB=b7bdf8&style=for-the-badge">  <img src="https://img.shields.io/badge/Theme-Nord-blue?style=for-the-badge&colorA=4c566a&colorB=88c0d0">
 
-![screenshot](https://github.com/harilvfs/assets/blob/main/i3/20240726_131459.png)
-<p align="center"><strong>Nord BG Credit</strong> <a href="https://github.com/TheDistroHopper" target="_blank" rel="noopener noreferrer">TheDistroHopper</a>
-
-![screenshot](https://github.com/harilvfs/i3wmdotfiles/blob/main/preview%20images/i3wm-nord.png)
-
-![screenshot](https://github.com/harilvfs/i3wmdotfiles/blob/main/preview%20images/2024-08-21_22-03.png)
-![screenshot](https://github.com/harilvfs/i3wmdotfiles/blob/main/preview%20images/2024-08-21_22-05.png)
-
-<p>
-<img src="https://github.com/harilvfs/i3wmdotfiles/blob/main/preview%20images/2024-08-14_23-57.png" alt="screenshot" style="display:inline-block; width:49%;">
-<img src="https://github.com/harilvfs/i3wmdotfiles/blob/main/preview%20images/2024-08-19_15-23_1.png" alt="screenshot" style="display:inline-block; width:49%;">
-</p>
-
-![screenshot](https://raw.githubusercontent.com/harilvfs/assets/main/i3/macchiato.webp)
-
 <div align="center">
   <table><tr><td>
 
@@ -28,7 +13,7 @@
   </td></tr></table>
 </div>
 
-<div align="center"><table><tr>Nordic</tr><tr><td>
+<div align="center"><table><tr><strong>Nordic</strong></tr><tr><td>
 <img src="https://github.com/harilvfs/i3wmdotfiles/blob/main/preview%20images/2024-08-21_22-03.png"/></td><td>
 <img src="https://github.com/harilvfs/i3wmdotfiles/blob/main/preview%20images/2024-08-21_22-05.png"/></td></tr></table></div>
 
