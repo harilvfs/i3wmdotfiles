@@ -1,4 +1,8 @@
-<p align="center"><strong>i3wm Dotfiles</strong>
+<div align="center">
+  
+# `i3wm Dotfiles`
+
+</div>
 
 <p align="center">These dotfiles come with <strong>Catppuccin & Nordic theme</strong>
 
