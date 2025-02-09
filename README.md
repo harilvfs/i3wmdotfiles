@@ -33,7 +33,7 @@
 <img src="https://github.com/harilvfs/i3wmdotfiles/blob/main/preview%20images/2024-08-21_22-05.png"/></td></tr></table></div>
 
 <div align="center"><table><tr><strong>Catppuccin</strong></tr><tr><td>
-<img src="https://github.com/harilvfs/i3wmdotfiles/blob/main/preview%20images/2024-08-21_22-03.png"/></td><td>
+<img src="https://github.com/harilvfs/i3wmdotfiles/blob/main/preview%20images/2024-08-14_23-57.png"/></td><td>
 <img src="https://raw.githubusercontent.com/harilvfs/assets/main/i3/macchiato.webp"/></td></tr></table></div>
 
 ### Explore Configuration Branches
