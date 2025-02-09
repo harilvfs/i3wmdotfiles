@@ -25,8 +25,8 @@
 
 ### Explore Configuration Branches
 
-- **Catppuccin Configs:** [GitHub Link](https://github.com/harilvfs/i3wmdotfiles/tree/catppuccin)  
-- **Nord Configs:** [GitHub Link](https://github.com/harilvfs/i3wmdotfiles/tree/nord)  
+> - **Catppuccin Configs:** [GitHub Link](https://github.com/harilvfs/i3wmdotfiles/tree/catppuccin)  
+> - **Nord Configs:** [GitHub Link](https://github.com/harilvfs/i3wmdotfiles/tree/nord)  
 
 > [!NOTE] 
 >
