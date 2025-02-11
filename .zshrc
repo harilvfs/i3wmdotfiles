@@ -72,6 +72,8 @@ alias pc='$aurhelper -Sc' # remove unused cache
 alias po='$aurhelper -Qtdq | $aurhelper -Rns -' # remove unused packages, also try > $aurhelper -Qqd | $aurhelper -Rsu --print -
 alias vc='code' # gui code editor
 alias vim='nvim' # neovim
+alias carchinstalla='bash <(curl -l https://chalisehari.com.np/arch)' # carch install on arch
+alias carchinstallf='bash <(curl -l https://chalisehari.com.np/fedora)' # carch install on fedora
 
 # Directory navigation shortcuts
 alias ..='cd ..'
