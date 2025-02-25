@@ -70,22 +70,28 @@ install_starship() {
 }
 
 echo -e "${GREEN}Installing essential dependencies for i3wm setup...${ENDCOLOR}"
-if [[ "$OS" == "arch" ]]; then
-    sudo pacman -S --noconfirm --needed \
-        i3 rofi maim git \
+
+if [[ -f /etc/os-release ]]; then
+    . /etc/os-release
+fi
+
+if [[ "$ID" == "arch" ]]; then
+    sudo pacman -S --noconfirm \
+        i3-wm rofi maim git \
         imwheel nitrogen polkit-gnome xclip flameshot thunar \
         xorg-server xorg-xinit xorg-xrandr xorg-xsetroot xorg-xset gtk3 \
         gnome-settings-daemon gnome-keyring neovim \
         ttf-meslo-nerd noto-fonts-emoji ttf-joypixels ttf-jetbrains-mono \
-        starship network-manager-applet blueman pasystray wget unzip starship \
+        starship network-manager-applet blueman pasystray wget unzip \
         curl zoxide
-elif [[ "$OS" == "fedora" ]]; then
+elif [[ "$ID" == "fedora" ]]; then
     sudo dnf install -y \
         i3 polybar rofi maim \
         imwheel xclip flameshot lxappearance thunar xorg-x11-server-Xorg \
         xorg-x11-xinit xrandr gtk3 gnome-settings-daemon gnome-keyring \
-        neovim network-manager-applet blueman pasystray git jetbrains-mono-fonts-all \
-        google-noto-color-emoji-fonts google-noto-emoji-fonts wget unzip curl zoxide
+        neovim network-manager-applet blueman pasystray git \
+        jetbrains-mono-fonts-all google-noto-color-emoji-fonts \
+        google-noto-emoji-fonts wget unzip curl zoxide 
 
     install_starship
 fi
@@ -335,197 +341,148 @@ clone_themes_icons
 move_themes_icons
 
 is_sddm_installed() {
-    if command -v sddm &> /dev/null; then
-        return 0 
-    else
-        return 1
-    fi
+    command -v sddm &>/dev/null
 }
 
 install_sddm() {
-    if [ -f /etc/os-release ]; then
-        . /etc/os-release
-        case $ID in
-            arch*)
-                sudo pacman -S --noconfirm sddm
-                ;;
-            fedora*)
-                sudo dnf install -y sddm
-                ;;
-            *)
-                echo -e "${RED}Unsupported distribution.${ENDCOLOR}"
-                exit 1
-                ;;
-        esac
+    if [ ! -f /etc/os-release ]; then
+        echo -e "${RED}Cannot determine OS. Exiting.${ENDCOLOR}"
+        exit 1
     fi
+
+    . /etc/os-release
+
+    case $ID in
+        arch*)
+            sudo pacman -S --noconfirm sddm
+            ;;
+        fedora*)
+            sudo dnf install -y sddm
+            ;;
+        *)
+            echo -e "${RED}Unsupported distribution.${ENDCOLOR}"
+            exit 1
+            ;;
+    esac
 }
 
 apply_sddm_theme() {
     theme_dir="/usr/share/sddm/themes/catppuccin-mocha"
+    temp_dir=$(mktemp -d)
 
     if [ -d "$theme_dir" ]; then
-        echo -e "${YELLOW} $theme_dir already exists.${ENDCOLOR}"
-        read -rp "Do you want to remove the existing theme and continue? (y/n): " remove_dir
+        echo -e "${YELLOW}Theme already exists.${ENDCOLOR}"
+        read -rp "Remove existing theme? (y/n): " remove_dir
         if [[ "$remove_dir" =~ ^[Yy]$ ]]; then
             sudo rm -rf "$theme_dir"
-            echo -e "${GREEN}$theme_dir removed.${ENDCOLOR}"
+            echo -e "${GREEN}Old theme removed.${ENDCOLOR}"
         else
-            echo -e "${RED}$theme_dir not removed, exiting.${ENDCOLOR}"
+            echo -e "${RED}Theme not replaced. Exiting.${ENDCOLOR}"
             exit 1
         fi
     fi
+
+    echo -e "${GREEN}Downloading Catppuccin Mocha theme...${ENDCOLOR}"
+    wget -q --show-progress https://github.com/catppuccin/sddm/releases/download/v1.0.0/catppuccin-mocha.zip -O "$temp_dir/theme.zip"
+
+    if [ ! -f "$temp_dir/theme.zip" ]; then
+        echo -e "${RED}Failed to download theme. Exiting.${ENDCOLOR}"
+        exit 1
+    fi
+
+    unzip -q "$temp_dir/theme.zip" -d "$temp_dir"
+    sudo mv "$temp_dir/catppuccin-mocha" "$theme_dir"
+
+    rm -rf "$temp_dir"
+    echo -e "${GREEN}Theme applied successfully.${ENDCOLOR}"
 }
 
-    temp_dir=$(mktemp -d)
-    echo -e "${GREEN}Downloading Catppuccin Mocha theme...${ENDCOLOR}"
-    wget https://github.com/catppuccin/sddm/releases/download/v1.0.0/catppuccin-mocha.zip -O "$temp_dir/catppuccin-mocha.zip"
-    
-    unzip "$temp_dir/catppuccin-mocha.zip" -d "$temp_dir"
-    
-    cd "$temp_dir/catppuccin-mocha" || exit 
-    
-    echo -e "${GREEN}Copying the theme to /usr/share/sddm/themes...${ENDCOLOR}"
-    sudo cp -r "$temp_dir/catppuccin-mocha" /usr/share/sddm/themes/
-    
-    rm -rf "$temp_dir"
-
 configure_sddm_theme() {
-    echo -e "${GREEN}Configuring sddm.conf to use the Catppuccin Mocha theme...${ENDCOLOR}"
-    
+    echo -e "${GREEN}Configuring SDDM theme...${ENDCOLOR}"
+
+    sudo mkdir -p /etc
     if [ ! -f /etc/sddm.conf ]; then
-        sudo touch /etc/sddm.conf
+        echo "[Theme]" | sudo tee /etc/sddm.conf > /dev/null
     fi
 
-    if ! grep -q "\[Theme\]" /etc/sddm.conf; then
-        echo "[Theme]" | sudo tee -a /etc/sddm.conf > /dev/null
-    fi
-    
-    sudo sed -i '/\[Theme\]/a Current=catppuccin-mocha' /etc/sddm.conf
+    sudo sed -i '/\[Theme\]/!b;n;cCurrent=catppuccin-mocha' /etc/sddm.conf
+    echo -e "${GREEN}SDDM theme configured.${ENDCOLOR}"
 }
 
 enable_start_sddm() {
     echo -e "${GREEN}Checking for existing display managers...${ENDCOLOR}"
+    
+    . /etc/os-release
 
-    if [[ -f /etc/os-release ]]; then
-        . /etc/os-release
-    fi
-
-    if command -v gdm &> /dev/null; then
-        echo "${BLUE}GDM detected. Removing GDM...${ENDCOLOR}"
-        sudo systemctl stop gdm
-        sudo systemctl disable gdm --now
-        if [[ "$ID" == "arch" || "$ID_LIKE" == *"arch"* ]]; then
-            sudo pacman -Rns --noconfirm gdm
-        elif [[ "$ID" == "fedora" ]]; then
-            sudo dnf remove -y gdm
+    for dm in gdm lightdm; do
+        if command -v $dm &>/dev/null; then
+            echo -e "${BLUE}Removing $dm...${ENDCOLOR}"
+            sudo systemctl stop $dm
+            sudo systemctl disable $dm --now
+            [[ "$ID" == "arch" || "$ID_LIKE" == *"arch"* ]] && sudo pacman -Rns --noconfirm $dm
+            [[ "$ID" == "fedora" ]] && sudo dnf remove -y $dm
         fi
-    fi
+    done
 
-    if command -v lightdm &> /dev/null; then
-        echo "${BLUE}LightDM detected. Removing LightDM...${ENDCOLOR}"
-        sudo systemctl stop lightdm
-        sudo systemctl disable lightdm --now
-        if [[ "$ID" == "arch" || "$ID_LIKE" == *"arch"* ]]; then
-            sudo pacman -Rns --noconfirm lightdm
-        elif [[ "$ID" == "fedora" ]]; then
-            sudo dnf remove -y lightdm
-        fi
-    fi
-
-    echo -e "${GREEN}Enabling and starting the sddm service...${ENDCOLOR}"
+    echo -e "${GREEN}Enabling and starting SDDM...${ENDCOLOR}"
     sudo systemctl enable sddm --now
 }
 
-if ! is_sddm_installed; then
-    install_sddm
-else
-    echo -e "${GREEN}Sddm is already installed, skipping installation.${ENDCOLOR}"
-fi
+setup_numlock() {
+    echo -e "${GREEN}Setting up NumLock on login...${ENDCOLOR}"
 
-apply_sddm_theme
-
-configure_sddm_theme
-
-enable_start_sddm
-
-echo -e "${GREEN}Sddm theme applied, service started, and configuration updated successfully!${ENDCOLOR}"
-
-create_file() {
-    echo -e "${GREEN}Creating script...${ENDCOLOR}"
-    sudo tee "/usr/local/bin/numlock" >/dev/null <<'EOF'
+    sudo tee "/usr/local/bin/numlock" > /dev/null <<'EOF'
 #!/bin/bash
-
-for tty in /dev/tty{1..6}
-do
-    /usr/bin/setleds -D +num < "$tty"; 
+for tty in /dev/tty{1..6}; do
+    /usr/bin/setleds -D +num < "$tty"
 done
 EOF
-
     sudo chmod +x /usr/local/bin/numlock
-}
 
-create_service() {
-    echo -e "${GREEN}Creating service...${ENDCOLOR}"
-    sudo tee "/etc/systemd/system/numlock.service" >/dev/null <<'EOF'
+    sudo tee "/etc/systemd/system/numlock.service" > /dev/null <<'EOF'
 [Unit]
-Description=numlock
-        
+Description=Enable NumLock on startup
 [Service]
 ExecStart=/usr/local/bin/numlock
 StandardInput=tty
 RemainAfterExit=yes
-
 [Install]
 WantedBy=multi-user.target
 EOF
-}
 
-numlockSetup() {
-    if [ "$INIT_MANAGER" = "rc-service" ]; then
-        echo -e "${RED}Unsupported init system.${ENDCOLOR}"
-        exit 1
-    fi
-
-    if [ ! -f "/usr/local/bin/numlock" ]; then
-        create_file
-    fi
-
-    if [ ! -f "/etc/systemd/system/numlock.service" ]; then
-        create_service
-    fi
-
-    echo -e "${YELLOW}Num Lock on Startup. ${ENDCOLOR}"
-    read -rp "Do you want to enable Numlock on boot? (y/N): " confirm
-      if [ "$confirm" = "y" ] || [ "$confirm" = "Y" ]; then
-        echo -e "${GREEN}Enabling Numlock on boot...${ENDCOLOR}"
+    read -rp "Enable NumLock on boot? (y/N): " confirm
+    if [[ "$confirm" =~ ^[Yy]$ ]]; then
         sudo systemctl enable numlock.service
-        echo -e "${GREEN}Numlock will be enabled on boot.${ENDCOLOR}"
-      else
-        echo -e "${GREEN}Numlock will not be enabled on boot.${ENDCOLOR}"
-      fi
+        echo -e "${GREEN}NumLock will be enabled on boot.${ENDCOLOR}"
+    else
+        echo -e "${GREEN}NumLock setup skipped.${ENDCOLOR}"
+    fi
 }
-
-numlockSetup
 
 display_message() {
     gum style --border "normal" --width 50 --padding 1 --foreground "white" --background "blue" --align "center" "i3wm setup completed"
 }
 
 prompt_reboot() {
-    echo -e "${YELLOW} Reboot ${ENDCOLOR}"
-    read -rp "Do you want to reboot now? (y/N): " reboot_choice
+    read -rp "Reboot now? (y/N): " reboot_choice
     if [[ "$reboot_choice" =~ ^[Yy]$ ]]; then
         echo -e "${GREEN}Rebooting...${ENDCOLOR}"
-
         gum spin --title "Rebooting system" -- sh -c "sleep 3"
-
         sudo reboot
     else
         echo -e "${RED}Skipping reboot. You can reboot later.${ENDCOLOR}"
     fi
 }
 
+if ! is_sddm_installed; then
+    install_sddm
+else
+    echo -e "${GREEN}SDDM is already installed.${ENDCOLOR}"
+fi
 
+apply_sddm_theme
+configure_sddm_theme
+setup_numlock
+enable_start_sddm
 display_message
-
 prompt_reboot
