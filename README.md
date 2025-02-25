@@ -32,8 +32,18 @@
 >
 > Theme-specific configurations are placed in different branches of the repository to avoid conflicts. Make sure to check them out before using.
 
-> [!IMPORTANT]
-> Note that the keybindings are based on my personal uses, so remember to change them after installation.
+> [!IMPORTANT]  
+> Note that the keybindings are based on my personal use, so remember to change them after installation.  
+> Also, make sure to install **gum** and **figlet** before running the setup script, depending on your distro:
+>
+> For **Arch Linux**:
+> ```sh
+> sudo pacman -S gum figlet
+> ```
+> For Fedora:
+> ```sh
+> sudo dnf install gum figlet
+> ```
 
 ### 🚀 Quick Setup
 
