@@ -1,0 +1,68 @@
+name: "Bug Report"
+description: "Report an issue with the i3wmdotfiles setup script"
+labels: [bug]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        ## Bug Report
+        Thanks for taking the time to report an issue! Please provide as much detail as possible.
+
+  - type: dropdown
+    id: distro
+    attributes:
+      label: "Which distro are you using?"
+      description: "Select the distribution where the issue occurs."
+      options:
+        - Arch Linux
+        - Fedora
+      multiple: false
+    validations:
+      required: true
+
+  - type: input
+    id: script_version
+    attributes:
+      label: "Setup script version or commit hash"
+      description: "Provide the latest commit hash or version of the setup script you used."
+    validations:
+      required: false
+
+  - type: textarea
+    id: issue_description
+    attributes:
+      label: "Describe the issue"
+      description: "Provide a clear and concise description of the problem."
+      placeholder: "What happened? What did you expect to happen?"
+    validations:
+      required: true
+
+  - type: textarea
+    id: steps_to_reproduce
+    attributes:
+      label: "Steps to reproduce"
+      description: "Provide the steps to reproduce the issue."
+      placeholder: |
+        1. Run `./setup.sh`
+        2. Select preferred options
+        3. See error
+    validations:
+      required: true
+
+  - type: textarea
+    id: error_logs
+    attributes:
+      label: "Logs and error messages"
+      description: "Paste any relevant logs or error messages."
+      render: shell
+    validations:
+      required: false
+
+  - type: textarea
+    id: additional_info
+    attributes:
+      label: "Additional context"
+      description: "Anything else you think we should know?"
+    validations:
+      required: false
+

@@ -1,0 +1,65 @@
+name: "Feature Request"
+description: "Suggest a new feature or improvement for the i3wmdotfiles setup script"
+labels: [enhancement]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        ## Feature Request
+        Thanks for suggesting an improvement! Please provide as much detail as possible.
+
+  - type: dropdown
+    id: distro
+    attributes:
+      label: "Which distro are you using?"
+      description: "Select the distribution where this feature should be implemented."
+      options:
+        - Arch Linux
+        - Fedora
+        - Both
+      multiple: false
+    validations:
+      required: true
+
+  - type: input
+    id: related_feature
+    attributes:
+      label: "Is this related to an existing feature?"
+      description: "If applicable, mention the feature this request relates to."
+      placeholder: "e.g., Polybar setup, Theme selection"
+    validations:
+      required: false
+
+  - type: textarea
+    id: feature_description
+    attributes:
+      label: "Describe the feature"
+      description: "Provide a clear and concise description of what you want to be added or improved."
+      placeholder: "What is the feature? How would it improve the setup?"
+    validations:
+      required: true
+
+  - type: textarea
+    id: benefits
+    attributes:
+      label: "Why is this feature useful?"
+      description: "Explain how this feature would improve the setup experience."
+    validations:
+      required: true
+
+  - type: textarea
+    id: alternatives
+    attributes:
+      label: "Alternatives considered"
+      description: "Have you thought of any other ways to achieve this?"
+    validations:
+      required: false
+
+  - type: textarea
+    id: additional_info
+    attributes:
+      label: "Additional context"
+      description: "Anything else you think we should know?"
+    validations:
+      required: false
+
