@@ -30,3 +30,13 @@ map("i", "<C-t>", function()
   local count = vim.v.count1
   vim.cmd("stopinsert | " .. count .. "ToggleTerm")
 end, { desc = "Toggle Terminal (Insert Mode)" })
+
+-- Normal mode: Move current line up/down
+vim.keymap.set("n", "<A-j>", ":m .+1<CR>==", { noremap = true, silent = true })
+vim.keymap.set("n", "<A-k>", ":m .-2<CR>==", { noremap = true, silent = true })
+
+-- Visual mode: Move selected lines up/down
+vim.keymap.set("v", "<A-j>", ":m '>+1<CR>gv=gv", { noremap = true, silent = true })
+vim.keymap.set("v", "<A-k>", ":m '<-2<CR>gv=gv", { noremap = true, silent = true })
+
+
