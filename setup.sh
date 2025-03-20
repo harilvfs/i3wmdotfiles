@@ -52,15 +52,24 @@ fi
 
 if [[ "$OS" == "arch" ]]; then
     echo -e "${GREEN}Checking for AUR helper...${ENDCOLOR}"
-    if ! command -v paru &>/dev/null && ! command -v yay &>/dev/null; then
-        echo -e "${GREEN}Installing Yay as AUR helper...${ENDCOLOR}"
+    AUR_HELPER=""
+    
+    for helper in paru yay; do
+        if command -v "$helper" &>/dev/null; then
+            AUR_HELPER="$helper"
+            echo -e "${GREEN}Found AUR helper: $AUR_HELPER${ENDCOLOR}"
+            break
+        fi
+    done
+    
+    if [[ -z "$AUR_HELPER" ]]; then
+        echo -e "${GREEN}No AUR helper found. Installing Yay...${ENDCOLOR}"
         git clone https://aur.archlinux.org/yay.git
         cd yay || exit
         makepkg -si --noconfirm
         cd .. || exit
         rm -rf yay
-    else
-        echo -e "${GREEN}AUR helper already installed.${ENDCOLOR}"
+        AUR_HELPER="yay"
     fi
 fi
 
@@ -102,7 +111,7 @@ if command -v brave &>/dev/null || flatpak list | grep -q "com.brave.Browser"; t
 else
     echo -e "${GREEN}Installing Brave browser...${ENDCOLOR}"
     if [[ "$OS" == "arch" ]]; then
-        yay -S --noconfirm brave-bin
+        "$AUR_HELPER" -S --noconfirm brave-bin
     elif [[ "$OS" == "fedora" ]]; then
         if ! command -v flatpak &>/dev/null; then
             echo -e "${GREEN}Installing Flatpak...${ENDCOLOR}"
