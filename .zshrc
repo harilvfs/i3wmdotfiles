@@ -97,17 +97,38 @@ alias mkdir='mkdir -p'
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 
 # Display Pokemon
-#pokemon-colorscripts --no-title -r 1,3,6
+pokemon-colorscripts --no-title -r 1,3,6
 
 eval "$(zoxide init zsh)"
 
-if [ -z "$TMUX" ]; then
-   tmux attach -d || tmux new
-fi
+#if [ -z "$TMUX" ]; then
+#   tmux attach -d || tmux new
+#fi
 
-nerdfetch
+#nerdfetch
 
-export NVM_DIR="$HOME/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
-[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+#export NVM_DIR="$HOME/.nvm"
+#[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+#[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+
+#if [[ -z $DISPLAY ]] && [[ $(tty) = /dev/tty1 ]]; then
+#    exec startx
+#fi
+
+[ -f ~/.p10k.zsh ] && source ~/.p10k.zsh
+
+# bun completions
+[ -s "/home/aayush/.bun/_bun" ] && source "/home/aayush/.bun/_bun"
+
+# bun
+export BUN_INSTALL="$HOME/.bun"
+export PATH="$BUN_INSTALL/bin:$PATH"
+
+# fzf
+fzf_cd() {
+  local dir
+  dir=$(find . -maxdepth 3 -type d | fzf) && cd "$dir"
+}
+alias cdf="fzf_cd"
+
 
