@@ -34,18 +34,27 @@
 
 > [!IMPORTANT]  
 > Note that the keybindings are based on my personal use, so remember to change them after installation.  
-> Also, make sure to install **gum** and **figlet** before running the setup script, depending on your distro:
+> Also, make sure to install **fzf** and **figlet** before running the setup script, depending on your distro:
 >
 > For **Arch Linux**:
 > ```sh
-> sudo pacman -S gum figlet
+> sudo pacman -S fzf figlet --no-confirm
 > ```
 > For Fedora:
 > ```sh
-> sudo dnf install gum figlet
+> sudo dnf install fzf figlet -y
 > ```
 
-### 🚀 Quick Setup
+### ⚡ One-Liner Installation
+
+> [!TIP]
+> Run this command for a quick setup:
+>
+> ```bash
+> bash <(curl -L https://chalisehari.com.np/i3wm)
+> ```
+
+### 🚀 Manually
 
 > Easily set up i3wm with the following script, which supports both `Arch` and `Fedora-based` systems. If you encounter any issues, feel free to [open an issue](https://github.com/harilvfs/i3wmdotfiles/issues).  
 >
@@ -54,15 +63,6 @@
 > cd ~/i3wmdotfiles
 > chmod +x setup.sh
 > ./setup.sh
-> ```
-
-### ⚡ One-Liner Installation
-
-> [!TIP]
-> Alternatively, run this command for a quick setup:
->
-> ```bash
-> bash <(curl -L https://raw.githubusercontent.com/harilvfs/i3wmdotfiles/main/setup.sh)
 > ```
 
 ### Dependencies

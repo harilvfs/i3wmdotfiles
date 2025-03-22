@@ -18,9 +18,21 @@ echo -e "${BLUE}"
 figlet -f slant "i3wm"
 echo -e "${ENDCOLOR}"
 
+fzf_confirm() {
+    local prompt="$1"
+    local options=("Yes" "No")
+    local selected=$(printf "%s\n" "${options[@]}" | fzf --prompt="$prompt " --height=10 --layout=reverse --border)
+    
+    if [[ "$selected" == "Yes" ]]; then
+        return 0
+    else
+        return 1
+    fi
+}
+
 echo -e "${YELLOW}Warning: Do not re-run the script . If you encounter issues, remove the .i3wmdotfiles directory in your home directory..${ENDCOLOR}"
 
-if ! gum confirm "Continue with i3 setup?"; then
+if ! fzf_confirm "Continue with i3 setup?"; then
     echo -e "${RED}Setup aborted by the user.${NC}"
     exit 1
 fi
@@ -469,14 +481,15 @@ EOF
 }
 
 display_message() {
-    gum style --border "normal" --width 50 --padding 1 --foreground "white" --background "blue" --align "center" "i3wm setup completed"
+    echo -e "${BLUE}╔════════════════════════════════════════════╗${ENDCOLOR}"
+    echo -e "${BLUE}║              i3wm setup completed          ║${ENDCOLOR}"
+    echo -e "${BLUE}╚════════════════════════════════════════════╝${ENDCOLOR}"
 }
 
 prompt_reboot() {
-    read -rp "Reboot now? (y/N): " reboot_choice
-    if [[ "$reboot_choice" =~ ^[Yy]$ ]]; then
+    if fzf_confirm "Reboot now?"; then
         echo -e "${GREEN}Rebooting...${ENDCOLOR}"
-        gum spin --title "Rebooting system" -- sh -c "sleep 3"
+        sleep 3
         sudo reboot
     else
         echo -e "${RED}Skipping reboot. You can reboot later.${ENDCOLOR}"
