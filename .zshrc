@@ -131,4 +131,4 @@ fzf_cd() {
 }
 alias cdf="fzf_cd"
 
-
+export PATH="$HOME/.cargo/bin:$PATH"

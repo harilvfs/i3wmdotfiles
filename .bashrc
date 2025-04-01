@@ -674,3 +674,5 @@ fzf_cd() {
   dir=$(find . -maxdepth 3 -type d | fzf) && cd "$dir"
 }
 alias cdf="fzf_cd"
+
+export PATH="$HOME/.cargo/bin:$PATH"
