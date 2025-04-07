@@ -1,4 +1,6 @@
-#!/bin/bash
+#!/usr/bin/env bash
+
+# Installs and configures i3, providing a lightweight and efficient window management experience.
 
 clear
 
@@ -15,8 +17,12 @@ WALLPAPER_REPO="https://github.com/harilvfs/wallpapers"
 WALLPAPER_DIR="$HOME/Pictures/wallpapers"
 
 echo -e "${BLUE}"
-figlet -f slant "i3wm"
-echo -e "${ENDCOLOR}"
+if command -v figlet &>/dev/null; then
+    figlet -f slant "i3wm"
+else
+    echo "========== i3wm Setup =========="
+fi
+echo -e "${RESET}"
 
 fzf_confirm() {
     local prompt="$1"
@@ -37,20 +43,13 @@ if ! fzf_confirm "Continue with i3 setup?"; then
     exit 1
 fi
 
-if [[ -f /etc/os-release ]]; then
-    source /etc/os-release
+if command -v pacman &>/dev/null; then
+   OS="arch"
+elif command -v dnf &>/dev/null; then
+   OS="fedora"
 else
-    echo -e "${GREEN}Unsupported system!${ENDCOLOR}"
-    exit 1
-fi
-
-if [[ "$ID" == "arch" ]]; then
-    OS="arch"
-elif [[ "$ID" == "fedora" ]]; then
-    OS="fedora"
-else
-    echo -e "${GREEN}This script only supports Arch Linux and Fedora.${ENDCOLOR}"
-    exit 1
+   echo -e "${GREEN}This script only supports Arch Linux and Fedora.${ENDCOLOR}"
+   exit 1
 fi
 
 echo -e "${GREEN}Detected OS: $OS${ENDCOLOR}"
