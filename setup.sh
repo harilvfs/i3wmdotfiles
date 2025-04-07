@@ -91,11 +91,7 @@ install_starship() {
 
 echo -e "${GREEN}Installing essential dependencies for i3wm setup...${ENDCOLOR}"
 
-if [[ -f /etc/os-release ]]; then
-    . /etc/os-release
-fi
-
-if [[ "$ID" == "arch" ]]; then
+if [[ "$OS" == "arch" ]]; then
     sudo pacman -S --noconfirm \
         i3-wm rofi maim git \
         imwheel nitrogen polkit-gnome xclip flameshot thunar \
@@ -104,7 +100,7 @@ if [[ "$ID" == "arch" ]]; then
         ttf-meslo-nerd noto-fonts-emoji ttf-joypixels ttf-jetbrains-mono \
         starship network-manager-applet blueman pasystray wget unzip \
         curl zoxide
-elif [[ "$ID" == "fedora" ]]; then
+elif [[ "$OS" == "fedora" ]]; then
     sudo dnf install -y \
         i3 polybar rofi maim \
         imwheel xclip flameshot lxappearance thunar xorg-x11-server-Xorg \
@@ -112,7 +108,7 @@ elif [[ "$ID" == "fedora" ]]; then
         neovim network-manager-applet blueman pasystray git \
         jetbrains-mono-fonts-all google-noto-color-emoji-fonts \
         google-noto-emoji-fonts wget unzip curl zoxide 
-
+    
     install_starship
 fi
 
@@ -298,20 +294,13 @@ else
 fi
 
 install_lxappearance() {
-    if [ -f /etc/os-release ]; then
-        . /etc/os-release
-        case $ID in
-            arch*)
-                sudo pacman -S --noconfirm lxappearance
-                ;;
-            fedora*)
-                sudo dnf install -y lxappearance
-                ;;
-            *)
-                echo -e "${RED}Unsupported distribution.${ENDCOLOR}"
-                exit 1
-                ;;
-        esac
+    if [[ "$OS" == "arch" ]]; then
+        sudo pacman -S --noconfirm lxappearance
+    elif [[ "$OS" == "fedora" ]]; then
+        sudo dnf install -y lxappearance
+    else
+        echo -e "${RED}Unsupported distribution.${ENDCOLOR}"
+        exit 1
     fi
 }
 
@@ -365,25 +354,14 @@ is_sddm_installed() {
 }
 
 install_sddm() {
-    if [ ! -f /etc/os-release ]; then
-        echo -e "${RED}Cannot determine OS. Exiting.${ENDCOLOR}"
+    if [[ "$OS" == "arch" ]]; then
+        sudo pacman -S --noconfirm sddm
+    elif [[ "$OS" == "fedora" ]]; then
+        sudo dnf install -y sddm
+    else
+        echo -e "${RED}Unsupported distribution.${ENDCOLOR}"
         exit 1
     fi
-
-    . /etc/os-release
-
-    case $ID in
-        arch*)
-            sudo pacman -S --noconfirm sddm
-            ;;
-        fedora*)
-            sudo dnf install -y sddm
-            ;;
-        *)
-            echo -e "${RED}Unsupported distribution.${ENDCOLOR}"
-            exit 1
-            ;;
-    esac
 }
 
 apply_sddm_theme() {
@@ -432,15 +410,13 @@ configure_sddm_theme() {
 enable_start_sddm() {
     echo -e "${GREEN}Checking for existing display managers...${ENDCOLOR}"
     
-    . /etc/os-release
-
     for dm in gdm lightdm; do
         if command -v $dm &>/dev/null; then
             echo -e "${BLUE}Removing $dm...${ENDCOLOR}"
             sudo systemctl stop $dm
             sudo systemctl disable $dm --now
-            [[ "$ID" == "arch" || "$ID_LIKE" == *"arch"* ]] && sudo pacman -Rns --noconfirm $dm
-            [[ "$ID" == "fedora" ]] && sudo dnf remove -y $dm
+            [[ "$OS" == "arch" ]] && sudo pacman -Rns --noconfirm $dm
+            [[ "$OS" == "fedora" ]] && sudo dnf remove -y $dm
         fi
     done
 
