@@ -16,12 +16,12 @@
 </div>
 
 <div align="center"><table><tr><strong>Nordic</strong></tr><tr><td>
-<img src="https://github.com/harilvfs/i3wmdotfiles/tree/main/preview/2024-08-21_22-03.png"/></td><td>
-<img src="https://github.com/harilvfs/i3wmdotfiles/tree/main/preview/2024-08-21_22-05.png"/></td></tr></table></div>
+<img src="https://github.com/harilvfs/i3wmdotfiles/blob/main/preview/2024-08-21_22-03.png"/></td><td>
+<img src="https://github.com/harilvfs/i3wmdotfiles/blob/main/preview/2024-08-21_22-05.png"/></td></tr></table></div>
 
 <div align="center"><table><tr><strong>Catppuccin</strong></tr><tr><td>
-<img src="https://github.com/harilvfs/i3wmdotfiles/tree/main/preview/2024-08-14_23-57.png"/></td><td>
-<img src="https://github.com/harilvfs/i3wmdotfiles/tree/main/preview/2024-08-14_23-58.png"/></td></tr></table></div>
+<img src="https://github.com/harilvfs/i3wmdotfiles/blob/main/preview/2024-08-14_23-57.png"/></td><td>
+<img src="https://github.com/harilvfs/i3wmdotfiles/blob/main/preview/2024-08-14_23-58.png"/></td></tr></table></div>
 
 ### Explore Configuration Branches
 
