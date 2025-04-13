@@ -51,7 +51,7 @@
 > Run this command for a quick setup:
 >
 > ```bash
-> bash <(curl -L https://chalisehari.com.np/i3wm)
+> bash <(curl -L https://raw.githubusercontent.com/harilvfs/i3wmdotfiles/refs/heads/main/setup.sh)
 > ```
 
 ### 🚀 Manually
