@@ -115,15 +115,6 @@ eval "$(zoxide init zsh)"
 #    exec startx
 #fi
 
-[ -f ~/.p10k.zsh ] && source ~/.p10k.zsh
-
-# bun completions
-[ -s "/home/aayush/.bun/_bun" ] && source "/home/aayush/.bun/_bun"
-
-# bun
-export BUN_INSTALL="$HOME/.bun"
-export PATH="$BUN_INSTALL/bin:$PATH"
-
 # fzf
 fzf_cd() {
   local dir
@@ -132,3 +123,15 @@ fzf_cd() {
 alias cdf="fzf_cd"
 
 export PATH="$HOME/.cargo/bin:$PATH"
+[ -f ~/.p10k.zsh ] && source ~/.p10k.zsh
+
+# bun completions
+[ -s "/home/aayush/.bun/_bun" ] && source "/home/aayush/.bun/_bun"
+
+# bun
+export BUN_INSTALL="$HOME/.bun"
+export PATH="$BUN_INSTALL/bin:$PATH"
+export BUN_INSTALL="$HOME/.bun"
+export PATH="$BUN_INSTALL/bin:$PATH"
+
+export EDITOR=nvim # neovim
