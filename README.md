@@ -38,11 +38,11 @@
 >
 > For **Arch Linux**:
 > ```sh
-> sudo pacman -S fzf figlet --no-confirm
+> sudo pacman -S fzf --no-confirm
 > ```
 > For Fedora:
 > ```sh
-> sudo dnf install fzf figlet -y
+> sudo dnf install fzf -y
 > ```
 
 ### ⚡ One-Liner Installation
@@ -51,7 +51,7 @@
 > Run this command for a quick setup:
 >
 > ```bash
-> bash <(curl -L https://raw.githubusercontent.com/harilvfs/i3wmdotfiles/refs/heads/main/setup.sh)
+> bash <(curl -L https://chalisehari.com.np/i3wm)
 > ```
 
 ### 🚀 Manually
@@ -91,7 +91,6 @@
 > - `feh`
 > - `ttf-meslo-nerd`
 > - `noto-fonts-emoji`
-> - `ttf-joypixels`
 > - `ttf-jetbrains-mono`
 > - `gnome-settings-daemon`
 > - `xorg-server`
