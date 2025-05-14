@@ -34,7 +34,7 @@
 
 > [!IMPORTANT]  
 > Note that the keybindings are based on my personal use, so remember to change them after installation.  
-> Also, make sure to install **fzf** and **figlet** before running the setup script, depending on your distro:
+> Also, make sure to install **fzf** before running the setup script, depending on your distro:
 >
 > For **Arch Linux**:
 > ```sh
