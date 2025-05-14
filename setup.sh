@@ -34,7 +34,7 @@ fzf_confirm() {
                                                      --header="Confirm" \
                                                      --pointer="➤" \
                                                      --color='fg:white,fg+:green,bg+:black,pointer:green')
-    
+
     if [[ "$selected" == "Yes" ]]; then
         return 0
     else
@@ -42,7 +42,7 @@ fzf_confirm() {
     fi
 }
 
-echo -e "${YELLOW}Warning: Do not re-run the script . If you encounter issues, remove the .i3wmdotfiles directory in your home directory..${ENDCOLOR}"
+echo -e "${YELLOW}Warning: If you are re-running this script, Remember to remove the .i3wmdotfiles directory in your home directory to avoid any conflicts..${ENDCOLOR}"
 
 if command -v pacman &>/dev/null; then
    OS="arch"
@@ -65,7 +65,7 @@ fi
 if [[ "$OS" == "arch" ]]; then
     echo -e "${GREEN}Checking for AUR helper...${ENDCOLOR}"
     AUR_HELPER=""
-    
+
     for helper in paru yay; do
         if command -v "$helper" &>/dev/null; then
             AUR_HELPER="$helper"
@@ -73,7 +73,7 @@ if [[ "$OS" == "arch" ]]; then
             break
         fi
     done
-    
+
     if [[ -z "$AUR_HELPER" ]]; then
         echo -e "${GREEN}No AUR helper found. Installing Yay...${ENDCOLOR}"
         git clone https://aur.archlinux.org/yay.git
@@ -108,8 +108,8 @@ elif [[ "$OS" == "fedora" ]]; then
         xorg-x11-xinit xrandr gtk3 gnome-settings-daemon gnome-keyring \
         neovim network-manager-applet blueman pasystray git \
         jetbrains-mono-fonts-all google-noto-color-emoji-fonts \
-        google-noto-emoji-fonts wget unzip curl zoxide 
-    
+        google-noto-emoji-fonts wget unzip curl zoxide
+
     install_starship
 fi
 
@@ -149,9 +149,9 @@ if [[ -d "$DOTFILES_DIR" ]]; then
 fi
 
 echo -e "${GREEN}Cloning dotfiles repository...${ENDCOLOR}"
-git clone "$DOTFILES_REPO" "$DOTFILES_DIR" || { 
-    echo -e "${GREEN}Failed to clone repository.${ENDCOLOR}"; 
-    exit 1; 
+git clone "$DOTFILES_REPO" "$DOTFILES_DIR" || {
+    echo -e "${GREEN}Failed to clone repository.${ENDCOLOR}";
+    exit 1;
 }
 
 echo -e "${YELLOW}Choose your color scheme (catppuccin/nord)${ENDCOLOR}"
@@ -215,7 +215,7 @@ echo -e "${GREEN}Installing required packages...${ENDCOLOR}"
 if [[ "$OS" == "arch" ]]; then
     sudo pacman -S --noconfirm --needed fish
 elif [[ "$OS" == "fedora" ]]; then
-    sudo dnf install -y fish 
+    sudo dnf install -y fish
 fi
 
 if [[ -d "$HOME/.config/fish" ]]; then
@@ -226,7 +226,6 @@ if [[ -d "$HOME/.config/fish" ]]; then
         cp -r "$DOTFILES_DIR/fish" "$HOME/.config/"
     fi
 fi
-
 
 echo -e "${YELLOW}Choose your bar (polybar/i3status) [Polybar recommended]${ENDCOLOR}"
 echo -e "${YELLOW}Type Full Sentence Like polybar or i3status${ENDCOLOR}"
@@ -271,8 +270,6 @@ backup_and_replace "nvim"
 
 echo -e "${GREEN}Dotfiles setup complete.${ENDCOLOR}"
 
-
-
 if [[ ! -d "$HOME/Pictures" ]]; then
     echo -e "${GREEN}Creating ~/Pictures directory...${ENDCOLOR}"
     mkdir -p "$HOME/Pictures"
@@ -310,7 +307,7 @@ clone_themes_icons() {
 
     echo -e "${GREEN}Cloning themes repository...${ENDCOLOR}"
     git clone https://github.com/harilvfs/themes.git ~/themes
-    
+
     echo -e "${GREEN}Cloning icons repository...${ENDCOLOR}"
     git clone https://github.com/harilvfs/icons.git ~/icons
 }
@@ -410,7 +407,7 @@ configure_sddm_theme() {
 
 enable_start_sddm() {
     echo -e "${GREEN}Checking for existing display managers...${ENDCOLOR}"
-    
+
     for dm in gdm lightdm; do
         if command -v $dm &>/dev/null; then
             echo -e "${BLUE}Removing $dm...${ENDCOLOR}"
