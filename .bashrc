@@ -70,8 +70,6 @@ alias nano='edit'
 alias snano='sedit'
 alias vim='nvim'
 alias c='clear'
-alias carchinstalla='bash <(curl -L https://chalisehari.com.np/arch)'
-alias carchinstallf='bash <(curl -L https://chalisehari.com.np/fedora)'
 alias aa='startx'
 
 # To have colors for ls and all grep commands such as grep, egrep and zgrep
