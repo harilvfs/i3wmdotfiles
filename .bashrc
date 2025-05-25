@@ -675,13 +675,4 @@ alias cdf="fzf_cd"
 
 export PATH="$HOME/.cargo/bin:$PATH"
 
-# bun completions
-[ -s "/home/aayush/.bun/_bun" ] && source "/home/aayush/.bun/_bun"
-
-# bun
-export BUN_INSTALL="$HOME/.bun"
-export PATH="$BUN_INSTALL/bin:$PATH"
-export BUN_INSTALL="$HOME/.bun"
-export PATH="$BUN_INSTALL/bin:$PATH"
-
 export EDITOR=nvim # neovim
