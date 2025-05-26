@@ -366,14 +366,14 @@ up() {
 }
 
 # Automatically do an ls after each cd, z, or zoxide
-# cd ()
-# {
-#	if [ -n "$1" ]; then
-# builtin cd "$@" && ls
-#	else
-#		builtin cd ~ && ls
-#	fi
-# }
+ cd ()
+ {
+	if [ -n "$1" ]; then
+ builtin cd "$@"
+	else
+		builtin cd ~
+	fi
+ }
 
 # Returns the last 2 fields of the working directory
 pwdtail() {
