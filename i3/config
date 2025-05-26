@@ -297,5 +297,3 @@ bindsym $mod+i bar mode toggle
 
 bindsym $mod+shift+i bar mode invisible
 
-exec --no-startup-id pasystray
-
