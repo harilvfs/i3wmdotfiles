@@ -1,13 +1,12 @@
 #!/usr/bin/env bash
 
-# Installs and configures i3, providing a lightweight and efficient window management experience.
-
 clear
 
-GREEN="\e[32m"
-RED="\e[31m"
-YELLOW="\e[33m"
-BLUE="\e[34m"
+RED='\e[0;31m'
+GREEN='\e[0;32m'
+YELLOW='\e[0;33m'
+BLUE='\e[0;34m'
+CYAN='\e[0;36m'
 ENDCOLOR="\e[0m"
 
 BACKUP_DIR="$HOME/.i3wmdotfiles/backup"
@@ -15,6 +14,7 @@ DOTFILES_REPO="https://github.com/harilvfs/i3wmdotfiles"
 DOTFILES_DIR="$HOME/i3wmdotfiles"
 WALLPAPER_REPO="https://github.com/harilvfs/wallpapers"
 WALLPAPER_DIR="$HOME/Pictures/wallpapers"
+WALLPAPER_SKIP=0
 
 FZF_COMMON="--layout=reverse \
             --border=bold \
@@ -41,6 +41,60 @@ fzf_confirm() {
         return 1
     fi
 }
+
+fzf_select_option() {
+    local prompt="$1"
+    local header="$2"
+    shift 2
+    local options=("$@")
+
+    local selected=$(printf "%s\n" "${options[@]}" | fzf ${FZF_COMMON} \
+                                                    --height=50% \
+                                                    --prompt="$prompt " \
+                                                    --header="$header" \
+                                                    --pointer="➤" \
+                                                    --color='fg:white,fg+:cyan,bg+:black,pointer:cyan')
+    echo "$selected"
+}
+
+APPLY_ALL_CONFIGS=false
+
+fzf_config_confirm() {
+    local config_name="$1"
+
+    if [[ "$APPLY_ALL_CONFIGS" == "true" ]]; then
+        return 0
+    fi
+
+    local options=("Yes, for this one" "Yes, don't ask again" "No")
+    local selected=$(printf "%s\n" "${options[@]}" | fzf ${FZF_COMMON} \
+                                                    --height=50% \
+                                                    --prompt="Apply $config_name config? " \
+                                                    --header="Config Installation" \
+                                                    --pointer="➤" \
+                                                    --color='fg:white,fg+:yellow,bg+:black,pointer:yellow')
+
+    case "$selected" in
+        "Yes, for this one")
+            return 0
+            ;;
+        "Yes, don't ask again")
+            APPLY_ALL_CONFIGS=true
+            return 0
+            ;;
+        "No"|*)
+            return 1
+            ;;
+    esac
+}
+
+if ! command -v fzf &> /dev/null; then
+    echo -e "${RED}${BOLD}Error: fzf is not installed${NC}"
+    echo -e "${YELLOW}Please install fzf before running this script:${NC}"
+    echo -e "${CYAN}  • Fedora: ${NC}sudo dnf install fzf"
+    echo -e "${CYAN}  • Arch Linux: ${NC}sudo pacman -S fzf"
+    exit 1
+fi
 
 echo -e "${YELLOW}Warning: If you are re-running this script, Remember to remove the .i3wmdotfiles directory in your home directory to avoid any conflicts..${ENDCOLOR}"
 
@@ -90,46 +144,150 @@ install_starship() {
     curl -sS https://starship.rs/install.sh | sh
 }
 
+install_pokemon_colorscripts() {
+    echo -e "${CYAN}Installing Pokémon Color Scripts...${ENDCOLOR}"
+    case "$OS" in
+        arch)
+            AUR_HELPERS=("yay" "paru")
+            AUR_HELPER=""
+            for helper in "${AUR_HELPERS[@]}"; do
+                if command -v "$helper" &>/dev/null; then
+                    AUR_HELPER="$helper"
+                    echo -e "${GREEN}Found AUR helper: $AUR_HELPER${RESET}"
+                    break
+                fi
+            done
+            if [[ -z "$AUR_HELPER" ]]; then
+                echo -e "${CYAN}No AUR helper found. Installing yay...${RESET}"
+                echo -e "${CYAN}Installing dependencies...${RESET}"
+                sudo pacman -S --needed --noconfirm git base-devel
+                TEMP_DIR=$(mktemp -d)
+                cd "$TEMP_DIR" || {
+                    echo -e "${RED}Failed to create temporary directory${RESET}"
+                    exit 1
+                }
+                echo -e "${CYAN}Cloning yay repository...${RESET}"
+                git clone https://aur.archlinux.org/yay.git || {
+                    echo -e "${RED}Failed to clone yay repository${RESET}"
+                    cd "$HOME" || exit 1
+                    rm -rf "$TEMP_DIR"
+                    exit 1
+                }
+                cd yay || {
+                    echo -e "${RED}Failed to enter yay directory${RESET}"
+                    cd "$HOME" || exit 1
+                    rm -rf "$TEMP_DIR"
+                    exit 1
+                }
+                echo -e "${CYAN}Building yay...${RESET}"
+                makepkg -si --noconfirm || {
+                    echo -e "${RED}Failed to build yay${RESET}"
+                    cd "$HOME" || exit 1
+                    rm -rf "$TEMP_DIR"
+                    exit 1
+                }
+                cd "$HOME" || exit 1
+                rm -rf "$TEMP_DIR"
+                AUR_HELPER="yay"
+                echo -e "${GREEN}Successfully installed yay!${RESET}"
+            fi
+            echo -e "${CYAN}Installing Pokémon Color Scripts (AUR)...${RESET}"
+            $AUR_HELPER -S --noconfirm pokemon-colorscripts-git || {
+                echo -e "${RED}Failed to install pokemon-colorscripts-git${RESET}"
+                exit 1
+            }
+            ;;
+        fedora)
+            if [[ -d "$HOME/pokemon-colorscripts" ]]; then
+                echo -e "${YELLOW}Found existing Pokémon Color Scripts directory. Removing...${RESET}"
+                rm -rf "$HOME/pokemon-colorscripts"
+            fi
+            echo -e "${CYAN}Installing dependencies...${RESET}"
+            sudo dnf install -y git
+            echo -e "${CYAN}Cloning Pokémon Color Scripts...${RESET}"
+            git clone https://gitlab.com/phoneybadger/pokemon-colorscripts.git "$HOME/pokemon-colorscripts"
+            if [[ -d "$HOME/pokemon-colorscripts" ]]; then
+                cd "$HOME/pokemon-colorscripts" || {
+                    echo -e "${RED}Failed to change directory to pokemon-colorscripts!${RESET}";
+                    return 1;
+                }
+                echo -e "${CYAN}Installing Pokémon Color Scripts...${RESET}"
+                sudo ./install.sh
+                cd - > /dev/null || true
+            else
+                echo -e "${RED}Failed to clone pokemon-colorscripts repository!${RESET}"
+                return 1
+            fi
+            ;;
+    esac
+    echo -e "${GREEN}Pokémon Color Scripts installed successfully!${ENDCOLOR}"
+}
+
 echo -e "${GREEN}Installing essential dependencies for i3wm setup...${ENDCOLOR}"
 
 if [[ "$OS" == "arch" ]]; then
     sudo pacman -S --noconfirm \
-        i3-wm rofi maim git \
+        i3 rofi maim git \
         imwheel nitrogen polkit-gnome xclip flameshot thunar \
-        xorg-server xorg-xinit xorg-xrandr xorg-xsetroot xorg-xset gtk3 \
+        xorg-server xorg-xinit xorg-xrandr xorg-xsetroot xorg-xset gtk3 gtk4 \
         gnome-settings-daemon gnome-keyring neovim \
         ttf-meslo-nerd noto-fonts-emoji ttf-jetbrains-mono \
         starship network-manager-applet blueman pasystray wget unzip \
-        curl zoxide
+        curl zoxide polybar i3status nwg-look qt5ct qt6ct
 elif [[ "$OS" == "fedora" ]]; then
+    sudo dnf copr enable -y solopasha/hyprland || echo -e "${YELLOW}Failed to enable Hyprland COPR repository${ENDCOLOR}"
+
     sudo dnf install -y \
         i3 polybar rofi maim \
         imwheel xclip flameshot lxappearance thunar xorg-x11-server-Xorg \
-        xorg-x11-xinit xrandr gtk3 gnome-settings-daemon gnome-keyring \
+        xorg-x11-xinit xrandr gtk3 gtk4 gnome-settings-daemon gnome-keyring \
         neovim network-manager-applet blueman pasystray git \
         jetbrains-mono-fonts-all google-noto-color-emoji-fonts \
-        google-noto-emoji-fonts wget unzip curl zoxide
+        google-noto-emoji-fonts wget unzip curl zoxide polybar i3status \
+        nwg-look qt5ct qt6ct
 
     install_starship
 fi
 
-echo -e "${GREEN}Checking if Brave browser is already installed...${ENDCOLOR}"
-if command -v brave &>/dev/null || flatpak list | grep -q "com.brave.Browser"; then
-    echo -e "${GREEN}Brave browser is already installed, skipping installation.${ENDCOLOR}"
-else
-    echo -e "${GREEN}Installing Brave browser...${ENDCOLOR}"
-    if [[ "$OS" == "arch" ]]; then
-        "$AUR_HELPER" -S --noconfirm brave-bin
-    elif [[ "$OS" == "fedora" ]]; then
-        if ! command -v flatpak &>/dev/null; then
-            echo -e "${GREEN}Installing Flatpak...${ENDCOLOR}"
-            sudo dnf install -y flatpak
-        fi
-        echo -e "${GREEN}Adding Flathub repository...${ENDCOLOR}"
-        sudo flatpak remote-add --if-not-exists flathub https://dl.flathub.org/repo/flathub.flatpakrepo
-        echo -e "${GREEN}Installing Brave browser via Flatpak...${ENDCOLOR}"
-        sudo flatpak install -y flathub com.brave.Browser
+install_pokemon_colorscripts
+
+if fzf_confirm "Do you want to install Brave browser?"; then
+    echo -e "${GREEN}Checking if Brave browser is already installed...${ENDCOLOR}"
+
+    brave_installed=false
+
+    if command -v brave &>/dev/null || command -v brave-browser &>/dev/null; then
+        brave_installed=true
+        echo -e "${GREEN}Brave browser (native) is already installed.${ENDCOLOR}"
     fi
+
+    if command -v flatpak &>/dev/null; then
+        if flatpak list 2>/dev/null | grep -q "com.brave.Browser"; then
+            brave_installed=true
+            echo -e "${GREEN}Brave browser (Flatpak) is already installed.${ENDCOLOR}"
+        fi
+    fi
+
+    if [[ "$brave_installed" == "false" ]]; then
+        echo -e "${GREEN}Installing Brave browser...${ENDCOLOR}"
+        if [[ "$OS" == "arch" ]]; then
+            "$AUR_HELPER" -S --noconfirm brave-bin
+        elif [[ "$OS" == "fedora" ]]; then
+            if ! command -v flatpak &>/dev/null; then
+                echo -e "${GREEN}Installing Flatpak...${ENDCOLOR}"
+                sudo dnf install -y flatpak
+            fi
+            echo -e "${GREEN}Adding Flathub repository...${ENDCOLOR}"
+            sudo flatpak remote-add --if-not-exists flathub https://dl.flathub.org/repo/flathub.flatpakrepo
+            echo -e "${GREEN}Installing Brave browser via Flatpak...${ENDCOLOR}"
+            sudo flatpak install -y flathub com.brave.Browser
+        fi
+        echo -e "${GREEN}Brave browser installed successfully.${ENDCOLOR}"
+    else
+        echo -e "${GREEN}Brave browser installation skipped (already installed).${ENDCOLOR}"
+    fi
+else
+    echo -e "${YELLOW}Skipping Brave browser installation.${ENDCOLOR}"
 fi
 
 echo -e "${GREEN}All dependencies installed successfully.${ENDCOLOR}"
@@ -138,8 +296,7 @@ echo -e "${GREEN}Checking for existing dotfiles repository...${ENDCOLOR}"
 
 if [[ -d "$DOTFILES_DIR" ]]; then
     echo -e "${YELLOW}Existing dotfiles repository found.${ENDCOLOR}"
-    read -rp "Do you want to remove it? (y/N): " confirm
-    if [[ "$confirm" == "y" || "$confirm" == "Y" ]]; then
+    if fzf_confirm "Do you want to remove existing dotfiles repository?"; then
         echo -e "${GREEN}Removing existing dotfiles repository...${ENDCOLOR}"
         rm -rf "$DOTFILES_DIR"
     else
@@ -154,15 +311,15 @@ git clone "$DOTFILES_REPO" "$DOTFILES_DIR" || {
     exit 1;
 }
 
-echo -e "${YELLOW}Choose your color scheme (catppuccin/nord)${ENDCOLOR}"
-echo -e "${YELLOW}Type Full Sentence like catppuccin or nord${ENDCOLOR}"
-read -rp "Enter your choice: " COLOR_SCHEME
-COLOR_SCHEME=$(echo "$COLOR_SCHEME" | tr '[:upper:]' '[:lower:]')
+echo -e "${YELLOW}Choose your color scheme${ENDCOLOR}"
+COLOR_SCHEME=$(fzf_select_option "Select Color Scheme:" "Available Color Schemes" "catppuccin" "nord")
 
-if [[ "$COLOR_SCHEME" != "catppuccin" && "$COLOR_SCHEME" != "nord" ]]; then
-    echo -e "${GREEN}Invalid choice. Defaulting to Catppuccin.${ENDCOLOR}"
+if [[ -z "$COLOR_SCHEME" ]]; then
+    echo -e "${GREEN}No selection made. Defaulting to Catppuccin.${ENDCOLOR}"
     COLOR_SCHEME="catppuccin"
 fi
+
+COLOR_SCHEME=$(echo "$COLOR_SCHEME" | tr '[:upper:]' '[:lower:]')
 
 echo -e "${GREEN}Installing required packages...${ENDCOLOR}"
 if [[ "$OS" == "arch" ]]; then
@@ -174,12 +331,20 @@ fi
 mkdir -p "$BACKUP_DIR"
 
 backup_and_replace() {
+    local config_name="$1"
     local config_path="$HOME/.config/$1"
+
+    if ! fzf_config_confirm "$config_name"; then
+        echo -e "${YELLOW}Skipping $config_name configuration...${ENDCOLOR}"
+        return
+    fi
+
     if [[ -d "$config_path" ]]; then
-        echo -e "${GREEN}Backing up existing $1 configuration...${ENDCOLOR}"
+        echo -e "${GREEN}Backing up existing $config_name configuration...${ENDCOLOR}"
         mv "$config_path" "$BACKUP_DIR/"
     fi
-    cp -r "$DOTFILES_DIR/$1" "$HOME/.config/"
+    echo -e "${GREEN}Applying $config_name configuration...${ENDCOLOR}"
+    cp -r "$DOTFILES_DIR/$config_name" "$HOME/.config/"
 }
 
 backup_and_replace "Kvantum"
@@ -194,19 +359,28 @@ fi
 
 PICOM_CONFIG_DIR="$HOME/.config/"
 mkdir -p "$PICOM_CONFIG_DIR"
-if [[ -f "$PICOM_CONFIG_DIR/picom.conf" ]]; then
-    echo -e "${GREEN}Backing up existing picom configuration...${ENDCOLOR}"
-    mv "$PICOM_CONFIG_DIR/picom.conf" "$BACKUP_DIR/"
+
+if fzf_config_confirm "picom"; then
+    if [[ -f "$PICOM_CONFIG_DIR/picom.conf" ]]; then
+        echo -e "${GREEN}Backing up existing picom configuration...${ENDCOLOR}"
+        mv "$PICOM_CONFIG_DIR/picom.conf" "$BACKUP_DIR/"
+    fi
+    echo -e "${GREEN}Applying picom configuration...${ENDCOLOR}"
+    cp "$DOTFILES_DIR/picom/picom-transparency/picom.conf" "$PICOM_CONFIG_DIR/"
+else
+    echo -e "${YELLOW}Skipping picom configuration...${ENDCOLOR}"
 fi
-cp "$DOTFILES_DIR/picom/picom-transparency/picom.conf" "$PICOM_CONFIG_DIR/"
 
 for shell_config in .bashrc .zshrc; do
     if [[ -f "$HOME/$shell_config" ]]; then
         echo -e "${YELLOW}Found existing $shell_config.${ENDCOLOR}"
-        read -rp "Replace with new config? (y/N): " choice
-        if [[ "$choice" == "y" || "$choice" == "Y" ]]; then
+        config_display_name=$(echo "$shell_config" | sed 's/^\.//')
+        if fzf_config_confirm "$config_display_name"; then
             mv "$HOME/$shell_config" "$BACKUP_DIR/"
+            echo -e "${GREEN}Applying $shell_config configuration...${ENDCOLOR}"
             cp "$DOTFILES_DIR/$shell_config" "$HOME/"
+        else
+            echo -e "${YELLOW}Skipping $shell_config configuration...${ENDCOLOR}"
         fi
     fi
 done
@@ -220,16 +394,23 @@ fi
 
 if [[ -d "$HOME/.config/fish" ]]; then
     echo -e "${YELLOW}Found existing Fish config.${ENDCOLOR}"
-    read -rp "Replace with new config? (y/N): " choice
-    if [[ "$choice" == "y" || "$choice" == "Y" ]]; then
+    if fzf_config_confirm "fish"; then
         mv "$HOME/.config/fish" "$BACKUP_DIR/"
+        echo -e "${GREEN}Applying fish configuration...${ENDCOLOR}"
         cp -r "$DOTFILES_DIR/fish" "$HOME/.config/"
+    else
+        echo -e "${YELLOW}Skipping fish configuration...${ENDCOLOR}"
     fi
 fi
 
-echo -e "${YELLOW}Choose your bar (polybar/i3status) [Polybar recommended]${ENDCOLOR}"
-echo -e "${YELLOW}Type Full Sentence Like polybar or i3status${ENDCOLOR}"
-read -rp "Choose your bar: " BAR_CHOICE
+echo -e "${YELLOW}Choose your status bar${ENDCOLOR}"
+BAR_CHOICE=$(fzf_select_option "Select Status Bar:" "Available Status Bars (Polybar recommended)" "polybar" "i3status")
+
+if [[ -z "$BAR_CHOICE" ]]; then
+    echo -e "${GREEN}No selection made. Defaulting to Polybar.${ENDCOLOR}"
+    BAR_CHOICE="polybar"
+fi
+
 BAR_CHOICE=$(echo "$BAR_CHOICE" | tr '[:upper:]' '[:lower:]')
 
 if [[ "$BAR_CHOICE" == "polybar" ]]; then
@@ -245,28 +426,37 @@ if [[ "$BAR_CHOICE" == "polybar" ]]; then
     fi
 
     cd "$DOTFILES_DIR" && git switch catppuccin
-    backup_and_replace "polybar"
+    if fzf_config_confirm "polybar"; then
+        backup_and_replace "polybar"
+    fi
     git switch main
     git switch polybar
-    backup_and_replace "i3"
+    if fzf_config_confirm "i3 (for polybar)"; then
+        backup_and_replace "i3"
+    fi
     git switch main
 
 elif [[ "$BAR_CHOICE" == "i3status" ]]; then
     echo -e "${GREEN}Setting up I3status...${ENDCOLOR}"
     cd "$DOTFILES_DIR" && git switch nord
-    backup_and_replace "i3status"
+    if fzf_config_confirm "i3status"; then
+        backup_and_replace "i3status"
+    fi
     git switch i3status
-    backup_and_replace "i3"
+    if fzf_config_confirm "i3 (for i3status)"; then
+        backup_and_replace "i3"
+    fi
     git switch main
-
-else
-    echo -e "${GREEN}Invalid choice. Defaulting to Polybar.${ENDCOLOR}"
 fi
 
 cd "$DOTFILES_DIR" && git switch "$COLOR_SCHEME"
-backup_and_replace "rofi"
-backup_and_replace "starship"
-backup_and_replace "nvim"
+
+configs_to_apply=("rofi" "starship" "nvim")
+for config in "${configs_to_apply[@]}"; do
+    if fzf_config_confirm "$config"; then
+        backup_and_replace "$config"
+    fi
+done
 
 echo -e "${GREEN}Dotfiles setup complete.${ENDCOLOR}"
 
@@ -275,20 +465,26 @@ if [[ ! -d "$HOME/Pictures" ]]; then
     mkdir -p "$HOME/Pictures"
 fi
 
-if [[ -d "$WALLPAPER_DIR" ]]; then
-    echo -e "${YELLOW}Wallpapers directory already exists.${ENDCOLOR}"
-    read -rp "Do you want to remove and re-clone? (y/N): " choice
-    if [[ "$choice" == "y" || "$choice" == "Y" ]]; then
-        echo -e "${GREEN}Removing existing wallpapers directory...${ENDCOLOR}"
-        rm -rf "$WALLPAPER_DIR"
-        echo -e "${GREEN}Cloning wallpapers repository...${ENDCOLOR}"
-        git clone "$WALLPAPER_REPO" "$WALLPAPER_DIR"
-    else
-        echo -e "${GREEN}Skipping wallpaper cloning.${ENDCOLOR}"
+if fzf_confirm "Do you want to download the wallpaper repo? (Large size, but recommended)"; then
+    if [[ -d "$WALLPAPER_DIR" ]]; then
+        echo -e "${YELLOW}Wallpapers directory already exists.${ENDCOLOR}"
+        if fzf_confirm "Do you want to remove and re-clone wallpapers?"; then
+            echo -e "${GREEN}Removing existing wallpapers directory...${ENDCOLOR}"
+            rm -rf "$WALLPAPER_DIR"
+        else
+            echo -e "${GREEN}Skipping wallpaper cloning.${ENDCOLOR}"
+            WALLPAPER_SKIP=1
+        fi
+    fi
+
+    if [[ "$WALLPAPER_SKIP" != "1" ]]; then
+        echo -e "${GREEN}Cloning wallpaper repository...${ENDCOLOR}"
+        git clone "$WALLPAPER_REPO" "$WALLPAPER_DIR" || {
+            echo -e "${RED}Failed to clone wallpaper repository.${ENDCOLOR}"
+        }
     fi
 else
-    echo -e "${GREEN}Cloning wallpapers repository...${ENDCOLOR}"
-    git clone "$WALLPAPER_REPO" "$WALLPAPER_DIR"
+    echo -e "${YELLOW}Skipped wallpaper repository download.${ENDCOLOR}"
 fi
 
 install_lxappearance() {
@@ -313,11 +509,10 @@ clone_themes_icons() {
 }
 
 check_remove_dir() {
-    for dir in "$1" "$2"; do
+    for dir in "$@"; do
         if [ -d "$dir" ]; then
-            echo -e "${YELLOW} $dir already exists.${ENDCOLOR}"
-            read -rp "Do you want to remove it? (y/n): " remove_dir
-            if [[ "$remove_dir" =~ ^[Yy]$ ]]; then
+            echo -e "${YELLOW}$dir already exists.${ENDCOLOR}"
+            if fzf_confirm "Do you want to remove $dir?"; then
                 rm -rf "$dir"
                 echo -e "${GREEN}$dir removed.${ENDCOLOR}"
             else
@@ -328,17 +523,45 @@ check_remove_dir() {
 }
 
 move_themes_icons() {
-    check_remove_dir ~/.icons
-    check_remove_dir ~/.themes
+    if [ -d ~/.themes ]; then
+        echo -e "${CYAN}Existing ~/.themes directory found. Preserving it...${ENDCOLOR}"
+    else
+        echo -e "${GREEN}Creating ~/.themes directory...${ENDCOLOR}"
+        mkdir -p ~/.themes
+    fi
 
-    echo -e "${GREEN}Creating ~/.themes and ~/.icons directories...${ENDCOLOR}"
-    mkdir -p ~/.themes ~/.icons
+    if [ -d ~/.icons ]; then
+        echo -e "${CYAN}Existing ~/.icons directory found. Preserving it...${ENDCOLOR}"
+    else
+        echo -e "${GREEN}Creating ~/.icons directory...${ENDCOLOR}"
+        mkdir -p ~/.icons
+    fi
 
-    echo -e "${GREEN}Moving themes to ~/.themes...${ENDCOLOR}"
-    mv ~/themes/* ~/.themes/
+    if [ -d ~/themes ]; then
+        echo -e "${GREEN}Moving themes to ~/.themes...${ENDCOLOR}"
+        for theme in ~/themes/*/; do
+            theme_name=$(basename "$theme")
+            if [ -d ~/.themes/"$theme_name" ]; then
+                echo -e "${YELLOW}Theme $theme_name already exists, skipping...${ENDCOLOR}"
+            else
+                mv "$theme" ~/.themes/
+            fi
+        done
+        rm -rf ~/themes
+    fi
 
-    echo -e "${GREEN}Moving icons to ~/.icons...${ENDCOLOR}"
-    mv ~/icons/* ~/.icons/
+    if [ -d ~/icons ]; then
+        echo -e "${GREEN}Moving icons to ~/.icons...${ENDCOLOR}"
+        for icon in ~/icons/*/; do
+            icon_name=$(basename "$icon")
+            if [ -d ~/.icons/"$icon_name" ]; then
+                echo -e "${YELLOW}Icon pack $icon_name already exists, skipping...${ENDCOLOR}"
+            else
+                mv "$icon" ~/.icons/
+            fi
+        done
+        rm -rf ~/icons
+    fi
 }
 
 install_lxappearance
@@ -368,8 +591,7 @@ apply_sddm_theme() {
 
     if [ -d "$theme_dir" ]; then
         echo -e "${YELLOW}Theme already exists.${ENDCOLOR}"
-        read -rp "Remove existing theme? (y/n): " remove_dir
-        if [[ "$remove_dir" =~ ^[Yy]$ ]]; then
+        if fzf_confirm "Remove existing SDDM theme?"; then
             sudo rm -rf "$theme_dir"
             echo -e "${GREEN}Old theme removed.${ENDCOLOR}"
         else
@@ -408,7 +630,7 @@ configure_sddm_theme() {
 enable_start_sddm() {
     echo -e "${GREEN}Checking for existing display managers...${ENDCOLOR}"
 
-    for dm in gdm lightdm; do
+    for dm in gdm lightdm greetd; do
         if command -v $dm &>/dev/null; then
             echo -e "${BLUE}Removing $dm...${ENDCOLOR}"
             sudo systemctl stop $dm
@@ -444,8 +666,7 @@ RemainAfterExit=yes
 WantedBy=multi-user.target
 EOF
 
-    read -rp "Enable NumLock on boot? (y/N): " confirm
-    if [[ "$confirm" =~ ^[Yy]$ ]]; then
+    if fzf_confirm "Enable NumLock on boot?"; then
         sudo systemctl enable numlock.service
         echo -e "${GREEN}NumLock will be enabled on boot.${ENDCOLOR}"
     else
@@ -469,15 +690,21 @@ prompt_reboot() {
     fi
 }
 
-if ! is_sddm_installed; then
-    install_sddm
+if fzf_confirm "Do you want to install and configure SDDM (Simple Desktop Display Manager)?"; then
+    if ! is_sddm_installed; then
+        echo -e "${GREEN}Installing SDDM...${ENDCOLOR}"
+        install_sddm
+    else
+        echo -e "${GREEN}SDDM is already installed.${ENDCOLOR}"
+    fi
+
+    apply_sddm_theme
+    configure_sddm_theme
+    enable_start_sddm
 else
-    echo -e "${GREEN}SDDM is already installed.${ENDCOLOR}"
+    echo -e "${YELLOW}Skipping SDDM installation and configuration.${ENDCOLOR}"
 fi
 
-apply_sddm_theme
-configure_sddm_theme
 setup_numlock
-enable_start_sddm
 display_message
 prompt_reboot
