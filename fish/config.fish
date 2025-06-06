@@ -15,8 +15,6 @@ set -x PATH $HOME/.cargo/bin $BUN_INSTALL/bin $PATH
 set -x BUN_INSTALL $HOME/.bun
 set -x EDITOR nvim
 
-set -x PATH $HOME/.nvm/nvm.sh $PATH
-
 # --- Aliases ---
 alias c 'clear'
 alias l 'eza -lh --icons=auto'
@@ -36,6 +34,7 @@ alias vc 'code'
 alias vim 'nvim'
 alias aa 'startx'
 alias rm 'trash -v'
+alias hx 'helix'
 
 alias .. 'cd ..'
 alias ... 'cd ../..'
@@ -59,4 +58,3 @@ function lazyg
 end
 
 end
-

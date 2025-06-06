@@ -71,6 +71,7 @@ alias snano='sedit'
 alias vim='nvim'
 alias c='clear'
 alias aa='startx'
+alias hx='helix'
 
 # To have colors for ls and all grep commands such as grep, egrep and zgrep
 export CLICOLOR=1

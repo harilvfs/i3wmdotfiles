@@ -74,6 +74,7 @@ alias vc='code' # gui code editor
 alias vim='nvim' # neovim
 alias aa='startx' # startx
 alias rm='trash -v' # trash cli
+alias hx='helix' # helix
 
 # Directory navigation shortcuts
 alias ..='cd ..'
