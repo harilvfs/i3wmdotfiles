@@ -72,6 +72,7 @@ alias vim='nvim'
 alias c='clear'
 alias aa='startx'
 alias hx='helix'
+alias yayf="yay -Slq | fzf --multi --preview 'yay -Sii {1}' --preview-window=down:75% | xargs -ro yay -S" # from christitus
 
 # To have colors for ls and all grep commands such as grep, egrep and zgrep
 export CLICOLOR=1
