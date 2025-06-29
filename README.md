@@ -1,3 +1,6 @@
+> [!NOTE]
+> These days, I’m not daily driving i3 as my window manager. So if you run into any problems, feel free to open an issue.
+
 <div align="center">
   
 # `i3wm Dotfiles`
