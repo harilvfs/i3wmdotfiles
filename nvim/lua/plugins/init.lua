@@ -300,7 +300,7 @@ return {
   end,
 },
 
-  {
+{
   "akinsho/toggleterm.nvim",
   lazy = false,
   version = "*",
@@ -320,7 +320,14 @@ return {
     vim.api.nvim_set_hl(0, "NormalFloat", { link = "Normal" })
     vim.api.nvim_set_hl(0, "FloatBorder", { link = "Normal" })
   end
-  }
+},
+
+{
+   "m4xshen/hardtime.nvim",
+   lazy = false,
+   dependencies = { "MunifTanjim/nui.nvim" },
+   opts = {},
+}
 
 
   -- {
