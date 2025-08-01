@@ -50,12 +50,19 @@
 
 ### ⚡ One-Liner Installation
 
-> [!TIP]
-> Run this command for a quick setup:
->
-> ```bash
-> bash <(curl -L https://chalisehari.com.np/i3wm)
-> ```
+Run this command for a quick setup:
+
+```bash
+bash <(curl -L https://chalisehari.com.np/i3wm)
+```
+
+or
+
+If you are using fish shell
+
+```bash
+ bash -c "$(curl -fsSL chalisehari.com.np/i3wm)"
+```
 
 ### 🚀 Manually
 
