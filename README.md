@@ -66,7 +66,6 @@ If you are using fish shell
 
 ### 🚀 Manually
 
-> Easily set up i3wm with the following script, which supports both `Arch` and `Fedora-based` systems. If you encounter any issues, feel free to [open an issue](https://github.com/harilvfs/i3wmdotfiles/issues).  
 >
 > ```bash
 > git clone https://github.com/harilvfs/i3wmdotfiles ~/i3wmdotfiles
