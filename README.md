@@ -48,7 +48,7 @@
 > sudo dnf install fzf -y
 > ```
 
-### ⚡ One-Liner Installation
+### One-Liner Installation
 
 Run this command for a quick setup:
 
@@ -64,7 +64,7 @@ If you are using fish shell
  bash -c "$(curl -fsSL chalisehari.com.np/i3wm)"
 ```
 
-### 🚀 Manually
+### Manually
 
 >
 > ```bash
@@ -78,15 +78,12 @@ If you are using fish shell
 
 > - `i3status`
 > - `polybar`
-> - `dmenu`
 > - `rofi`
 > - `alacritty`
-> - `kitty`
 > - `picom`
 > - `maim`
 > - `fish`
 > - `imwheel`
-> - `nitrogen`
 > - `polkit-gnome`
 > - `xclip`
 > - `flameshot`
@@ -109,16 +106,16 @@ If you are using fish shell
 > - `gtk3`
 > - `xterm`
 
-### 🚀 Default Apps
+### Default Apps
 
 > - **Browser:** `Thorium` / `Brave`
 > - **File Manager:** `Nemo` / `Thunar`
-> - **Code Editor:** `Cursor` / `Vim`
+> - **Code Editor:** `Neovim`
 > - **Screenshot Tool:** `Flameshot`
-> - **Terminal:** `Alacritty` / `Kitty`
-> - **Launcher:** `Rofi` / `Dmenu`
+> - **Terminal:** `Alacritty`
+> - **Launcher:** `Rofi`
 > - **Status Bar:** `Polybar` / `i3status`
-> - **Shell:** `Bash` / `Zsh`
+> - **Shell:** `Bash` / `Zsh` / `Fish`
 
 ### Wallpapers
 
@@ -143,10 +140,11 @@ If you are using fish shell
 ### Launchers
 | Key Combo | Action |
 |:---------:|:-------|
-| <kbd>Super</kbd> + <kbd>X</kbd> | Open Terminal (Kitty/Alacritty) |
-| <kbd>Super</kbd> + <kbd>R</kbd> | Open App Launcher (Rofi/dmenu) |
+| <kbd>Super</kbd> + <kbd>X</kbd> | Open Terminal (Alacritty) |
+| <kbd>Super</kbd> + <kbd>R</kbd> | Open App Launcher (Rofi) |
 | <kbd>Super</kbd> + <kbd>E</kbd> | Open File Manager (Thunar) |
-| <kbd>Super</kbd> + <kbd>B</kbd> | Open Browser (Brave) |
+| <kbd>Super</kbd> + <kbd>B</kbd> | Open Default Browser |
+| <kbd>Super</kbd> + <kbd>Shift</kbd> + <kbd>W</kbd> | Change Wallpaper (feh) |
 
 ### Screenshots
 | Key Combo | Action |
