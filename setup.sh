@@ -2,12 +2,13 @@
 
 # =============================================================================
 #  i3wm Dotfiles Setup Script
+#  Author : Hari Chalise
+#  GitHub : https://github.com/harilvfs/i3wmdotfiles
 #  Supports: Arch Linux, Fedora
 # =============================================================================
 
 clear
 
-# ─── Colors ──────────────────────────────────────────────────────────────────
 RED='\e[0;31m'
 GREEN='\e[0;32m'
 YELLOW='\e[0;33m'
@@ -15,7 +16,6 @@ CYAN='\e[0;36m'
 TEAL="\e[38;2;129;200;190m"
 NC="\e[0m"
 
-# ─── Globals ──────────────────────────────────────────────────────────────────
 BACKUP_DIR="$HOME/.i3wmdotfiles/backup"
 DOTFILES_REPO="https://github.com/harilvfs/i3wmdotfiles"
 DOTFILES_DIR="$HOME/i3wmdotfiles"
@@ -27,7 +27,6 @@ BAR_CHOICE=""
 OS=""
 AUR_HELPER=""
 
-# ─── FZF Base Options ─────────────────────────────────────────────────────────
 FZF_COMMON="--layout=reverse \
             --border=rounded \
             --margin=5% \
@@ -35,10 +34,6 @@ FZF_COMMON="--layout=reverse \
             --info=inline \
             --header-first \
             --bind change:top"
-
-# =============================================================================
-#  UTILITY FUNCTIONS
-# =============================================================================
 
 msg()    { echo -e "${GREEN}${*}${NC}"; }
 warn()   { echo -e "${YELLOW}${*}${NC}"; }
@@ -113,10 +108,6 @@ check_fzf() {
     fi
 }
 
-# =============================================================================
-#  DETECT OS
-# =============================================================================
-
 detect_os() {
     if command -v pacman &>/dev/null; then
         OS="arch"
@@ -128,10 +119,6 @@ detect_os() {
     fi
     msg "Detected OS: $OS"
 }
-
-# =============================================================================
-#  UPDATE SYSTEM (OPTIONAL)
-# =============================================================================
 
 update_system() {
     if fzf_confirm "Update your system now? (Recommended)"; then
@@ -148,7 +135,7 @@ update_system() {
 }
 
 # =============================================================================
-#  AUR HELPER (ARCH ONLY)
+#  AUR HELPER 
 # =============================================================================
 
 setup_aur_helper() {
@@ -174,7 +161,7 @@ setup_aur_helper() {
 }
 
 # =============================================================================
-#  INSTALL CORE DEPENDENCIES
+# DEPENDENCIES 
 # =============================================================================
 
 install_dependencies() {
@@ -182,13 +169,13 @@ install_dependencies() {
 
     if [[ "$OS" == "arch" ]]; then
         sudo pacman -S --noconfirm --needed \
-            polybar i3-wm rofi maim git imwheel nitrogen polkit-gnome xclip flameshot thunar \
+            polybar i3-wm rofi maim git imwheel  polkit-gnome xclip flameshot thunar \
             xorg-server xorg-xinit xorg-xrandr xorg-xsetroot xorg-xset gtk3 gtk4 \
             gnome-settings-daemon gnome-keyring neovim \
             ttf-meslo-nerd noto-fonts-emoji ttf-jetbrains-mono \
             network-manager-applet blueman pasystray wget unzip \
             curl zoxide polybar i3status nwg-look qt5ct qt6ct \
-            kvantum alacritty dunst fastfetch picom fish starship
+            kvantum alacritty dunst fastfetch picom fish starship zsh
 
     elif [[ "$OS" == "fedora" ]]; then
         sudo dnf copr enable -y solopasha/hyprland 2>/dev/null || warn "Failed to enable Hyprland COPR (non-fatal)"
@@ -200,7 +187,7 @@ install_dependencies() {
             network-manager-applet blueman pasystray git \
             jetbrains-mono-fonts-all google-noto-color-emoji-fonts \
             google-noto-emoji-fonts wget unzip curl zoxide i3status \
-            nwg-look qt5ct qt6ct kvantum alacritty dunst fastfetch picom fish
+            nwg-look qt5ct qt6ct kvantum alacritty dunst fastfetch picom fish zsh
 
         _install_starship_fedora
     fi
@@ -215,8 +202,72 @@ _install_starship_fedora() {
     fi
 }
 
+verify_dependencies() {
+    msg "Verifying dependencies..."
+
+    local deps=(
+        i3
+        polybar
+        rofi
+        alacritty
+        picom
+        dunst
+        feh
+        flameshot
+        thunar
+        fish
+        gnome-keyring
+        starship
+        fastfetch
+        git
+        curl
+        wget
+        unzip
+        nm-applet
+        pactl
+        xrandr
+        zoxide
+        maim
+        xclip
+        imwheel
+        bash
+        pasystray
+        nvim 
+        lxappearance
+        zsh
+    )
+
+    local missing=()
+
+    for dep in "${deps[@]}"; do
+        if ! command -v "$dep" &>/dev/null; then
+            missing+=("$dep")
+        fi
+    done
+
+    if [[ ${#missing[@]} -eq 0 ]]; then
+        msg "All dependencies are present."
+    else
+        warn "The following dependencies are missing and need to be installed manually:"
+        echo
+        for pkg in "${missing[@]}"; do
+            err "  ✗ $pkg"
+        done
+        echo
+        if [[ "$OS" == "arch" ]]; then
+            info "  Install missing packages with: sudo pacman -S <package>"
+            info "  Or with your AUR helper: $AUR_HELPER -S <package>"
+        elif [[ "$OS" == "fedora" ]]; then
+            info "  Install missing packages with: sudo dnf install <package>"
+        fi
+        echo
+        warn "You can continue, but some things may not work correctly without the missing packages."
+        fzf_confirm "Continue anyway?" || { err "Exiting. Please install the missing dependencies and re-run the script."; exit 1; }
+    fi
+}
+
 # =============================================================================
-#  POKEMON COLORSCRIPTS
+#  POKEMON COLORSCRIPTS (You will see at terminal startup) 
 # =============================================================================
 
 install_pokemon_colorscripts() {
@@ -238,7 +289,7 @@ install_pokemon_colorscripts() {
 }
 
 # =============================================================================
-#  BRAVE BROWSER (OPTIONAL)
+#  BROWSER (Optional, in case you want one)
 # =============================================================================
 
 install_brave() {
@@ -263,7 +314,7 @@ install_brave() {
 }
 
 # =============================================================================
-#  CLONE DOTFILES
+# DOTFILES
 # =============================================================================
 
 clone_dotfiles() {
@@ -277,11 +328,12 @@ clone_dotfiles() {
         fi
     fi
     msg "Cloning dotfiles..."
-    git clone "$DOTFILES_REPO" "$DOTFILES_DIR" || { err "Failed to clone dotfiles."; exit 1; }
+    warn "Note: The dotfiles repo is around 300MB, this may take a moment depending on your connection."
+    git clone --depth=1 "$DOTFILES_REPO" "$DOTFILES_DIR" || { err "Failed to clone dotfiles."; exit 1; }
 }
 
 # =============================================================================
-#  SELECT COLOR SCHEME
+# COLOR SCHEME (the system is currently, or mostly, Catppuccin-based but Nord also works in some places)
 # =============================================================================
 
 select_color_scheme() {
@@ -292,25 +344,20 @@ select_color_scheme() {
     msg "Selected color scheme: $COLOR_SCHEME"
 }
 
-# =============================================================================
-#  APPLY CONFIGS
-# =============================================================================
-
 apply_configs() {
     mkdir -p "$BACKUP_DIR"
 
-    # Standard configs
     for cfg in Kvantum alacritty dunst fastfetch; do
         backup_and_replace "$cfg"
     done
 
-    # Run alacritty migration if config applied
+    # Run alacritty migration to get rid of the warning
     if [[ -d "$HOME/.config/alacritty" ]]; then
         msg "Running 'alacritty migrate'..."
         (cd "$HOME/.config/alacritty" && alacritty migrate) 2>/dev/null || true
     fi
 
-    # picom
+    # picom (for cool-looking transparency)
     if fzf_config_confirm "picom"; then
         local picom_dst="$HOME/.config/picom.conf"
         [[ -f "$picom_dst" ]] && mv "$picom_dst" "$BACKUP_DIR/"
@@ -335,7 +382,7 @@ apply_configs() {
         fi
     done
 
-    # Fish
+    # Fish (this has some issues, will check later)
     if [[ -d "$HOME/.config/fish" ]]; then
         warn "Existing Fish config found."
         if fzf_config_confirm "fish"; then
@@ -349,7 +396,7 @@ apply_configs() {
 }
 
 # =============================================================================
-#  SELECT & APPLY STATUS BAR
+#  Status Bar (polybar or i3status)
 # =============================================================================
 
 setup_status_bar() {
@@ -362,7 +409,7 @@ setup_status_bar() {
 
     if [[ "$BAR_CHOICE" == "polybar" ]]; then
         msg "Setting up Polybar..."
-        # Remove i3status if present
+        # Remove i3status if present (I don't have to add this, but in some cases it may conflict)
         if command -v i3status &>/dev/null; then
             warn "Removing i3status..."
             [[ "$OS" == "arch" ]]   && sudo pacman -Rns --noconfirm i3status
@@ -384,7 +431,6 @@ setup_status_bar() {
         git switch main
     fi
 
-    # Apply color scheme branch configs
     git switch "$COLOR_SCHEME"
     for cfg in rofi starship nvim; do
         backup_and_replace "$cfg"
@@ -394,7 +440,7 @@ setup_status_bar() {
 }
 
 # =============================================================================
-#  WALLPAPERS (OPTIONAL)
+#  Wallpapers
 # =============================================================================
 
 setup_wallpapers() {
@@ -418,7 +464,7 @@ setup_wallpapers() {
 }
 
 # =============================================================================
-#  THEMES & ICONS
+#  Themes & Icons
 # =============================================================================
 
 setup_themes_icons() {
@@ -432,7 +478,7 @@ setup_themes_icons() {
     _move_to_dotdir "$HOME/themes" "$HOME/.themes"
     _move_to_dotdir "$HOME/icons"  "$HOME/.icons"
 
-    # lxappearance for GTK theming
+    # use lxappearance for GTK theming
     if [[ "$OS" == "arch" ]]; then
         sudo pacman -S --noconfirm --needed lxappearance
     elif [[ "$OS" == "fedora" ]]; then
@@ -466,7 +512,9 @@ _move_to_dotdir() {
 }
 
 # =============================================================================
-#  SDDM DISPLAY MANAGER
+# SDDM
+# Many users who tried my setup script mostly had issues with the SDDM part.
+# I've mostly fixed it and got it working on my Arch, should work fine now.
 # =============================================================================
 
 setup_sddm() {
@@ -474,7 +522,6 @@ setup_sddm() {
         warn "Skipping SDDM setup."; return
     }
 
-    # Install SDDM if missing
     if ! command -v sddm &>/dev/null; then
         msg "Installing SDDM..."
         [[ "$OS" == "arch" ]]   && sudo pacman -S --noconfirm sddm
@@ -483,7 +530,6 @@ setup_sddm() {
         msg "SDDM already installed."
     fi
 
-    # Apply theme based on color scheme
     if [[ "$COLOR_SCHEME" == "nord" ]]; then
         _apply_sddm_astronaut_theme
     else
@@ -514,7 +560,6 @@ _apply_sddm_catppuccin_theme() {
     sudo mv "$tmp/catppuccin-mocha" "$theme_dir"
     rm -rf "$tmp"
 
-    # Write theme name for configure step
     SDDM_THEME_NAME="catppuccin-mocha"
     msg "Catppuccin Mocha theme applied."
 }
@@ -533,7 +578,6 @@ _apply_sddm_astronaut_theme() {
 
     msg "Fetching sddm-astronaut-theme from dotfiles (nord branch)..."
 
-    # Clone only the sddm theme folder from the nord branch
     git clone --depth=1 --filter=blob:none --sparse \
         --branch nord "$DOTFILES_REPO" "$tmp/dotfiles"
     (cd "$tmp/dotfiles" && git sparse-checkout set "sddm/themes/$theme_name")
@@ -557,7 +601,6 @@ _configure_sddm() {
     if [[ ! -f /etc/sddm.conf ]]; then
         printf "[Theme]\nCurrent=%s\n" "$SDDM_THEME_NAME" | sudo tee /etc/sddm.conf > /dev/null
     else
-        # Update or append the Current= line under [Theme]
         if grep -q "^\[Theme\]" /etc/sddm.conf; then
             sudo sed -i '/^\[Theme\]/,/^\[/{s/^Current=.*/Current='"$SDDM_THEME_NAME"'/}' /etc/sddm.conf
             grep -q "^Current=" /etc/sddm.conf || sudo sed -i '/^\[Theme\]/a Current='"$SDDM_THEME_NAME" /etc/sddm.conf
@@ -583,7 +626,7 @@ _enable_sddm() {
 }
 
 # =============================================================================
-#  NUMLOCK ON BOOT
+# NumLock (I like having NumLock enabled)
 # =============================================================================
 
 setup_numlock() {
@@ -615,10 +658,6 @@ EOF
     msg "NumLock will be enabled on boot."
 }
 
-# =============================================================================
-#  FINISH
-# =============================================================================
-
 print_complete() {
     echo
     teal "  i3wm Setup Complete! "
@@ -639,16 +678,13 @@ prompt_reboot() {
     fi
 }
 
-# =============================================================================
-#  MAIN
-# =============================================================================
-
 main() {
     check_fzf
     detect_os
     update_system
     setup_aur_helper
     install_dependencies
+    verify_dependencies
     install_pokemon_colorscripts
     install_brave
     clone_dotfiles
