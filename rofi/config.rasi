@@ -11,6 +11,7 @@ configuration{
     display-run: " 🏃  Run ";
     display-window: " 🪟  Window";
     sidebar-mode: true;
+    font: "JetBrainsMono Nerd Font 11";
 }
 
 @theme "catppuccin-mocha"
