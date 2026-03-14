@@ -86,7 +86,7 @@ bindsym XF86AudioMicMute exec --no-startup-id pactl set-source-mute @DEFAULT_SOU
 
 # start a apps
 bindsym $mod+x exec --no-startup-id alacritty;focus
-bindsym $mod+b exec --no-startup-id brave 
+bindsym $mod+b exec --no-startup-id "xdg-open https://" 
 bindsym $mod+e exec --no-startup-id thunar
 bindsym $mod+n exec --no-startup-id "flameshot gui"
 bindsym $mod+m exec --no-startup-id "flameshot screen"
