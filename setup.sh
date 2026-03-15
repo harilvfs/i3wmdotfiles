@@ -174,7 +174,7 @@ install_dependencies() {
             gnome-settings-daemon gnome-keyring neovim \
             ttf-meslo-nerd noto-fonts-emoji ttf-jetbrains-mono \
             network-manager-applet blueman pasystray wget unzip \
-            curl zoxide polybar nwg-look qt5ct qt6ct \
+            curl zoxide polybar nwg-look qt5ct qt6ct yad \
             kvantum alacritty dunst fastfetch picom fish starship zsh slock xautolock brightnessctl
 
     elif [[ "$OS" == "fedora" ]]; then
@@ -186,7 +186,7 @@ install_dependencies() {
             gnome-settings-daemon gnome-keyring neovim \
             network-manager-applet blueman pasystray git \
             jetbrains-mono-fonts-all google-noto-color-emoji-fonts \
-            google-noto-emoji-fonts wget unzip curl zoxide \
+            google-noto-emoji-fonts wget unzip curl zoxide yad \
             nwg-look qt5ct qt6ct kvantum alacritty dunst fastfetch picom fish zsh slock xautolock brightnessctl
 
         _install_starship_fedora
@@ -238,6 +238,7 @@ verify_dependencies() {
         slock
         xautolock
         brightnessctl
+        yad
     )
 
     local missing=()
