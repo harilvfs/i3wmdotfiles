@@ -143,6 +143,15 @@ If you are using fish shell
 | <kbd>Super</kbd> + <kbd>R</kbd> | Open App Launcher (Rofi) |
 | <kbd>Super</kbd> + <kbd>E</kbd> | Open File Manager (Thunar) |
 | <kbd>Super</kbd> + <kbd>B</kbd> | Open Default Browser |
+
+### System
+| Key Combo | Action |
+|:---------:|:-------|
+| <kbd>Super</kbd> + <kbd>U</kbd> | Lock Screen (slock) |
+
+### Wallpaper
+| Key Combo | Action |
+|:---------:|:-------|
 | <kbd>Super</kbd> + <kbd>Shift</kbd> + <kbd>W</kbd> | Change Wallpaper (feh) |
 
 ### Screenshots

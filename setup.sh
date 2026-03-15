@@ -175,7 +175,7 @@ install_dependencies() {
             ttf-meslo-nerd noto-fonts-emoji ttf-jetbrains-mono \
             network-manager-applet blueman pasystray wget unzip \
             curl zoxide polybar nwg-look qt5ct qt6ct \
-            kvantum alacritty dunst fastfetch picom fish starship zsh
+            kvantum alacritty dunst fastfetch picom fish starship zsh slock xautolock
 
     elif [[ "$OS" == "fedora" ]]; then
         sudo dnf copr enable -y solopasha/hyprland 2>/dev/null || warn "Failed to enable Hyprland COPR (non-fatal)"
@@ -187,7 +187,7 @@ install_dependencies() {
             network-manager-applet blueman pasystray git \
             jetbrains-mono-fonts-all google-noto-color-emoji-fonts \
             google-noto-emoji-fonts wget unzip curl zoxide \
-            nwg-look qt5ct qt6ct kvantum alacritty dunst fastfetch picom fish zsh
+            nwg-look qt5ct qt6ct kvantum alacritty dunst fastfetch picom fish zsh slock xautolock
 
         _install_starship_fedora
     fi
@@ -622,6 +622,40 @@ EOF
     msg "NumLock will be enabled on boot."
 }
 
+# =============================================================================
+# .xinitrc
+# =============================================================================
+
+setup_xinitrc() {
+    fzf_confirm "Set up .xinitrc to start i3 on login?" || { warn "Skipping .xinitrc setup."; return; }
+
+    local xinitrc="$HOME/.xinitrc"
+
+    if [[ -f "$xinitrc" ]]; then
+        warn ".xinitrc already exists."
+        fzf_confirm "Back up and replace it?" || { warn "Skipping .xinitrc setup."; return; }
+        mv "$xinitrc" "$BACKUP_DIR/.xinitrc.bak"
+    fi
+
+    cat > "$xinitrc" <<'EOF'
+#!/bin/sh
+
+pgrep dunst > /dev/null || /usr/bin/dunst &
+
+xautolock \
+  -time 10 \
+  -locker slock \
+  -notify 10 \
+  -notifier "/usr/bin/notify-send '🔒 Locking soon' 'The screen will lock in 10 seconds...'" &
+
+exec i3
+EOF
+
+    chmod +x "$xinitrc"
+    msg ".xinitrc created at $xinitrc"
+    info "  Run 'startx' from TTY to start i3."
+}
+
 print_complete() {
     echo
     teal "  i3wm Setup Complete! "
@@ -657,6 +691,7 @@ main() {
     setup_themes_icons
     setup_sddm
     setup_numlock
+    setup_xinitrc
     print_complete   
     prompt_reboot
 }
