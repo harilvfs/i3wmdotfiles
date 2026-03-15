@@ -109,6 +109,7 @@ If you are using fish shell
 > - `starship`
 > - `zoxide`
 > - `fastfetch`
+> - `brightnessctl`
 
 ### Default Apps
 
@@ -156,6 +157,12 @@ If you are using fish shell
 | <kbd>Super</kbd> + <kbd>U</kbd> | Lock Screen (slock) |
 | <kbd>Super</kbd> + <kbd>I</kbd> | Toggle Bar |
 | <kbd>Super</kbd> + <kbd>Shift</kbd> + <kbd>I</kbd> | Hide Bar |
+
+### Brightness
+| Key Combo | Action |
+|:---------:|:-------|
+| <kbd>Super</kbd> + <kbd>Shift</kbd> + <kbd>B</kbd> | Increase Brightness |
+| <kbd>Super</kbd> + <kbd>Shift</kbd> + <kbd>T</kbd> | Decrease Brightness |
 
 ### Wallpaper
 | Key Combo | Action |

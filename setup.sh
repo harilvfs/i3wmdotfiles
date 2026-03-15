@@ -175,7 +175,7 @@ install_dependencies() {
             ttf-meslo-nerd noto-fonts-emoji ttf-jetbrains-mono \
             network-manager-applet blueman pasystray wget unzip \
             curl zoxide polybar nwg-look qt5ct qt6ct \
-            kvantum alacritty dunst fastfetch picom fish starship zsh slock xautolock
+            kvantum alacritty dunst fastfetch picom fish starship zsh slock xautolock brightnessctl
 
     elif [[ "$OS" == "fedora" ]]; then
         sudo dnf copr enable -y solopasha/hyprland 2>/dev/null || warn "Failed to enable Hyprland COPR (non-fatal)"
@@ -187,7 +187,7 @@ install_dependencies() {
             network-manager-applet blueman pasystray git \
             jetbrains-mono-fonts-all google-noto-color-emoji-fonts \
             google-noto-emoji-fonts wget unzip curl zoxide \
-            nwg-look qt5ct qt6ct kvantum alacritty dunst fastfetch picom fish zsh slock xautolock
+            nwg-look qt5ct qt6ct kvantum alacritty dunst fastfetch picom fish zsh slock xautolock brightnessctl
 
         _install_starship_fedora
     fi
@@ -235,6 +235,9 @@ verify_dependencies() {
         nvim 
         lxappearance
         zsh
+        slock
+        xautolock
+        brightnessctl
     )
 
     local missing=()
@@ -640,8 +643,10 @@ setup_xinitrc() {
     cat > "$xinitrc" <<'EOF'
 #!/bin/sh
 
-pgrep dunst > /dev/null || /usr/bin/dunst &
+# load Xresources if present
+[ -f ~/.Xresources ] && xrdb -merge ~/.Xresources
 
+pgrep dunst > /dev/null || /usr/bin/dunst &
 xautolock \
   -time 10 \
   -locker slock \
