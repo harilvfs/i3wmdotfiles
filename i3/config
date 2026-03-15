@@ -26,9 +26,12 @@ gaps outer 0
 #                                              
 
 exec --no-startup-id dex --autostart --environment i3
-exec --no-startup-id xss-lock --transfer-sleep-lock -- i3lock --nofork
+exec --no-startup-id xss-lock --transfer-sleep-lock -- slock
 exec --no-startup-id nm-applet
 exec --no-startup-id dunst &
+
+### Lock
+bindsym $mod+u exec --no-startup-id slock
 
 for_window [class="gnome-calculator"] floating enable
 
