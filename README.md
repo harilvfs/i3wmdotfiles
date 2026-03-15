@@ -133,7 +133,9 @@ If you are using fish shell
 >
 > Set Wallpaper using `feh`
 
-### Welcome Popup
+### Welcome
+
+<img src="https://raw.githubusercontent.com/harilvfs/i3wmdotfiles/refs/heads/main/preview/welcome0.png" width="500" height="auto" />
 
 > A welcome popup appears on your first i3wm startup showing basic keybindings and helpful links.
 >
