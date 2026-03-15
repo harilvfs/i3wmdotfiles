@@ -44,6 +44,7 @@ exec --no-startup-id xss-lock --transfer-sleep-lock -- slock
 exec --no-startup-id nm-applet
 exec --no-startup-id dunst &
 exec --no-startup-id sh -c "feh --randomize --bg-fill ~/Pictures/wallpapers/*"
+exec --no-startup-id mkdir -p ~/Pictures/Screenshots
 
 exec_always --no-startup-id ~/.config/polybar/launch.sh
 exec_always --no-startup-id picom --config ~/.config/picom.conf
@@ -81,8 +82,8 @@ bindsym $mod+u exec --no-startup-id slock
 bindsym $mod+Shift+w exec --no-startup-id feh --randomize --bg-fill ~/Pictures/wallpapers/*
 
 ### Screenshots
-bindsym $mod+n exec --no-startup-id "flameshot gui"
-bindsym $mod+m exec --no-startup-id "flameshot screen"
+bindsym $mod+n exec --no-startup-id flameshot gui --path ~/Pictures/Screenshots
+bindsym $mod+m exec --no-startup-id flameshot screen --path ~/Pictures/Screenshots
 
 ### Audio
 bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ +10% && $refresh_i3status
