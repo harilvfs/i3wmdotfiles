@@ -1,10 +1,8 @@
-                                  
 font pango:Jetbrains Mono 5
 for_window [class="^.*"] border pixel 0
 gaps inner 0
 gaps outer 0
 #smart_gaps inverse_outer
-
 
 ##START THEMING WM
 
@@ -30,9 +28,7 @@ gaps outer 0
 exec --no-startup-id dex --autostart --environment i3
 exec --no-startup-id xss-lock --transfer-sleep-lock -- i3lock --nofork
 exec --no-startup-id nm-applet
-
-
-exec_always --no-startup-id nitrogen --restore &
+exec --no-startup-id dunst &
 
 for_window [class="gnome-calculator"] floating enable
 
@@ -46,8 +42,6 @@ exec_always --no-startup-id ~/.config/polybar/launch.sh
 #if you want transparency on non-focused windows, ...
 exec_always --no-startup-id picom --config ~/.config/picom.conf
 exec_always --no-startup-id ~/.config/i3/scripts/mouse.sh
-
-
 
 ### Wallpapers
 
@@ -225,8 +219,6 @@ bindsym $mod+shift+i bar mode invisible
 #####################################################################################################################
 #################                          i3 gaps change                                           #################
 #####################################################################################################################
-
-
 
 set $mode_gaps Gaps: (o) outer, (i) inner
 set $mode_gaps_outer Outer Gaps: +|-|0 (local), Shift + +|-|0 (global)
