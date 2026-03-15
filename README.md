@@ -133,6 +133,15 @@ If you are using fish shell
 >
 > Set Wallpaper using `feh`
 
+### Welcome Popup
+
+> A welcome popup appears on your first i3wm startup showing basic keybindings and helpful links.
+>
+> You can click **Don't show again** to disable the popup on next startup. If you want to re-enable it (I know you don't need to, but just in case) run:
+> ```bash
+> rm ~/.config/i3/scripts/.welcome_disabled
+> ```
+
 #### Change Theme, Icons and Mouse Cursor from `lxappearance`
 > - **Download `themes` and `icons` from my repositories**: [Themes Repository](https://github.com/harilvfs/themes) | [Icons Repository](https://github.com/harilvfs/icons).
 > - *Widget Theme* : `NordArc-Theme` / `Catppuccin-Moncha-Standard`
@@ -185,7 +194,7 @@ If you are using fish shell
 | <kbd>Super</kbd> + <kbd>Shift</kbd> + <kbd>G</kbd> | Gaps Mode |
 | <kbd>Super</kbd> + <kbd>Shift</kbd> + <kbd>C</kbd> | Reload Config |
 | <kbd>Super</kbd> + <kbd>Shift</kbd> + <kbd>R</kbd> | Restart i3 |
-| <kbd>Super</kbd> + <kbd>Shift</kbd> + <kbd>E</kbd> | Exit i3 Session |
+| <kbd>Super</kbd> + <kbd>Shift</kbd> + <kbd>Q</kbd> | Exit i3 Session |
 
 ### Navigation
 | Key Combo | Action |
