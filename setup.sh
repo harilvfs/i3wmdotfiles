@@ -174,7 +174,7 @@ install_dependencies() {
             gnome-settings-daemon gnome-keyring neovim \
             ttf-meslo-nerd noto-fonts-emoji ttf-jetbrains-mono \
             network-manager-applet blueman pasystray wget unzip \
-            curl zoxide polybar i3status nwg-look qt5ct qt6ct \
+            curl zoxide polybar nwg-look qt5ct qt6ct \
             kvantum alacritty dunst fastfetch picom fish starship zsh
 
     elif [[ "$OS" == "fedora" ]]; then
@@ -186,7 +186,7 @@ install_dependencies() {
             gnome-settings-daemon gnome-keyring neovim \
             network-manager-applet blueman pasystray git \
             jetbrains-mono-fonts-all google-noto-color-emoji-fonts \
-            google-noto-emoji-fonts wget unzip curl zoxide i3status \
+            google-noto-emoji-fonts wget unzip curl zoxide \
             nwg-look qt5ct qt6ct kvantum alacritty dunst fastfetch picom fish zsh
 
         _install_starship_fedora
@@ -296,19 +296,14 @@ install_brave() {
     fzf_confirm "Install Brave browser?" || { warn "Skipping Brave browser."; return; }
 
     if command -v brave &>/dev/null || command -v brave-browser &>/dev/null; then
-        msg "Brave (native) is already installed."; return
-    fi
-    if command -v flatpak &>/dev/null && flatpak list 2>/dev/null | grep -q "com.brave.Browser"; then
-        msg "Brave (Flatpak) is already installed."; return
+        msg "Brave is already installed."; return
     fi
 
     msg "Installing Brave browser..."
     if [[ "$OS" == "arch" ]]; then
         "$AUR_HELPER" -S --noconfirm brave-bin
     elif [[ "$OS" == "fedora" ]]; then
-        command -v flatpak &>/dev/null || sudo dnf install -y flatpak
-        sudo flatpak remote-add --if-not-exists flathub https://dl.flathub.org/repo/flathub.flatpakrepo
-        sudo flatpak install -y flathub com.brave.Browser
+        curl -fsS https://dl.brave.com/install.sh | sh
     fi
     msg "Brave browser installed."
 }
@@ -333,7 +328,7 @@ clone_dotfiles() {
 }
 
 # =============================================================================
-# COLOR SCHEME (the system is currently, or mostly, Catppuccin-based but Nord also works in some places)
+# COLOR SCHEME
 # =============================================================================
 
 select_color_scheme() {
@@ -347,7 +342,18 @@ select_color_scheme() {
 apply_configs() {
     mkdir -p "$BACKUP_DIR"
 
-    for cfg in Kvantum alacritty dunst fastfetch; do
+    cd "$DOTFILES_DIR" || exit 1
+
+    git switch "$COLOR_SCHEME"
+    for cfg in Kvantum alacritty polybar rofi starship nvim; do
+        backup_and_replace "$cfg"
+    done
+
+    git switch polybar
+    backup_and_replace "i3"
+
+    git switch main
+    for cfg in dunst fastfetch; do
         backup_and_replace "$cfg"
     done
 
@@ -395,49 +401,7 @@ apply_configs() {
     fi
 }
 
-# =============================================================================
-#  Status Bar (polybar or i3status)
-# =============================================================================
 
-setup_status_bar() {
-    warn "Choose your status bar:"
-    BAR_CHOICE=$(fzf_select "Status bar:" "Available bars (Polybar recommended)" "polybar" "i3status")
-    BAR_CHOICE="${BAR_CHOICE:-polybar}"
-    BAR_CHOICE="${BAR_CHOICE,,}"
-
-    cd "$DOTFILES_DIR" || exit 1
-
-    if [[ "$BAR_CHOICE" == "polybar" ]]; then
-        msg "Setting up Polybar..."
-        # Remove i3status if present (I don't have to add this, but in some cases it may conflict)
-        if command -v i3status &>/dev/null; then
-            warn "Removing i3status..."
-            [[ "$OS" == "arch" ]]   && sudo pacman -Rns --noconfirm i3status
-            [[ "$OS" == "fedora" ]] && sudo dnf remove -y i3status
-        fi
-        git switch catppuccin
-        backup_and_replace "polybar"
-        git switch main
-        git switch polybar
-        backup_and_replace "i3"
-        git switch main
-
-    elif [[ "$BAR_CHOICE" == "i3status" ]]; then
-        msg "Setting up i3status..."
-        git switch nord
-        backup_and_replace "i3status"
-        git switch i3status
-        backup_and_replace "i3"
-        git switch main
-    fi
-
-    git switch "$COLOR_SCHEME"
-    for cfg in rofi starship nvim; do
-        backup_and_replace "$cfg"
-    done
-    git switch main
-    msg "Dotfiles setup complete."
-}
 
 # =============================================================================
 #  Wallpapers
@@ -662,7 +626,6 @@ print_complete() {
     echo
     teal "  i3wm Setup Complete! "
     teal "  Color scheme : $COLOR_SCHEME"
-    teal "  Status bar   : $BAR_CHOICE"
     echo
     warn "  Tip: If you re-run this script, delete ~/.i3wmdotfiles first to avoid conflicts."
     echo
@@ -690,7 +653,6 @@ main() {
     clone_dotfiles
     select_color_scheme
     apply_configs
-    setup_status_bar
     setup_wallpapers
     setup_themes_icons
     setup_sddm
