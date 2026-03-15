@@ -76,7 +76,6 @@ If you are using fish shell
 
 ### Dependencies
 
-> - `i3status`
 > - `polybar`
 > - `rofi`
 > - `alacritty`
@@ -108,13 +107,13 @@ If you are using fish shell
 
 ### Default Apps
 
-> - **Browser:** `Thorium` / `Brave`
-> - **File Manager:** `Nemo` / `Thunar`
-> - **Code Editor:** `Neovim`
+> - **Browser:** `Brave`
+> - **File Manager:** `Thunar`
+> - **Code Editor:** `Neovim` aka `nvim`
 > - **Screenshot Tool:** `Flameshot`
 > - **Terminal:** `Alacritty`
 > - **Launcher:** `Rofi`
-> - **Status Bar:** `Polybar` / `i3status`
+> - **Status Bar:** `Polybar`
 > - **Shell:** `Bash` / `Zsh` / `Fish`
 
 ### Wallpapers
@@ -125,7 +124,7 @@ If you are using fish shell
 > git clone https://github.com/harilvfs/wallpapers
 > ```
 >
-> Set Wallpaper using `nitrogen` or `feh`
+> Set Wallpaper using `feh`
 
 #### Change Theme, Icons and Mouse Cursor from `lxappearance`
 > - **Download `themes` and `icons` from my repositories**: [Themes Repository](https://github.com/harilvfs/themes) | [Icons Repository](https://github.com/harilvfs/icons).
