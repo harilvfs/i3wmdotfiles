@@ -41,7 +41,7 @@
 >
 > For **Arch Linux**:
 > ```sh
-> sudo pacman -S fzf --no-confirm
+> sudo pacman -S fzf --noconfirm
 > ```
 > For Fedora:
 > ```sh
@@ -103,7 +103,12 @@ If you are using fish shell
 > - `xorg-xrandr`
 > - `xorg-xset`
 > - `gtk3`
-> - `xterm`
+> - `slock`
+> - `xautolock`
+> - `dunst`
+> - `starship`
+> - `zoxide`
+> - `fastfetch`
 
 ### Default Apps
 
@@ -115,6 +120,7 @@ If you are using fish shell
 > - **Launcher:** `Rofi`
 > - **Status Bar:** `Polybar`
 > - **Shell:** `Bash` / `Zsh` / `Fish`
+> - **Screen Locker:** `slock`
 
 ### Wallpapers
 
@@ -148,6 +154,8 @@ If you are using fish shell
 | Key Combo | Action |
 |:---------:|:-------|
 | <kbd>Super</kbd> + <kbd>U</kbd> | Lock Screen (slock) |
+| <kbd>Super</kbd> + <kbd>I</kbd> | Toggle Bar |
+| <kbd>Super</kbd> + <kbd>Shift</kbd> + <kbd>I</kbd> | Hide Bar |
 
 ### Wallpaper
 | Key Combo | Action |
@@ -167,6 +175,7 @@ If you are using fish shell
 | <kbd>Alt</kbd> + <kbd>Tab</kbd> | Switch Windows |
 | <kbd>Super</kbd> + <kbd>Number</kbd> | Switch Workspace |
 | <kbd>Super</kbd> + <kbd>Shift</kbd> + <kbd>Number</kbd> | Move Container to Workspace |
+| <kbd>Super</kbd> + <kbd>Shift</kbd> + <kbd>G</kbd> | Gaps Mode |
 | <kbd>Super</kbd> + <kbd>Shift</kbd> + <kbd>C</kbd> | Reload Config |
 | <kbd>Super</kbd> + <kbd>Shift</kbd> + <kbd>R</kbd> | Restart i3 |
 | <kbd>Super</kbd> + <kbd>Shift</kbd> + <kbd>E</kbd> | Exit i3 Session |
