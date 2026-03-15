@@ -76,6 +76,7 @@ alias aa='startx' # startx
 alias rm='trash -v' # trash cli
 alias hx='helix' # helix
 alias yayf="yay -Slq | fzf --multi --preview 'yay -Sii {1}' --preview-window=down:75% | xargs -ro yay -S" # from christitus
+alias ff='fastfetch'
 
 # Directory navigation shortcuts
 alias ..='cd ..'

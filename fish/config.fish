@@ -35,6 +35,7 @@ alias vim 'nvim'
 alias aa 'startx'
 alias rm 'trash -v'
 alias hx 'helix'
+alias ff 'fastfetch'
 
 alias .. 'cd ..'
 alias ... 'cd ../..'
