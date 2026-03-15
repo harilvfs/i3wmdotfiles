@@ -1,8 +1,15 @@
 font pango:Jetbrains Mono 5
-for_window [class="^.*"] border pixel 0
-gaps inner 0
-gaps outer 0
-#smart_gaps inverse_outer
+
+# combination keybind
+set $mod Mod4
+
+#
+#  _____ _   _ ___ __  __ ___ _   _  ____ 
+# |_   _| | | | __|  \/  |_ _| \ | |/ ___|
+#   | | | |_| | _|| |\/| || ||  \| | |  _ 
+#   | | |  _  | |_| |  | || || |\  | |_| |
+#   |_| |_| |_|___|_|  |_|___|_| \_|\____|
+#
 
 ##START THEMING WM
 
@@ -13,9 +20,16 @@ gaps outer 0
     client.focused_inactive #2e3440 #1f222d #888888 #1f222d
     client.placeholder      #2e3440 #1f222d #888888 #1f222d
     client.urgent           #900000 #900000 #ffffff #900000
-
     client.background       #242424
 
+# Borders & Gaps
+for_window [class="^.*"] border pixel 0
+gaps inner 0
+gaps outer 0
+#smart_gaps inverse_outer
+
+# Floating windows
+for_window [class="gnome-calculator"] floating enable
 
 #
 #     _         _            _             _   
@@ -23,33 +37,17 @@ gaps outer 0
 #   / _ \| | | | __/ _ \/ __| __/ _` | '__| __|
 #  / ___ \ |_| | || (_) \__ \ || (_| | |  | |_ 
 # /_/   \_\__,_|\__\___/|___/\__\__,_|_|   \__|
-#                                              
+#
 
 exec --no-startup-id dex --autostart --environment i3
 exec --no-startup-id xss-lock --transfer-sleep-lock -- slock
 exec --no-startup-id nm-applet
 exec --no-startup-id dunst &
+exec --no-startup-id sh -c "feh --randomize --bg-fill ~/Pictures/wallpapers/*"
 
-### Lock
-bindsym $mod+u exec --no-startup-id slock
-
-for_window [class="gnome-calculator"] floating enable
-
-# kill any hanging polybar processes
 exec_always --no-startup-id ~/.config/polybar/launch.sh
-
-#####################################################################################################################
-#################                          picom and wallpaper                                      #################
-#####################################################################################################################
-
-#if you want transparency on non-focused windows, ...
 exec_always --no-startup-id picom --config ~/.config/picom.conf
 exec_always --no-startup-id ~/.config/i3/scripts/mouse.sh
-
-### Wallpapers
-
-exec --no-startup-id sh -c "feh --randomize --bg-fill ~/Pictures/wallpapers/*"
-bindsym $mod+Shift+w exec --no-startup-id feh --randomize --bg-fill ~/Pictures/wallpapers/*
 
 #
 #  _  __          _     _           _     
@@ -58,13 +56,6 @@ bindsym $mod+Shift+w exec --no-startup-id feh --randomize --bg-fill ~/Pictures/w
 # | . \  __/ |_| | |_) | | | | | (_| \__ \
 # |_|\_\___|\__, |_.__/|_|_| |_|\__,_|___/
 #           |___/                         
-#
-
-# combination keybind
-set $mod Mod4
-
-# kill focused window
-bindsym $mod+q kill
 
 # Use Mouse+$mod to drag floating windows to their wanted position
 floating_modifier $mod
@@ -73,79 +64,89 @@ floating_modifier $mod
 # or left-clicking anywhere into the window while holding the floating modifier.
 tiling_drag modifier titlebar
 
-#####################################################################################################################
-#################                          audio settings                                           #################
-#####################################################################################################################
+### Launchers
+bindsym $mod+x exec --no-startup-id alacritty;focus
+bindsym $mod+r exec "rofi -modi drun,run -show drun"
+bindsym $mod+e exec --no-startup-id thunar
+bindsym $mod+b exec --no-startup-id "xdg-open https://"
 
+### Window switcher
+bindsym Mod1+Tab exec "rofi -modi window,run -show window"
+
+### Lock
+bindsym $mod+u exec --no-startup-id slock
+
+### Wallpaper
+bindsym $mod+Shift+w exec --no-startup-id feh --randomize --bg-fill ~/Pictures/wallpapers/*
+
+### Screenshots
+bindsym $mod+n exec --no-startup-id "flameshot gui"
+bindsym $mod+m exec --no-startup-id "flameshot screen"
+
+### Audio
 bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ +10% && $refresh_i3status
 bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ -10% && $refresh_i3status
 bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute @DEFAULT_SINK@ toggle && $refresh_i3status
 bindsym XF86AudioMicMute exec --no-startup-id pactl set-source-mute @DEFAULT_SOURCE@ toggle && $refresh_i3status
 
-# start a apps
-bindsym $mod+x exec --no-startup-id alacritty;focus
-bindsym $mod+b exec --no-startup-id "xdg-open https://" 
-bindsym $mod+e exec --no-startup-id thunar
-bindsym $mod+n exec --no-startup-id "flameshot gui"
-bindsym $mod+m exec --no-startup-id "flameshot screen"
+### Brightness
+bindsym XF86MonBrightnessUp exec light -A 1
+bindsym XF86MonBrightnessDown exec light -U 1
+bindsym $mod+Shift+b exec --no-startup-id brightnessctl s +10%
+bindsym $mod+Shift+t exec --no-startup-id brightnessctl s 10%-
 
-# start rofi (as a program launcher)
-bindsym $mod+r exec "rofi -modi drun,run -show drun"
-# start rofi (as a window switcher, ALT+TAB)
-bindsym Mod1+Tab exec "rofi -modi window,run -show window"
+### Bar
+bindsym $mod+i bar mode toggle
+bindsym $mod+Shift+i bar mode invisible
 
-# change focus
+### Kill focused window
+bindsym $mod+q kill
+
+### Focus (vim keys)
 bindsym $mod+j focus left
 bindsym $mod+k focus down
 bindsym $mod+l focus up
 bindsym $mod+odiaeresis focus right
 
-# alternatively, you can use the cursor keys:
+### Focus (arrow keys)
 bindsym $mod+Left focus left
 bindsym $mod+Down focus down
 bindsym $mod+Up focus up
 bindsym $mod+Right focus right
 
-# move focused window
+### Move (vim keys)
 bindsym $mod+Shift+j move left
 bindsym $mod+Shift+k move down
 bindsym $mod+Shift+l move up
 bindsym $mod+Shift+odiaeresis move right
 
-# alternatively, you can use the cursor keys:
+### Move (arrow keys)
 bindsym $mod+Shift+Left move left
 bindsym $mod+Shift+Down move down
 bindsym $mod+Shift+Up move up
 bindsym $mod+Shift+Right move right
 
-# split in horizontal orientation
+### Layout
 bindsym $mod+h split h
-
-# split in vertical orientation
 bindsym $mod+v split v
-
-# enter fullscreen mode for the focused container
 bindsym $mod+f fullscreen toggle
-
-# change container layout (stacked, tabbed, toggle split)
-# bindsym $mod+s layout stacking
-# bindsym $mod+w layout tabbed
-# bindsym $mod+e layout toggle split
-
-# toggle tiling / floating
 bindsym $mod+Shift+space floating toggle
-
-# change focus between tiling / floating windows
 bindsym $mod+space focus mode_toggle
-
-# focus the parent container
 bindsym $mod+a focus parent
 
-# focus the child container
-#bindsym $mod+d focus child
+### i3 control
+bindsym $mod+Shift+c reload
+bindsym $mod+Shift+r restart
+bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -B 'Yes, exit i3' 'i3-msg exit'"
 
-# Define names for default workspaces for which we configure key bindings later on.
-# We use variables to avoid repeating the names in multiple places.
+#
+#  __        _____  ____  _  ______  ____   _    ____ _____ ____  
+#  \ \      / / _ \|  _ \| |/ / ___||  _ \ / \  / ___| ____/ ___| 
+#   \ \ /\ / / | | | |_) | ' /\___ \| |_) / _ \| |   |  _| \___ \ 
+#    \ V  V /| |_| |  _ <| . \ ___) |  __/ ___ \ |___| |___ ___) |
+#     \_/\_/  \___/|_| \_\_|\_\____/|_| /_/   \_\____|_____|____/ 
+#
+
 set $ws1 "1"
 set $ws2 "2"
 set $ws3 "3"
@@ -157,8 +158,7 @@ set $ws8 "8"
 set $ws9 "9"
 set $ws10 "10"
 
-# switch to workspace
-
+### Switch to workspace
 bindsym $mod+1 workspace number $ws1
 bindsym $mod+2 workspace number $ws2
 bindsym $mod+3 workspace number $ws3
@@ -170,7 +170,7 @@ bindsym $mod+8 workspace number $ws8
 bindsym $mod+9 workspace number $ws9
 bindsym $mod+0 workspace number $ws10
 
-# move focused container to workspace
+### Move container to workspace
 bindsym $mod+Shift+1 move container to workspace number $ws1
 bindsym $mod+Shift+2 move container to workspace number $ws2
 bindsym $mod+Shift+3 move container to workspace number $ws3
@@ -182,46 +182,33 @@ bindsym $mod+Shift+8 move container to workspace number $ws8
 bindsym $mod+Shift+9 move container to workspace number $ws9
 bindsym $mod+Shift+0 move container to workspace number $ws10
 
-# reload the configuration file
-bindsym $mod+Shift+c reload
-# restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
-bindsym $mod+Shift+r restart
-# exit i3 (logs you out of your X session)
-bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -B 'Yes, exit i3' 'i3-msg exit'"
+#
+#  ____  _____ ____  ___ _________  __  __  ___  ____  _____ 
+# |  _ \| ____/ ___||_ _|__  / ___| \ \/ / |  \/  |  \/  \ \
+# | |_) |  _| \___ \ | |  / /\___ \  \  /  | |\/| | |\/| |> >
+# |  _ <| |___ ___) || | / /  ___) | /  \  | |  | | |  | / / 
+# |_| \_\_____|____/|___/____||____/ /_/\_\ |_|  |_|_|  |_\_\ 
+#
 
-# resize window (you can also use the mouse for that)
 mode "resize" {
-        # These bindings trigger as soon as you enter the resize mode
-
-        # Pressing left will shrink the window’s width.
-        # Pressing right will grow the window’s width.
-        # Pressing up will shrink the window’s height.
-        # Pressing down will grow the window’s height.
         bindsym $mod+shift+j resize shrink width 10 px or 10 ppt
         bindsym k resize grow height 10 px or 10 ppt
         bindsym l resize shrink height 10 px or 10 ppt
         bindsym odiaeresis resize grow width 10 px or 10 ppt
 
-        # same bindings, but for the arrow keys
         bindsym Left resize shrink width 1 px or 1 ppt
         bindsym Down resize grow height 1 px or 1 ppt
         bindsym Up resize shrink height 1 px or 1 ppt
         bindsym Right resize grow width 1 px or 1 ppt
+}
 
-        }
-
-# Sreen brightness controls
-bindsym XF86MonBrightnessUp exec light -A 1 # increase screen brightness
-bindsym XF86MonBrightnessDown exec light -U 1 # decrease screen brightness
-
-# bar toggle, hide or show
-bindsym $mod+i bar mode toggle
-
-bindsym $mod+shift+i bar mode invisible
-
-#####################################################################################################################
-#################                          i3 gaps change                                           #################
-#####################################################################################################################
+#
+#   ____    _    ____  ____  
+#  / ___|  / \  |  _ \/ ___| 
+# | |  _  / _ \ | |_) \___ \ 
+# | |_| |/ ___ \|  __/ ___) |
+#  \____/_/   \_\_|   |____/ 
+#
 
 set $mode_gaps Gaps: (o) outer, (i) inner
 set $mode_gaps_outer Outer Gaps: +|-|0 (local), Shift + +|-|0 (global)
@@ -247,6 +234,7 @@ mode "$mode_gaps_inner" {
         bindsym Return mode "default"
         bindsym Escape mode "default"
 }
+
 mode "$mode_gaps_outer" {
         bindsym plus  gaps outer current plus 5
         bindsym minus gaps outer current minus 5
