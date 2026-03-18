@@ -175,7 +175,7 @@ install_dependencies() {
             ttf-meslo-nerd noto-fonts-emoji ttf-jetbrains-mono \
             network-manager-applet blueman pasystray wget unzip \
             curl zoxide polybar nwg-look qt5ct qt6ct yad \
-            kvantum alacritty dunst fastfetch picom fish starship zsh slock xautolock brightnessctl
+            kvantum alacritty dunst fastfetch picom starship slock xautolock brightnessctl
 
     elif [[ "$OS" == "fedora" ]]; then
         sudo dnf copr enable -y solopasha/hyprland 2>/dev/null || warn "Failed to enable Hyprland COPR (non-fatal)"
@@ -187,7 +187,7 @@ install_dependencies() {
             network-manager-applet blueman pasystray git \
             jetbrains-mono-fonts-all google-noto-color-emoji-fonts \
             google-noto-emoji-fonts wget unzip curl zoxide yad \
-            nwg-look qt5ct qt6ct kvantum alacritty dunst fastfetch picom fish zsh slock xautolock brightnessctl
+            nwg-look qt5ct qt6ct kvantum alacritty dunst fastfetch picom slock xautolock brightnessctl
 
         _install_starship_fedora
     fi
@@ -215,7 +215,6 @@ verify_dependencies() {
         feh
         flameshot
         thunar
-        fish
         gnome-keyring
         starship
         fastfetch
@@ -234,7 +233,6 @@ verify_dependencies() {
         pasystray
         nvim 
         lxappearance
-        zsh
         slock
         xautolock
         brightnessctl
@@ -377,30 +375,15 @@ apply_configs() {
         warn "Skipping picom config."
     fi
 
-    # Shell configs
-    for shell_cfg in .bashrc .zshrc; do
-        if [[ -f "$HOME/$shell_cfg" ]]; then
-            warn "Found $shell_cfg."
-            local name="${shell_cfg#.}"
-            if fzf_config_confirm "$name"; then
-                mv "$HOME/$shell_cfg" "$BACKUP_DIR/"
-                [[ -f "$DOTFILES_DIR/$shell_cfg" ]] && cp "$DOTFILES_DIR/$shell_cfg" "$HOME/"
-                msg "$shell_cfg applied."
-            else
-                warn "Skipping $shell_cfg."
-            fi
-        fi
-    done
-
-    # Fish (this has some issues, will check later)
-    if [[ -d "$HOME/.config/fish" ]]; then
-        warn "Existing Fish config found."
-        if fzf_config_confirm "fish"; then
-            mv "$HOME/.config/fish" "$BACKUP_DIR/"
-            cp -r "$DOTFILES_DIR/fish" "$HOME/.config/"
-            msg "Fish config applied."
+    # .bashrc
+    if [[ -f "$HOME/.bashrc" ]]; then
+        warn "Found .bashrc."
+        if fzf_config_confirm "bashrc"; then
+            mv "$HOME/.bashrc" "$BACKUP_DIR/"
+            [[ -f "$DOTFILES_DIR/.bashrc" ]] && cp "$DOTFILES_DIR/.bashrc" "$HOME/"
+            msg ".bashrc applied."
         else
-            warn "Skipping fish config."
+            warn "Skipping .bashrc."
         fi
     fi
 }
@@ -594,7 +577,7 @@ _enable_sddm() {
 }
 
 # =============================================================================
-# NumLock (I like having NumLock enabled)
+# NumLock (I Personally like NumLock enabled)
 # =============================================================================
 
 setup_numlock() {
