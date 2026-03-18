@@ -1,9 +1,11 @@
 > [!NOTE]
-> These days, I’m not daily driving i3 as my window manager. So if you run into any problems, feel free to open an issue.
+> These days, I'm not daily driving i3 as my window manager. So if you run into any problems, feel free to open an issue.
 
 <div align="center">
   
 # `i3wm Dotfiles`
+
+[❓ FAQ](#-faq)
 
 </div>
 
@@ -43,36 +45,33 @@
 > ```sh
 > sudo pacman -S fzf --noconfirm
 > ```
-> For Fedora:
+> For **Fedora**:
 > ```sh
 > sudo dnf install fzf -y
 > ```
 
-### One-Liner Installation
+### Installation
 
-Run this command for a quick setup:
-
+> [!CAUTION]
+> The installation should work great on a freshly installed system like Arch Linux. Unfortunately, Fedora doesn't come as clean (obviously, GNOME and KDE come pre-baked). That said, it should also work fine on an already configured system, as long as you don't have hard-coded configs.
+>
+> If you are on fish shell, just switch to bash first and then run the command:
+> ```bash
+> bash
+> ```
+ 
+**One-Liner:**
 ```bash
 bash <(curl -L https://chalisehari.com.np/i3wm)
 ```
-
-or
-
-If you are using fish shell
-
+ 
+**Manually:**
 ```bash
- bash -c "$(curl -fsSL chalisehari.com.np/i3wm)"
+git clone https://github.com/harilvfs/i3wmdotfiles ~/i3wmdotfiles
+cd ~/i3wmdotfiles
+chmod +x setup.sh
+./setup.sh
 ```
-
-### Manually
-
->
-> ```bash
-> git clone https://github.com/harilvfs/i3wmdotfiles ~/i3wmdotfiles
-> cd ~/i3wmdotfiles
-> chmod +x setup.sh
-> ./setup.sh
-> ```
 
 ### Dependencies
 
@@ -81,7 +80,6 @@ If you are using fish shell
 > - `alacritty`
 > - `picom`
 > - `maim`
-> - `fish`
 > - `imwheel`
 > - `polkit-gnome`
 > - `xclip`
@@ -92,7 +90,6 @@ If you are using fish shell
 > - `neovim`
 > - `pasystray`
 > - `network-manager-applet`
-> - `zsh`
 > - `feh`
 > - `ttf-meslo-nerd`
 > - `noto-fonts-emoji`
@@ -120,7 +117,7 @@ If you are using fish shell
 > - **Terminal:** `Alacritty`
 > - **Launcher:** `Rofi`
 > - **Status Bar:** `Polybar`
-> - **Shell:** `Bash` / `Zsh` / `Fish`
+> - **Shell:** `Bash`
 > - **Screen Locker:** `slock`
 
 ### Wallpapers
@@ -144,16 +141,17 @@ If you are using fish shell
 > rm ~/.config/i3/scripts/.welcome_disabled
 > ```
 
-#### Change Theme, Icons and Mouse Cursor from `lxappearance`
-> - **Download `themes` and `icons` from my repositories**: [Themes Repository](https://github.com/harilvfs/themes) | [Icons Repository](https://github.com/harilvfs/icons).
-> - *Widget Theme* : `NordArc-Theme` / `Catppuccin-Moncha-Standard`
-> - *Icon Theme* : `NordArc` / `Nordzy`
-> - *Mouse Cursor* : `Capitaine Cursors - Light`  / `Bibata-Modern-Ice`
-
-<div align="left">
+### Themes & Icons
+ 
+> Change theme, icons and mouse cursor from `lxappearance`.
+>
+> - **Download themes and icons from my repositories:** [Themes](https://github.com/harilvfs/themes) | [Icons](https://github.com/harilvfs/icons)
+> - *Widget Theme:* `NordArc-Theme` / `Catppuccin-Mocha-Standard`
+> - *Icon Theme:* `NordArc` / `Nordzy`
+> - *Mouse Cursor:* `Capitaine Cursors - Light` / `Bibata-Modern-Ice`
 
 ## Keybinds
-
+ 
 ### Launchers
 | Key Combo | Action |
 |:---------:|:-------|
@@ -161,31 +159,31 @@ If you are using fish shell
 | <kbd>Super</kbd> + <kbd>R</kbd> | Open App Launcher (Rofi) |
 | <kbd>Super</kbd> + <kbd>E</kbd> | Open File Manager (Thunar) |
 | <kbd>Super</kbd> + <kbd>B</kbd> | Open Default Browser |
-
+ 
 ### System
 | Key Combo | Action |
 |:---------:|:-------|
 | <kbd>Super</kbd> + <kbd>U</kbd> | Lock Screen (slock) |
 | <kbd>Super</kbd> + <kbd>I</kbd> | Toggle Bar |
 | <kbd>Super</kbd> + <kbd>Shift</kbd> + <kbd>I</kbd> | Hide Bar |
-
+ 
 ### Brightness
 | Key Combo | Action |
 |:---------:|:-------|
 | <kbd>Super</kbd> + <kbd>Shift</kbd> + <kbd>B</kbd> | Increase Brightness |
 | <kbd>Super</kbd> + <kbd>Shift</kbd> + <kbd>T</kbd> | Decrease Brightness |
-
+ 
 ### Wallpaper
 | Key Combo | Action |
 |:---------:|:-------|
 | <kbd>Super</kbd> + <kbd>Shift</kbd> + <kbd>W</kbd> | Change Wallpaper (feh) |
-
+ 
 ### Screenshots
 | Key Combo | Action |
 |:---------:|:-------|
 | <kbd>Super</kbd> + <kbd>N</kbd> | Screenshot Selected Area (Flameshot) |
 | <kbd>Super</kbd> + <kbd>M</kbd> | Screenshot Entire Screen (Flameshot) |
-
+ 
 ### Window Management
 | Key Combo | Action |
 |:---------:|:-------|
@@ -197,7 +195,7 @@ If you are using fish shell
 | <kbd>Super</kbd> + <kbd>Shift</kbd> + <kbd>C</kbd> | Reload Config |
 | <kbd>Super</kbd> + <kbd>Shift</kbd> + <kbd>R</kbd> | Restart i3 |
 | <kbd>Super</kbd> + <kbd>Shift</kbd> + <kbd>Q</kbd> | Exit i3 Session |
-
+ 
 ### Navigation
 | Key Combo | Action |
 |:---------:|:-------|
@@ -205,7 +203,7 @@ If you are using fish shell
 | <kbd>Super</kbd> + <kbd>K</kbd> | Focus Down |
 | <kbd>Super</kbd> + <kbd>L</kbd> | Focus Up |
 | <kbd>Super</kbd> + <kbd>O</kbd> | Focus Right |
-
+ 
 ### Moving Windows
 | Key Combo | Action |
 |:---------:|:-------|
@@ -213,14 +211,14 @@ If you are using fish shell
 | <kbd>Super</kbd> + <kbd>Shift</kbd> + <kbd>K</kbd> | Move Down |
 | <kbd>Super</kbd> + <kbd>Shift</kbd> + <kbd>L</kbd> | Move Up |
 | <kbd>Super</kbd> + <kbd>Shift</kbd> + <kbd>O</kbd> | Move Right |
-
+ 
 ### Layouts
 | Key Combo | Action |
 |:---------:|:-------|
 | <kbd>Super</kbd> + <kbd>H</kbd> | Split Horizontally |
 | <kbd>Super</kbd> + <kbd>V</kbd> | Split Vertically |
 | <kbd>Super</kbd> + <kbd>F</kbd> | Toggle Fullscreen |
-
+ 
 ### Tiling/Floating
 | Key Combo | Action |
 |:---------:|:-------|
@@ -229,24 +227,40 @@ If you are using fish shell
 | <kbd>Super</kbd> + <kbd>A</kbd> | Focus Parent Container |
 | <kbd>Super</kbd> + <kbd>D</kbd> | Focus Child Container |
 
-</div>
+## ❓ FAQ
 
-<h2>🔗 Credits</h2>
+### Why is the configuration after installation different from the image preview in the README?
 
-<ul>
-  <li><strong>Fastfetch</strong> - <a href="https://github.com/harilvfs/fastfetch" target="_blank" rel="noopener noreferrer">harilvfs/fastfech</a></li>
-  <li><strong>Alacritty</strong> - <a href="https://github.com/ChrisTitusTech/dwm-titus" target="_blank" rel="noopener noreferrer">ChrisTitusTech</a></li>
-  <li><strong>Kitty</strong> - <a href="https://github.com/ChrisTitusTech/linutil" target="_blank" rel="noopener noreferrer">ChrisTitusTech</a></li>
-  <li><strong>Rofi</strong> - <a href="https://github.com/typecraft-dev/dotfiles" target="_blank" rel="noopener noreferrer">TypeCraft</a> , <a     
-href="https://github.com/Justus0405/i3wm-dotfiles" target="_blank" rel="noopener noreferrer">Justus0405</a> & <a href="https://github.com/ChrisTitusTech/dwm-titus/tree/main/config/rofi" target="_blank" rel="noopener noreferrer">ChrisTitusTech</a></li>
-  <li><strong>Polybar</strong> - <a href="https://github.com/typecraft-dev/dotfiles" target="_blank" rel="noopener noreferrer">TypeCraft</a></li>
-  <li><strong>Picom</strong> - <a href="https://github.com/lactua/dotfiles" target="_blank" rel="noopener noreferrer">lactua</a></li>
-  <li><strong>GTK</strong> - <a href="https://github.com/catppuccin/gtk" target="_blank" rel="noopener noreferrer">Catppuccin</a></li>
-  <li><strong>SDDM</strong> - <a href="https://github.com/catppuccin/sddm" target="_blank" rel="noopener noreferrer">Catppuccin</a></li>
-</ul>
+> Hear me out. The main difference you will see from that image is in the Polybar and Fastfetch config. In Polybar, I was using Nerd icons instead of simple 1,2,3 workspace indicators. But I found some bugs or maybe it was my *skill issue* that didn’t make it a *best* choice. So I simplify it by removing those and using 1,2,3 as the workspace indicator.
+> 
+> The Fastfetch config I used a year ago worked fine because I was using Kitty as my main terminal. There are also some issues nowadays with image-based Fastfetch configs (idk why) maybe due to some new Kitty updates or something else that idk. So I'vee removed that and used a simple one that works just fine.
+>
+> If you want the old one, you can grab it from the Fastfetch **branch** in this repo. You will also need a terminal that supports image rendering for it to work.
 
-<h2>Special Thanks</h2>
+### Why is SDDM not showing after installation or showing a blank screen?
 
-<p>Shoutout to <strong><a href="https://github.com/Justus0405/i3wm-dotfiles" target="_blank" rel="noopener noreferrer">Justus0405</a></strong> & <strong><a href="https://github.com/TheDistroHopper/i3wm-nord" target="_blank" rel="noopener noreferrer">TheDistroHopper</a></strong> for their <strong>i3wm dotfiles.</strong></p>
+> This is the core issue I was facing for the past few months. Due to less time, I couldn’t solve it earlier. But recently, I've refactored everything, found some issue, and fixed it. It should work fine now.
+> 
+> I have tested it on Arch, and it works fine with both Catppuccin and Nordic theme. If you still face any issues, feel free to open a bug report. I will take a look.
 
+### Does everything work fine now?
 
+> Yeah, it should work fine.
+
+## Contributing
+ 
+If you find any issue with the configs after installation, opening an issue is the best way to help. Your bug report helps me investigate and improve things for everyone. Finding and reporting bugs is the biggest contribution you can make & thanks for that.
+
+## Credits
+
+- **Fastfetch** - [harilvfs/fastfetch](https://github.com/harilvfs/fastfetch)
+- **Alacritty** - [ChrisTitusTech](https://github.com/ChrisTitusTech/dwm-titus)
+- **Rofi** - [TypeCraft](https://github.com/typecraft-dev/dotfiles) , [harilvfs](https://github.com/harilvfs/dwm/tree/main/config/rofi)
+- **Polybar** - [TypeCraft](https://github.com/typecraft-dev/dotfiles)
+- **Picom** - [lactua](https://github.com/lactua/dotfiles)
+- **GTK** - [Catppuccin](https://github.com/catppuccin/gtk) & some nord themes from the internet (i forgot whose, but yeah thanks).
+- **SDDM** - [Catppuccin](https://github.com/catppuccin/sddm) , [sddm-astronaut-theme](https://github.com/Keyitdev/sddm-astronaut-theme)
+
+## Special Thanks
+ 
+Shoutout to [Justus0405](https://github.com/Justus0405/i3wm-dotfiles) & [TheDistroHopper](https://github.com/TheDistroHopper/i3wm-nord) for their i3wm dotfiles.
