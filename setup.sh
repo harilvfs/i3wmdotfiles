@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 # =============================================================================
-#  i3wm Dotfiles Setup Script
+#  i3wm Dotfiles
 #  Author : Hari Chalise
 #  GitHub : https://github.com/harilvfs/i3wmdotfiles
 #  Supports: Arch Linux, Fedora
@@ -61,10 +61,6 @@ pause() {
     read -r
 }
 
-# =============================================================================
-#  DISTRO
-# =============================================================================
-
 detect_distro() {
     header "Detecting Distribution"
     if command -v pacman &>/dev/null; then
@@ -91,10 +87,6 @@ update_system() {
     fi
 }
 
-# =============================================================================
-#  AUR HELPER (Arch only)
-# =============================================================================
-
 setup_aur_helper() {
     [[ "$DISTRO" != "Arch" ]] && return
 
@@ -117,10 +109,6 @@ setup_aur_helper() {
     AUR_HELPER="yay"
     msg "yay installed."
 }
-
-# =============================================================================
-#  DEPENDENCIES
-# =============================================================================
 
 install_dependencies() {
     header "Installing Dependencies"
@@ -193,10 +181,6 @@ verify_dependencies() {
     ask "Continue anyway?" || die "Exiting. Please install missing packages and re-run."
 }
 
-# =============================================================================
-#  POKEMON COLORSCRIPTS
-# =============================================================================
-
 install_pokemon_colorscripts() {
     header "Pokémon Color Scripts"
     info "Installing Pokémon Color Scripts..."
@@ -218,10 +202,6 @@ install_pokemon_colorscripts() {
     msg "Pokémon Color Scripts installed."
 }
 
-# =============================================================================
-# BROWSER
-# =============================================================================
-
 install_brave() {
     header "Brave Browser"
     ask "Install Brave browser?" || { warn "Skipping Brave."; return; }
@@ -238,10 +218,6 @@ install_brave() {
     esac
     msg "Brave installed."
 }
-
-# =============================================================================
-# DOTFILES
-# =============================================================================
 
 clone_dotfiles() {
     header "Cloning Dotfiles"
@@ -260,10 +236,6 @@ clone_dotfiles() {
         || die "Failed to clone dotfiles."
     msg "Dotfiles cloned."
 }
-
-# =============================================================================
-# CONFIGS
-# =============================================================================
 
 backup_and_replace() {
     local config_name="$1"
@@ -323,10 +295,6 @@ apply_configs() {
     fi
 }
 
-# =============================================================================
-#  TMUX PLUGINS
-# =============================================================================
-
 setup_tmux_plugins() {
     header "Tmux Plugin Manager (TPM)"
 
@@ -352,10 +320,6 @@ setup_tmux_plugins() {
     fi
 }
 
-# =============================================================================
-#  WALLPAPERS
-# =============================================================================
-
 setup_wallpapers() {
     header "Wallpapers"
     ask "Download wallpapers repo? (Large download, recommended)" || {
@@ -377,10 +341,6 @@ setup_wallpapers() {
         || warn "Failed to clone wallpapers (non-fatal)."
     msg "Wallpapers downloaded to $WALLPAPER_DIR"
 }
-
-# =============================================================================
-#  THEMES & ICONS
-# =============================================================================
 
 setup_themes_icons() {
     header "Themes & Icons"
@@ -418,10 +378,6 @@ _move_to_dotdir() {
     done
     rm -rf "$src"
 }
-
-# =============================================================================
-#  SDDM
-# =============================================================================
 
 setup_sddm() {
     header "SDDM Display Manager"
@@ -502,10 +458,6 @@ _enable_sddm() {
     sudo systemctl enable sddm
 }
 
-# =============================================================================
-#  NUMLOCK
-# =============================================================================
-
 setup_numlock() {
     header "NumLock on Boot"
     ask "Enable NumLock on boot?" || { warn "Skipping NumLock."; return; }
@@ -535,10 +487,6 @@ EOF
     msg "NumLock will be enabled on boot."
 }
 
-# =============================================================================
-#  DONE
-# =============================================================================
-
 print_complete() {
     echo
     echo -e "${TEAL}${BOLD}"
@@ -560,10 +508,6 @@ prompt_reboot() {
         warn "Reboot skipped. Please reboot manually when ready."
     fi
 }
-
-# =============================================================================
-#  MAIN
-# =============================================================================
 
 main() {
     clear
