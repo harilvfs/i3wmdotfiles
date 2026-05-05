@@ -139,7 +139,7 @@ bindsym $mod+a focus parent
 ### i3 control
 bindsym $mod+Shift+c reload
 bindsym $mod+Shift+r restart
-bindsym $mod+Shift+q exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -B 'Yes, exit i3' 'i3-msg exit'"
+bindsym $mod+Shift+q exec --no-startup-id ~/.config/i3/scripts/powermenu.sh
 
 #
 #  __        _____  ____  _  ______  ____   _    ____ _____ ____  
