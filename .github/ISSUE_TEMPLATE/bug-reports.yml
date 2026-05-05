@@ -23,8 +23,8 @@ body:
   - type: input
     id: script_version
     attributes:
-      label: "Setup script version or commit hash"
-      description: "Provide the latest commit hash or version of the setup script you used."
+      label: "Setup script commit hash"
+      description: "Provide the latest commit hash of the setup script you used."
     validations:
       required: false
 
