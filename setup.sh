@@ -110,6 +110,32 @@ setup_aur_helper() {
     msg "yay installed."
 }
 
+install_eza_manually() {
+    info "Installing eza manually for Fedora..."
+    local tmp_dir
+    tmp_dir=$(mktemp -d)
+    
+    local latest_url
+    latest_url=$(curl -s https://api.github.com/repos/eza-community/eza/releases/latest | grep -o "https://github.com/eza-community/eza/releases/download/.*/eza_x86_64-unknown-linux-gnu.zip" | head -1)
+
+    if [ -z "$latest_url" ]; then
+        warn "Could not determine latest version, using fallback..."
+        latest_url="https://github.com/eza-community/eza/releases/download/v0.21.1/eza_x86_64-unknown-linux-gnu.zip"
+    fi
+
+    msg "Downloading eza..."
+    if ! curl -L -o "$tmp_dir/eza.zip" "$latest_url"; then
+        err "Failed to download eza."
+        return 1
+    fi
+
+    unzip -q "$tmp_dir/eza.zip" -d "$tmp_dir"
+    sudo cp "$tmp_dir/eza" /usr/bin/
+    sudo chmod +x /usr/bin/eza
+    rm -rf "$tmp_dir"
+    msg "eza installed successfully!"
+}
+
 install_dependencies() {
     header "Installing Dependencies"
 
@@ -121,7 +147,7 @@ install_dependencies() {
                 gnome-settings-daemon gnome-keyring neovim \
                 ttf-meslo-nerd noto-fonts-emoji ttf-jetbrains-mono \
                 network-manager-applet blueman pasystray wget unzip \
-                curl zoxide nwg-look qt5ct qt6ct yad tmux \
+                curl zoxide nwg-look qt5ct qt6ct yad tmux fish eza \
                 kvantum alacritty dunst fastfetch picom starship slock brightnessctl
             "$AUR_HELPER" -S --noconfirm --needed xautolock
             ;;
@@ -135,8 +161,12 @@ install_dependencies() {
                 gnome-settings-daemon gnome-keyring neovim \
                 network-manager-applet blueman pasystray git \
                 jetbrains-mono-fonts-all google-noto-color-emoji-fonts \
-                google-noto-emoji-fonts wget unzip curl zoxide yad tmux \
+                google-noto-emoji-fonts wget unzip curl zoxide yad tmux fish \
                 nwg-look qt5ct qt6ct kvantum alacritty dunst fastfetch picom slock xautolock brightnessctl
+
+            if ! command -v eza &> /dev/null; then
+                install_eza_manually
+            fi
 
             command -v starship &>/dev/null || {
                 msg "Installing Starship..."
@@ -154,7 +184,7 @@ verify_dependencies() {
     local deps=(
         i3 polybar rofi alacritty picom dunst flameshot thunar
         gnome-keyring starship fastfetch git curl wget unzip
-        nm-applet xrandr zoxide maim xclip imwheel
+        nm-applet xrandr zoxide maim xclip imwheel fish eza
         pasystray nvim slock xautolock brightnessctl yad tmux
     )
 
@@ -262,7 +292,7 @@ apply_configs() {
     header "Applying Configs"
     mkdir -p "$BACKUP_DIR"
 
-    for cfg in alacritty dunst fastfetch gtk-3.0 i3 Kvantum nvim picom polybar rofi tmux xsettingsd; do
+    for cfg in alacritty dunst fastfetch fish gtk-3.0 i3 Kvantum nvim picom polybar rofi tmux xsettingsd; do
         backup_and_replace "$cfg"
     done
 

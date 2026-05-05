@@ -79,6 +79,8 @@ chmod +x setup.sh
 > - `tmux`
 > - `yad`
 > - `blueman`
+> - `fish`
+> - `eza`
 
 ### Default Apps
 
