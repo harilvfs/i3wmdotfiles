@@ -9,46 +9,13 @@
 
 </div>
 
-<p align="center">These dotfiles come with <strong>Catppuccin & Nordic theme</strong>
+<div align="center"><table><tr></tr><tr><td>
+<img src="https://raw.githubusercontent.com/harilvfs/i3wmdotfiles/refs/heads/main/preview/preview-1.png"/></td><td>
+<img src="https://raw.githubusercontent.com/harilvfs/i3wmdotfiles/refs/heads/main/preview/preview-2.png"/></td></tr></table></div>
 
-<div align="center">
-  <table><tr><td>
-
-[![Nordic](https://placehold.co/130x30/4c566a/88c0d0?text=Nordic&font=Oswald)](https://github.com/harilvfs/i3wmdotfiles/tree/nord)
-[![Catppuccin](https://placehold.co/130x30/b4befe/11111b?text=Catppuccin&font=Oswald)](https://github.com/harilvfs/i3wmdotfiles/tree/catppuccin)
-
-  </td></tr></table>
-</div>
-
-<div align="center"><table><tr><strong>Nordic</strong></tr><tr><td>
-<img src="https://raw.githubusercontent.com/harilvfs/i3wmdotfiles/refs/heads/main/preview/2024-08-21_22-03.png"/></td><td>
-<img src="https://raw.githubusercontent.com/harilvfs/i3wmdotfiles/refs/heads/main/preview/2024-08-21_22-05.png"/></td></tr></table></div>
-
-<div align="center"><table><tr><strong>Catppuccin</strong></tr><tr><td>
-<img src="https://raw.githubusercontent.com/harilvfs/i3wmdotfiles/refs/heads/main/preview/2024-08-14_23-57.png"/></td><td>
-<img src="https://raw.githubusercontent.com/harilvfs/i3wmdotfiles/refs/heads/main/preview/2024-08-14_23-58.png"/></td></tr></table></div>
-
-### Explore Configuration Branches
-
-> - **Catppuccin Configs:** [GitHub Link](https://github.com/harilvfs/i3wmdotfiles/tree/catppuccin)  
-> - **Nord Configs:** [GitHub Link](https://github.com/harilvfs/i3wmdotfiles/tree/nord)  
-
-> [!NOTE] 
->
-> Theme-specific configurations are placed in different branches of the repository to avoid conflicts. Make sure to check them out before using.
-
-> [!IMPORTANT]  
-> Note that the keybindings are based on my personal use, so remember to change them after installation.  
-> Also, make sure to install **fzf** before running the setup script, depending on your distro:
->
-> For **Arch Linux**:
-> ```sh
-> sudo pacman -S fzf --noconfirm
-> ```
-> For **Fedora**:
-> ```sh
-> sudo dnf install fzf -y
-> ```
+<div align="center"><table><tr></tr><tr><td>
+<img src="https://raw.githubusercontent.com/harilvfs/i3wmdotfiles/refs/heads/main/preview/preview-3.png"/></td><td>
+<img src="https://raw.githubusercontent.com/harilvfs/i3wmdotfiles/refs/heads/main/preview/preview-4.png"/></td></tr></table></div>
 
 ### Installation
 
@@ -64,6 +31,8 @@
 ```bash
 bash <(curl -L https://chalisehari.com.np/i3wm)
 ```
+
+Or
  
 **Manually:**
 ```bash
@@ -107,6 +76,8 @@ chmod +x setup.sh
 > - `zoxide`
 > - `fastfetch`
 > - `brightnessctl`
+> - `tmux`
+> - `yad`
 
 ### Default Apps
 
@@ -122,10 +93,8 @@ chmod +x setup.sh
 
 ### Wallpapers
 
-> If you want additional wallpapers, clone this repository.
-> 
 > ```bash
-> git clone https://github.com/harilvfs/wallpapers
+> git clone https://github.com/harilvfs/wallpapers ~/Pictures/wallpapers
 > ```
 >
 > Set Wallpaper using `feh`
@@ -141,7 +110,7 @@ chmod +x setup.sh
 > rm ~/.config/i3/scripts/.welcome_disabled
 > ```
 
-### Themes & Icons
+### Themes & Icons Source
  
 > Change theme, icons and mouse cursor from `lxappearance`.
 >
@@ -229,23 +198,11 @@ chmod +x setup.sh
 
 ## ❓ FAQ
 
-### Why is the configuration after installation different from the image preview in the README?
-
-> Hear me out. The main difference you will see from that image is in the Polybar and Fastfetch config. In Polybar, I was using Nerd icons instead of simple 1,2,3 workspace indicators. But I found some bugs or maybe it was my *skill issue* that didn’t make it a *best* choice. So I simplify it by removing those and using 1,2,3 as the workspace indicator.
-> 
-> The Fastfetch config I used a year ago worked fine because I was using Kitty as my main terminal. There are also some issues nowadays with image-based Fastfetch configs (idk why) maybe due to some new Kitty updates or something else that idk. So I'vee removed that and used a simple one that works just fine.
->
-> If you want the old one, you can grab it from the Fastfetch **branch** in this repo. You will also need a terminal that supports image rendering for it to work.
-
 ### Why is SDDM not showing after installation or showing a blank screen?
 
-> This is the core issue I was facing for the past few months. Due to less time, I couldn’t solve it earlier. But recently, I've refactored everything, found some issue, and fixed it. It should work fine now.
-> 
-> I have tested it on Arch, and it works fine with both Catppuccin and Nordic theme. If you still face any issues, feel free to open a bug report. I will take a look.
-
-### Does everything work fine now?
-
-> Yeah, it should work fine.
+> This issue has happening because the theme name is not correctly set in `/etc/sddm.conf`. If the issue is happening again, check this config file. Also run `ls /usr/share/sddm/themes/sddm-astronaut-theme/` and see if `sddm-astronaut-theme` exists in that directory or not. Also make sure to check that SDDM is installed properly. The setup script will install SDDM, but you can always verify that.
+>
+> If this exists but still does not work, then run `sudo systemctl enable sddm` and reboot. The issue should be solved here. If anything else occurs, open an issue.
 
 ## Contributing
  
@@ -253,14 +210,9 @@ If you find any issue with the configs after installation, opening an issue is t
 
 ## Credits
 
-- **Fastfetch** - [harilvfs/fastfetch](https://github.com/harilvfs/fastfetch)
-- **Alacritty** - [ChrisTitusTech](https://github.com/ChrisTitusTech/dwm-titus)
-- **Rofi** - [TypeCraft](https://github.com/typecraft-dev/dotfiles) , [harilvfs](https://github.com/harilvfs/dwm/tree/main/config/rofi)
-- **Polybar** - [TypeCraft](https://github.com/typecraft-dev/dotfiles)
-- **Picom** - [lactua](https://github.com/lactua/dotfiles)
-- **GTK** - [Catppuccin](https://github.com/catppuccin/gtk) & some nord themes from the internet (i forgot whose, but yeah thanks).
-- **SDDM** - [Catppuccin](https://github.com/catppuccin/sddm) , [sddm-astronaut-theme](https://github.com/Keyitdev/sddm-astronaut-theme)
+- [ChrisTitusTech](https://github.com/ChrisTitusTech/)
+- [Justus0405](https://github.com/Justus0405/i3wm-dotfiles)
+- [TheDistroHopper](https://github.com/TheDistroHopper/i3wm-nord)
+- [sddm-astronaut-theme](https://github.com/Keyitdev/sddm-astronaut-theme)
 
-## Special Thanks
- 
-Shoutout to [Justus0405](https://github.com/Justus0405/i3wm-dotfiles) & [TheDistroHopper](https://github.com/TheDistroHopper/i3wm-nord) for their i3wm dotfiles.
+This guys become very helpful while setting this up. Thanks ;)
