@@ -167,7 +167,7 @@ chmod +x setup.sh
 | <kbd>Super</kbd> + <kbd>Shift</kbd> + <kbd>G</kbd> | Gaps Mode |
 | <kbd>Super</kbd> + <kbd>Shift</kbd> + <kbd>C</kbd> | Reload Config |
 | <kbd>Super</kbd> + <kbd>Shift</kbd> + <kbd>R</kbd> | Restart i3 |
-| <kbd>Super</kbd> + <kbd>Shift</kbd> + <kbd>Q</kbd> | Exit i3 Session |
+| <kbd>Super</kbd> + <kbd>Shift</kbd> + <kbd>Q</kbd> | Powermenu |
  
 ### Navigation
 | Key Combo | Action |
