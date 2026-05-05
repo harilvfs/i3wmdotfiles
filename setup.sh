@@ -23,8 +23,7 @@ WALLPAPER_REPO="https://github.com/harilvfs/wallpapers"
 WALLPAPER_DIR="$HOME/Pictures/wallpapers"
 APPLY_ALL_CONFIGS=false
 COLOR_SCHEME=""
-BAR_CHOICE=""
-OS=""
+DISTRO=""
 AUR_HELPER=""
 
 FZF_COMMON="--layout=reverse \
@@ -35,11 +34,11 @@ FZF_COMMON="--layout=reverse \
             --header-first \
             --bind change:top"
 
-msg()    { echo -e "${GREEN}${*}${NC}"; }
-warn()   { echo -e "${YELLOW}${*}${NC}"; }
-err()    { echo -e "${RED}${*}${NC}"; }
-info()   { echo -e "${CYAN}${*}${NC}"; }
-teal()   { echo -e "${TEAL}${*}${NC}"; }
+msg()  { echo -e "${GREEN}${*}${NC}"; }
+warn() { echo -e "${YELLOW}${*}${NC}"; }
+err()  { echo -e "${RED}${*}${NC}"; }
+info() { echo -e "${CYAN}${*}${NC}"; }
+teal() { echo -e "${TEAL}${*}${NC}"; }
 
 fzf_confirm() {
     local prompt="$1"
@@ -79,7 +78,7 @@ fzf_config_confirm() {
         --color='fg:white,fg+:yellow,bg+:black,pointer:yellow')
 
     case "$selected" in
-        "Yes, for this one")   return 0 ;;
+        "Yes, for this one")    return 0 ;;
         "Yes, don't ask again") APPLY_ALL_CONFIGS=true; return 0 ;;
         *)                      return 1 ;;
     esac
@@ -93,6 +92,16 @@ backup_and_replace() {
     fzf_config_confirm "$config_name" || { warn "Skipping $config_name..."; return; }
 
     mkdir -p "$BACKUP_DIR"
+
+    # Fix ownership
+    if [[ -d "$dst" ]] && [[ "$(stat -c '%U' "$dst")" != "$USER" ]]; then
+        warn "Fixing ownership of $dst..."
+        sudo chown -R "$USER:$USER" "$dst"
+    fi
+    if [[ -d "$BACKUP_DIR" ]] && [[ "$(stat -c '%U' "$BACKUP_DIR")" != "$USER" ]]; then
+        sudo chown -R "$USER:$USER" "$BACKUP_DIR"
+    fi
+
     [[ -d "$dst" ]] && { msg "Backing up $config_name..."; mv "$dst" "$BACKUP_DIR/"; }
     msg "Applying $config_name config..."
     cp -r "$src" "$HOME/.config/"
@@ -108,26 +117,29 @@ check_fzf() {
     fi
 }
 
-detect_os() {
-    if command -v pacman &>/dev/null; then
-        OS="arch"
-    elif command -v dnf &>/dev/null; then
-        OS="fedora"
+# =============================================================================
+#  DISTRO
+# =============================================================================
+
+detect_distro() {
+    if [ -x "$(command -v pacman)" ]; then
+        DISTRO="Arch"
+    elif [ -x "$(command -v dnf)" ]; then
+        DISTRO="Fedora"
     else
-        err "Unsupported OS. This script supports Arch Linux and Fedora only."
+        err "Unsupported distro. This script supports Arch Linux and Fedora only."
         exit 1
     fi
-    msg "Detected OS: $OS"
+    msg "Detected distro: $DISTRO"
 }
 
 update_system() {
     if fzf_confirm "Update your system now? (Recommended)"; then
         msg "Updating system..."
-        if [[ "$OS" == "arch" ]]; then
-            sudo pacman -Syuu --noconfirm
-        elif [[ "$OS" == "fedora" ]]; then
-            sudo dnf update -y
-        fi
+        case "$DISTRO" in
+            Arch)   sudo pacman -Syuu --noconfirm ;;
+            Fedora) sudo dnf update -y ;;
+        esac
         msg "System updated."
     else
         warn "Skipping system update."
@@ -135,11 +147,11 @@ update_system() {
 }
 
 # =============================================================================
-#  AUR HELPER 
+#  AUR HELPER
 # =============================================================================
 
 setup_aur_helper() {
-    [[ "$OS" != "arch" ]] && return
+    [[ "$DISTRO" != "Arch" ]] && return
 
     for helper in paru yay; do
         if command -v "$helper" &>/dev/null; then
@@ -161,137 +173,114 @@ setup_aur_helper() {
 }
 
 # =============================================================================
-# DEPENDENCIES 
+#  DEPENDENCIES
 # =============================================================================
 
 install_dependencies() {
     msg "Installing core dependencies..."
 
-    if [[ "$OS" == "arch" ]]; then
-        sudo pacman -S --noconfirm --needed \
-            polybar i3-wm rofi maim git imwheel  polkit-gnome xclip flameshot thunar \
-            xorg-server xorg-xinit xorg-xrandr xorg-xsetroot xorg-xset gtk3 gtk4 \
-            gnome-settings-daemon gnome-keyring neovim \
-            ttf-meslo-nerd noto-fonts-emoji ttf-jetbrains-mono \
-            network-manager-applet blueman pasystray wget unzip \
-            curl zoxide polybar nwg-look qt5ct qt6ct yad \
-            kvantum alacritty dunst fastfetch picom starship slock xautolock brightnessctl
+    case "$DISTRO" in
+        Arch)
+            sudo pacman -S --noconfirm --needed \
+                polybar i3-wm rofi maim git imwheel polkit-gnome xclip flameshot thunar \
+                xorg-server xorg-xinit xorg-xrandr xorg-xsetroot xorg-xset gtk3 gtk4 \
+                gnome-settings-daemon gnome-keyring neovim \
+                ttf-meslo-nerd noto-fonts-emoji ttf-jetbrains-mono \
+                network-manager-applet blueman pasystray wget unzip \
+                curl zoxide polybar nwg-look qt5ct qt6ct yad \
+                kvantum alacritty dunst fastfetch picom starship slock brightnessctl
+            $AUR_HELPER -S --noconfirm --needed xautolock
+            ;;
+        Fedora)
+            sudo dnf copr enable -y solopasha/hyprland 2>/dev/null \
+                || warn "Failed to enable Hyprland COPR (non-fatal)"
 
-    elif [[ "$OS" == "fedora" ]]; then
-        sudo dnf copr enable -y solopasha/hyprland 2>/dev/null || warn "Failed to enable Hyprland COPR (non-fatal)"
+            sudo dnf install -y \
+                polybar i3 rofi maim imwheel xclip flameshot lxappearance thunar \
+                xorg-x11-server-Xorg xorg-x11-xinit xrandr gtk3 gtk4 \
+                gnome-settings-daemon gnome-keyring neovim \
+                network-manager-applet blueman pasystray git \
+                jetbrains-mono-fonts-all google-noto-color-emoji-fonts \
+                google-noto-emoji-fonts wget unzip curl zoxide yad \
+                nwg-look qt5ct qt6ct kvantum alacritty dunst fastfetch picom slock xautolock brightnessctl
 
-        sudo dnf install -y \
-            polybar i3 rofi maim imwheel xclip flameshot lxappearance thunar \
-            xorg-x11-server-Xorg xorg-x11-xinit xrandr gtk3 gtk4 \
-            gnome-settings-daemon gnome-keyring neovim \
-            network-manager-applet blueman pasystray git \
-            jetbrains-mono-fonts-all google-noto-color-emoji-fonts \
-            google-noto-emoji-fonts wget unzip curl zoxide yad \
-            nwg-look qt5ct qt6ct kvantum alacritty dunst fastfetch picom slock xautolock brightnessctl
-
-        _install_starship_fedora
-    fi
+            _install_starship_fedora
+            ;;
+    esac
 
     msg "Core dependencies installed."
 }
 
 _install_starship_fedora() {
-    if ! command -v starship &>/dev/null; then
-        msg "Installing Starship..."
-        curl -sS https://starship.rs/install.sh | sh
-    fi
+    command -v starship &>/dev/null && return
+    msg "Installing Starship..."
+    curl -sS https://starship.rs/install.sh | sh
 }
 
 verify_dependencies() {
     msg "Verifying dependencies..."
 
     local deps=(
-        i3
-        polybar
-        rofi
-        alacritty
-        picom
-        dunst
-        feh
-        flameshot
-        thunar
-        gnome-keyring
-        starship
-        fastfetch
-        git
-        curl
-        wget
-        unzip
-        nm-applet
-        pactl
-        xrandr
-        zoxide
-        maim
-        xclip
-        imwheel
-        bash
-        pasystray
-        nvim 
-        lxappearance
-        slock
-        xautolock
-        brightnessctl
-        yad
+        i3 polybar rofi alacritty picom dunst feh flameshot thunar
+        gnome-keyring starship fastfetch git curl wget unzip
+        nm-applet pactl xrandr zoxide maim xclip imwheel bash
+        pasystray nvim lxappearance slock xautolock brightnessctl yad
     )
 
     local missing=()
-
     for dep in "${deps[@]}"; do
-        if ! command -v "$dep" &>/dev/null; then
-            missing+=("$dep")
-        fi
+        command -v "$dep" &>/dev/null || missing+=("$dep")
     done
 
     if [[ ${#missing[@]} -eq 0 ]]; then
         msg "All dependencies are present."
-    else
-        warn "The following dependencies are missing and need to be installed manually:"
-        echo
-        for pkg in "${missing[@]}"; do
-            err "  ✗ $pkg"
-        done
-        echo
-        if [[ "$OS" == "arch" ]]; then
-            info "  Install missing packages with: sudo pacman -S <package>"
-            info "  Or with your AUR helper: $AUR_HELPER -S <package>"
-        elif [[ "$OS" == "fedora" ]]; then
-            info "  Install missing packages with: sudo dnf install <package>"
-        fi
-        echo
-        warn "You can continue, but some things may not work correctly without the missing packages."
-        fzf_confirm "Continue anyway?" || { err "Exiting. Please install the missing dependencies and re-run the script."; exit 1; }
+        return
     fi
+
+    warn "The following dependencies are missing:"
+    echo
+    for pkg in "${missing[@]}"; do
+        err "  ✗ $pkg"
+    done
+    echo
+
+    case "$DISTRO" in
+        Arch)   info "  sudo pacman -S <package>  or  $AUR_HELPER -S <package>" ;;
+        Fedora) info "  sudo dnf install <package>" ;;
+    esac
+    echo
+
+    warn "Some things may not work correctly without the missing packages."
+    fzf_confirm "Continue anyway?" \
+        || { err "Exiting. Please install the missing dependencies and re-run the script."; exit 1; }
 }
 
 # =============================================================================
-#  POKEMON COLORSCRIPTS (You will see at terminal startup) 
+#  POKEMON COLORSCRIPTS
 # =============================================================================
 
 install_pokemon_colorscripts() {
     info "Installing Pokémon Color Scripts..."
 
-    if [[ "$OS" == "arch" ]]; then
-        $AUR_HELPER -S --noconfirm pokemon-colorscripts-git \
-            || err "Failed to install pokemon-colorscripts-git"
-
-    elif [[ "$OS" == "fedora" ]]; then
-        local dir="$HOME/pokemon-colorscripts"
-        [[ -d "$dir" ]] && rm -rf "$dir"
-        git clone https://gitlab.com/phoneybadger/pokemon-colorscripts.git "$dir"
-        (cd "$dir" && sudo ./install.sh)
-        rm -rf "$dir"
-    fi
+    case "$DISTRO" in
+        Arch)
+            $AUR_HELPER -S --noconfirm pokemon-colorscripts-git \
+                || err "Failed to install pokemon-colorscripts-git"
+            ;;
+        Fedora)
+            local dir="$HOME/pokemon-colorscripts"
+            [[ -d "$dir" ]] && rm -rf "$dir"
+            git clone https://gitlab.com/phoneybadger/pokemon-colorscripts.git "$dir"
+            (cd "$dir" && sudo ./install.sh)
+            rm -rf "$dir"
+            ;;
+    esac
 
     msg "Pokémon Color Scripts installed."
 }
 
 # =============================================================================
-#  BROWSER (Optional, in case you want one)
+#  BROWSER
 # =============================================================================
 
 install_brave() {
@@ -302,16 +291,15 @@ install_brave() {
     fi
 
     msg "Installing Brave browser..."
-    if [[ "$OS" == "arch" ]]; then
-        "$AUR_HELPER" -S --noconfirm brave-bin
-    elif [[ "$OS" == "fedora" ]]; then
-        curl -fsS https://dl.brave.com/install.sh | sh
-    fi
+    case "$DISTRO" in
+        Arch)   "$AUR_HELPER" -S --noconfirm brave-bin ;;
+        Fedora) curl -fsS https://dl.brave.com/install.sh | sh ;;
+    esac
     msg "Brave browser installed."
 }
 
 # =============================================================================
-# DOTFILES
+#  DOTFILES
 # =============================================================================
 
 clone_dotfiles() {
@@ -326,11 +314,12 @@ clone_dotfiles() {
     fi
     msg "Cloning dotfiles..."
     warn "Note: The dotfiles repo is around 300MB, this may take a moment depending on your connection."
-    git clone --depth=1 "$DOTFILES_REPO" "$DOTFILES_DIR" || { err "Failed to clone dotfiles."; exit 1; }
+    git clone "$DOTFILES_REPO" "$DOTFILES_DIR" \
+        || { err "Failed to clone dotfiles."; exit 1; }
 }
 
 # =============================================================================
-# COLOR SCHEME
+#  COLOR SCHEME
 # =============================================================================
 
 select_color_scheme() {
@@ -343,7 +332,6 @@ select_color_scheme() {
 
 apply_configs() {
     mkdir -p "$BACKUP_DIR"
-
     cd "$DOTFILES_DIR" || exit 1
 
     git switch "$COLOR_SCHEME"
@@ -359,13 +347,13 @@ apply_configs() {
         backup_and_replace "$cfg"
     done
 
-    # Run alacritty migration to get rid of the warning
+    # Run alacritty migration to remove deprecation warnings
     if [[ -d "$HOME/.config/alacritty" ]]; then
         msg "Running 'alacritty migrate'..."
         (cd "$HOME/.config/alacritty" && alacritty migrate) 2>/dev/null || true
     fi
 
-    # picom (for cool-looking transparency)
+    # picom
     if fzf_config_confirm "picom"; then
         local picom_dst="$HOME/.config/picom.conf"
         [[ -f "$picom_dst" ]] && mv "$picom_dst" "$BACKUP_DIR/"
@@ -388,10 +376,8 @@ apply_configs() {
     fi
 }
 
-
-
 # =============================================================================
-#  Wallpapers
+#  WALLPAPERS
 # =============================================================================
 
 setup_wallpapers() {
@@ -411,11 +397,12 @@ setup_wallpapers() {
     fi
 
     msg "Cloning wallpapers..."
-    git clone "$WALLPAPER_REPO" "$WALLPAPER_DIR" || err "Failed to clone wallpapers (non-fatal)."
+    git clone "$WALLPAPER_REPO" "$WALLPAPER_DIR" \
+        || err "Failed to clone wallpapers (non-fatal)."
 }
 
 # =============================================================================
-#  Themes & Icons
+#  THEMES & ICONS
 # =============================================================================
 
 setup_themes_icons() {
@@ -429,12 +416,10 @@ setup_themes_icons() {
     _move_to_dotdir "$HOME/themes" "$HOME/.themes"
     _move_to_dotdir "$HOME/icons"  "$HOME/.icons"
 
-    # use lxappearance for GTK theming
-    if [[ "$OS" == "arch" ]]; then
-        sudo pacman -S --noconfirm --needed lxappearance
-    elif [[ "$OS" == "fedora" ]]; then
-        sudo dnf install -y lxappearance
-    fi
+    case "$DISTRO" in
+        Arch)   sudo pacman -S --noconfirm --needed lxappearance ;;
+        Fedora) sudo dnf install -y lxappearance ;;
+    esac
 }
 
 _check_remove_dir() {
@@ -463,9 +448,7 @@ _move_to_dotdir() {
 }
 
 # =============================================================================
-# SDDM
-# Many users who tried my setup script mostly had issues with the SDDM part.
-# I've mostly fixed it and got it working on my Arch, should work fine now.
+#  SDDM
 # =============================================================================
 
 setup_sddm() {
@@ -475,8 +458,10 @@ setup_sddm() {
 
     if ! command -v sddm &>/dev/null; then
         msg "Installing SDDM..."
-        [[ "$OS" == "arch" ]]   && sudo pacman -S --noconfirm sddm
-        [[ "$OS" == "fedora" ]] && sudo dnf install -y sddm
+        case "$DISTRO" in
+            Arch)   sudo pacman -S --noconfirm sddm ;;
+            Fedora) sudo dnf install -y sddm ;;
+        esac
     else
         msg "SDDM already installed."
     fi
@@ -498,7 +483,9 @@ _apply_sddm_catppuccin_theme() {
 
     if [[ -d "$theme_dir" ]]; then
         warn "Catppuccin Mocha SDDM theme already exists."
-        fzf_confirm "Replace existing theme?" || { err "Keeping existing theme."; rm -rf "$tmp"; return; }
+        if ! fzf_confirm "Replace existing theme?"; then
+            err "Keeping existing theme."; rm -rf "$tmp"; return
+        fi
         sudo rm -rf "$theme_dir"
     fi
 
@@ -523,12 +510,13 @@ _apply_sddm_astronaut_theme() {
 
     if [[ -d "$theme_dir" ]]; then
         warn "Astronaut SDDM theme already exists."
-        fzf_confirm "Replace existing theme?" || { err "Keeping existing theme."; rm -rf "$tmp"; return; }
+        if ! fzf_confirm "Replace existing theme?"; then
+            err "Keeping existing theme."; rm -rf "$tmp"; return
+        fi
         sudo rm -rf "$theme_dir"
     fi
 
     msg "Fetching sddm-astronaut-theme from dotfiles (nord branch)..."
-
     git clone --depth=1 --filter=blob:none --sparse \
         --branch nord "$DOTFILES_REPO" "$tmp/dotfiles"
     (cd "$tmp/dotfiles" && git sparse-checkout set "sddm/themes/$theme_name")
@@ -554,7 +542,8 @@ _configure_sddm() {
     else
         if grep -q "^\[Theme\]" /etc/sddm.conf; then
             sudo sed -i '/^\[Theme\]/,/^\[/{s/^Current=.*/Current='"$SDDM_THEME_NAME"'/}' /etc/sddm.conf
-            grep -q "^Current=" /etc/sddm.conf || sudo sed -i '/^\[Theme\]/a Current='"$SDDM_THEME_NAME" /etc/sddm.conf
+            grep -q "^Current=" /etc/sddm.conf \
+                || sudo sed -i '/^\[Theme\]/a Current='"$SDDM_THEME_NAME" /etc/sddm.conf
         else
             printf "\n[Theme]\nCurrent=%s\n" "$SDDM_THEME_NAME" | sudo tee -a /etc/sddm.conf > /dev/null
         fi
@@ -568,16 +557,18 @@ _enable_sddm() {
         if command -v "$dm" &>/dev/null; then
             warn "Disabling $dm..."
             sudo systemctl disable --now "$dm" 2>/dev/null || true
-            [[ "$OS" == "arch" ]]   && sudo pacman -Rns --noconfirm "$dm" 2>/dev/null || true
-            [[ "$OS" == "fedora" ]] && sudo dnf remove -y "$dm" 2>/dev/null || true
+            case "$DISTRO" in
+                Arch)   sudo pacman -Rns --noconfirm "$dm" 2>/dev/null || true ;;
+                Fedora) sudo dnf remove -y "$dm" 2>/dev/null || true ;;
+            esac
         fi
     done
     msg "Enabling SDDM..."
-    sudo systemctl enable --now sddm
+    sudo systemctl enable sddm
 }
 
 # =============================================================================
-# NumLock (I Personally like NumLock enabled)
+#  NUMLOCK
 # =============================================================================
 
 setup_numlock() {
@@ -610,7 +601,7 @@ EOF
 }
 
 # =============================================================================
-# .xinitrc
+#  .xinitrc
 # =============================================================================
 
 setup_xinitrc() {
@@ -666,7 +657,7 @@ prompt_reboot() {
 
 main() {
     check_fzf
-    detect_os
+    detect_distro
     update_system
     setup_aur_helper
     install_dependencies
@@ -681,7 +672,7 @@ main() {
     setup_sddm
     setup_numlock
     setup_xinitrc
-    print_complete   
+    print_complete
     prompt_reboot
 }
 
