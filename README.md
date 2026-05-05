@@ -181,8 +181,8 @@ chmod +x setup.sh
 ### Screenshots
 | Key Combo | Action |
 |:---------:|:-------|
-| <kbd>Super</kbd> + <kbd>N</kbd> | Screenshot Selected Area (Flameshot) |
-| <kbd>Super</kbd> + <kbd>M</kbd> | Screenshot Entire Screen (Flameshot) |
+| <kbd>Super</kbd> + <kbd>Shift</kbd> + <kbd>P</kbd> | Screenshot Selected Area (Flameshot) |
+| <kbd>Super</kbd> + <kbd>P</kbd> | Screenshot Entire Screen (Flameshot) |
  
 ### Window Management
 | Key Combo | Action |
