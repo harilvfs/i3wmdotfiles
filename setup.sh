@@ -144,7 +144,7 @@ install_dependencies() {
             sudo pacman -S --noconfirm --needed \
                 polybar i3-wm rofi maim git imwheel polkit-gnome xclip flameshot thunar \
                 xorg-server xorg-xinit xorg-xrandr xorg-xsetroot xorg-xset gtk3 gtk4 \
-                gnome-settings-daemon gnome-keyring neovim btop \
+                gnome-settings-daemon gnome-keyring neovim btop i3lock \
                 ttf-meslo-nerd noto-fonts-emoji ttf-jetbrains-mono \
                 network-manager-applet blueman pasystray wget unzip \
                 curl zoxide nwg-look qt5ct qt6ct yad tmux fish eza \
@@ -158,7 +158,7 @@ install_dependencies() {
             sudo dnf install -y \
                 polybar i3 rofi maim imwheel xclip flameshot lxappearance thunar \
                 xorg-x11-server-Xorg xorg-x11-xinit xrandr gtk3 gtk4 \
-                gnome-settings-daemon gnome-keyring neovim btop\
+                gnome-settings-daemon gnome-keyring neovim btop i3lock \
                 network-manager-applet blueman pasystray git \
                 jetbrains-mono-fonts-all google-noto-color-emoji-fonts \
                 google-noto-emoji-fonts wget unzip curl zoxide yad tmux fish \
@@ -185,7 +185,7 @@ verify_dependencies() {
         i3 polybar rofi alacritty picom dunst flameshot thunar
         gnome-keyring starship fastfetch git curl wget unzip
         nm-applet xrandr zoxide maim xclip imwheel fish eza
-        pasystray nvim slock xautolock brightnessctl yad tmux
+        pasystray nvim slock xautolock brightnessctl yad tmux i3lock
     )
 
     local missing=()

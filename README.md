@@ -71,6 +71,7 @@ chmod +x setup.sh
 > - `gtk3`
 > - `slock`
 > - `xautolock`
+> - `i3lock`
 > - `dunst`
 > - `starship`
 > - `zoxide`
@@ -92,7 +93,7 @@ chmod +x setup.sh
 > - **Launcher:** `Rofi`
 > - **Status Bar:** `Polybar`
 > - **Shell:** `Bash`
-> - **Screen Locker:** `slock`
+> - **Screen Locker:** `slock` / `i3lock`
 
 ### Wallpapers
 
@@ -135,7 +136,7 @@ chmod +x setup.sh
 ### System
 | Key Combo | Action |
 |:---------:|:-------|
-| <kbd>Super</kbd> + <kbd>U</kbd> | Lock Screen (slock) |
+| <kbd>Super</kbd> + <kbd>U</kbd> | Lock Screen (i3lock) |
 | <kbd>Super</kbd> + <kbd>I</kbd> | Toggle Bar |
 | <kbd>Super</kbd> + <kbd>Shift</kbd> + <kbd>I</kbd> | Hide Bar |
  

@@ -76,7 +76,7 @@ bindsym $mod+b exec --no-startup-id "xdg-open https://"
 bindsym Mod1+Tab exec "rofi -modi window,run -show window"
 
 ### Lock
-bindsym $mod+u exec --no-startup-id slock
+bindsym $mod+u exec --no-startup-id i3lock -i ~/Pictures/wallpapers/bg.png
 
 ### Wallpaper
 bindsym $mod+Shift+w exec --no-startup-id feh --randomize --bg-fill ~/Pictures/wallpapers/*
