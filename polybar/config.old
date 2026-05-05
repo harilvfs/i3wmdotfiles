@@ -1,0 +1,287 @@
+;=====================================================
+;
+;   To learn more about how to configure Polybar
+;   go to https://github.com/jaagr/polybar
+;
+;   The README contains alot of information
+;
+;=====================================================
+
+[global/wm]
+margin-top = 0
+margin-bottom = 0
+
+[colors]
+background = ${xrdb:color0:#222}
+background-alt = ${xrdb:color1:#474c57}
+foreground = #ffffff
+#foreground = ${xrdb:color7:#222}
+foreground-alt = ${xrdb:color1:#fd7980}
+foreground-contrast = #ffffff
+
+foreground-warning = ${xrdb:color0}
+background-warning = ${xrdb:color5}
+
+primary = #ffb52a
+secondary = #e60053
+alert = #bd2c40
+
+
+# -------------------------------[ mini ]-------------------------------
+
+[bar/mini]
+monitor = eDP-1
+width = 720
+height = 60
+offset-x = 50
+offset-y = 50
+radius = 0
+fixed-center = false
+bottom = true
+enable-ipc = true
+# stop wm from meddling
+override-redirect = yes
+
+background = #00000000
+foreground = ${colors.foreground}
+border-size = 0
+border-color = #00000000
+padding-left = 0
+padding-right = 0
+module-margin-right = 2
+
+font-0 = "Misc Termsyn:size=14:antialias=false:weight=bold"
+font-1 = "Misc Termsyn:size=14:antialias=false:weight=normal"
+font-2 = "Material Icons:size=12"
+font-3 = "FontAwesome:size=12"
+
+modules-left = date volume battery wlan ewmh
+modules-center = 
+modules-right = 
+
+;tray-position = right
+tray-padding = 2
+;tray-transparent = true
+;tray-background = #0063ff
+
+cursor-click = pointer
+;cursor-scroll = ns-resize
+
+
+[module/ewmh]
+type = internal/xworkspaces
+
+# Requires ttf-material-design-icons!
+
+icon-0 = 1; 
+icon-1 = 2;  
+icon-2 = 3; 
+icon-3 = 4; 
+icon-4 = 5; 
+icon-5 = 6;
+icon-6 = 7; 
+icon-7 = 8; 
+icon-8 = 9; 
+icon-default = 
+pin-workspaces =  true
+enable-clock = true
+
+label-active-background = ${colors.background}
+label-occupied-background = ${colors.background}
+label-urgent-background = ${colors.background}
+label-empty-background = ${colors.background}
+label-active-padding = 3
+
+# Put it all together
+format = <label-state>
+label-active = %icon%
+label-occupied = %icon%
+label-urgent = %icon%
+label-empty =
+
+
+[module/wlan]
+type = internal/network
+interface = wlp1s0 
+interval = 3.0
+
+# The icon
+ramp-signal-0 = 
+ramp-signal-1 = 
+ramp-signal-2 = 
+ramp-signal-3 = 
+ramp-signal-4 = 
+ramp-signal-5 = 
+ramp-signal-padding = 3
+ramp-signal-foreground = ${colors.foreground-contrast}
+ramp-signal-background = ${colors.background-alt}
+
+label-disconnected = 
+label-disconnected-foreground = ${colors.foreground-contrast}
+label-disconnected-background = ${colors.background-alt}
+label-disconnected-padding = 3
+
+# The text
+label-connected = %essid%
+label-connected-background = ${colors.background}
+label-connected-padding = 3
+
+# Put it all together
+format-connected = <ramp-signal><label-connected>
+format-disconnected = <label-disconnected>
+
+
+[module/date]
+type = internal/date
+interval = 5
+
+# The icon
+format-prefix =
+
+# The text
+time = "%H:%M"
+time-alt = "%H:%M"
+
+# (On-click)
+date =
+date-alt = "%d-%m-%Y "
+
+format-background = ${colors.background}
+format-foreground = ${colors.foreground}
+label-padding = 5
+
+# Put it all together
+label = "%date%%time%"
+
+
+[module/volume]
+type = internal/volume
+
+# The icon
+format-volume-prefix = 
+format-volume-prefix-background = ${colors.foreground-alt}
+format-volume-prefix-foreground = ${colors.foreground-contrast}
+format-volume-prefix-padding = 3
+
+format-muted-prefix = 
+format-muted-background = ${colors.background-warning}
+format-muted-prefix-foreground = ${colors.foreground-contrast}
+format-muted-prefix-padding = 3
+
+# The text
+label-volume = %percentage%%
+label-volume-background = ${colors.background}
+label-volume-padding = 3
+
+label-muted = muted
+label-muted-background = ${colors.background}
+label-muted-padding = 3
+
+# Put it all together
+format-volume = <label-volume>
+format-muted = <label-muted>
+
+
+[module/battery]
+type = internal/battery
+battery = BAT1
+adapter = ADP1
+full-at = 98
+
+# The icon
+ramp-capacity-0 = 
+ramp-capacity-1 = 
+ramp-capacity-2 = 
+ramp-capacity-background = ${colors.background-alt}
+ramp-capacity-foreground = ${colors.foreground-contrast}
+ramp-capacity-padding = 3
+
+ramp-capacity-0-background = ${colors.background-warning}
+
+format-full-prefix = ""
+format-full-prefix-foreground = ${colors.foreground-contrast
+format-full-prefix-background = ${colors.background-alt}
+format-full-prefix-padding = 3
+
+# The text
+label-charging-background = ${colors.background}
+label-charging-padding = 3
+
+label-discharging-background = ${colors.background}
+label-discharging-padding = 3
+
+label-full-background = ${colors.background}
+label-full-padding = 3
+
+# Put it all together
+format-charging = <ramp-capacity><label-charging>
+format-discharging = <ramp-capacity><label-discharging>
+
+
+# -------------------------------[ mpd ]-------------------------------
+
+[bar/mpd]
+monitor = eDP-1
+width = 750
+height = 60
+offset-x = 100%:-800
+offset-y = 50
+radius = 0
+fixed-center = false
+bottom = true
+enable-ipc = true
+# stop wm from meddling
+override-redirect = yes
+
+background = #00000000
+foreground = ${colors.foreground}
+border-size = 0
+padding-left = 0
+padding-right = 0
+module-margin-left = 0
+
+font-0 = "Misc Termsyn:size=14:antialias=false:weight=bold"
+font-1 = "Misc Termsyn:size=14:antialias=false:weight=normal"
+font-2 = "Material Icons:size=12"
+font-3 = "FontAwesome:size=12"
+
+modules-left =
+modules-center = 
+modules-right = spotify mpdicon 
+
+;override-redirect = true
+
+cursor-click = pointer
+;cursor-scroll = ns-resize
+
+
+[module/mpdicon]
+type = custom/text
+#content = 
+content = 
+
+content-background = ${colors.background-alt}
+content-padding = 3
+
+; "click-(left|middle|right)" will be executed using "/usr/bin/env sh -c $COMMAND"
+#click-left = $HOME/.bin/wrapper/toggle_termite_mpd
+click-left = $HOME/.bin/wrapper/toggle_spotify
+
+
+[module/spotify]
+type = custom/script
+
+# Config
+exec = $HOME/.config/polybar/scripts/spotify
+tail = true
+interval = 0
+
+format = <label>
+label = %output:0:50:...%
+label-padding = 3
+format-background = ${colors.background}
+
+
+
+
+; vim:ft=dosini

@@ -1,0 +1,11 @@
+/** Basic config file **/
+
+configuration {
+  show-icons: true;
+  icon-theme: "Papirus";
+  display-drun: "  ";
+  display-window: "﩯 ";
+  display-combi: "  ";
+  font: "JetBrainsMono Nerd Font 11";
+}
+@theme "nord.rasi"

@@ -682,3 +682,5 @@ alias cdf="fzf_cd"
 export PATH="$HOME/.cargo/bin:$PATH"
 
 export EDITOR=nvim # neovim
+
+export QT_QPA_PLATFORMTHEME=qt5ct
