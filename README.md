@@ -36,7 +36,7 @@ Or
  
 **Manually:**
 ```bash
-git clone https://github.com/harilvfs/i3wmdotfiles ~/i3wmdotfiles
+git clone https://github.com/harilvfs/i3wmdotfiles
 cd ~/i3wmdotfiles
 chmod +x setup.sh
 ./setup.sh
@@ -78,6 +78,7 @@ chmod +x setup.sh
 > - `brightnessctl`
 > - `tmux`
 > - `yad`
+> - `blueman`
 
 ### Default Apps
 
