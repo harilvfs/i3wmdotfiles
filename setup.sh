@@ -211,25 +211,38 @@ verify_dependencies() {
     ask "Continue anyway?" || die "Exiting. Please install missing packages and re-run."
 }
 
-install_pokemon_colorscripts() {
-    header "Pokémon Color Scripts"
-    info "Installing Pokémon Color Scripts..."
+install_nitch() {
+    header "Nitch System Info"
+    info "Installing nitch..."
 
-    case "$DISTRO" in
-        Arch)
-            "$AUR_HELPER" -S --noconfirm pokemon-colorscripts-git \
-                || err "Failed to install pokemon-colorscripts-git"
+    local link_nerd="https://github.com/harilvfs/nitch/releases/download/0.1.7/nitch"
+    local link_no_nerd="https://github.com/harilvfs/nitch/releases/download/0.1.7/nitchNoNerd"
+
+    printf "${CYAN}  Use nerd font symbols? ${YELLOW}[y/n]${NC} "
+    read -r symbols_yn
+
+    case "$symbols_yn" in
+        y)
+            url="$link_nerd"
+            bin="nitch"
             ;;
-        Fedora)
-            local dir="$HOME/pokemon-colorscripts"
-            [[ -d "$dir" ]] && rm -rf "$dir"
-            git clone https://gitlab.com/phoneybadger/pokemon-colorscripts.git "$dir"
-            (cd "$dir" && sudo ./install.sh)
-            rm -rf "$dir"
+        n)
+            url="$link_no_nerd"
+            bin="nitchNoNerd"
+            ;;
+        *)
+            err "Invalid input. Please enter y or n."
+            return 1
             ;;
     esac
 
-    msg "Pokémon Color Scripts installed."
+    msg "Downloading nitch..."
+    wget -q "$url" -O "$bin" || { err "Download failed."; return 1; }
+
+    chmod +x "$bin"
+    sudo mv "$bin" /usr/local/bin/nitch
+
+    msg "nitch installed successfully!"
 }
 
 install_brave() {
@@ -553,7 +566,7 @@ main() {
     setup_aur_helper
     install_dependencies
     verify_dependencies
-    install_pokemon_colorscripts
+    install_nitch
     install_brave
     clone_dotfiles
     apply_configs
