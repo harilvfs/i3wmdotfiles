@@ -142,7 +142,7 @@ install_dependencies() {
     case "$DISTRO" in
         Arch)
             sudo pacman -S --noconfirm --needed \
-                polybar i3-wm rofi maim git imwheel polkit-gnome xclip flameshot thunar \
+                polybar i3-wm rofi git polkit-gnome xclip flameshot thunar \
                 xorg-server xorg-xinit xorg-xrandr xorg-xsetroot xorg-xset gtk3 gtk4 \
                 gnome-settings-daemon gnome-keyring neovim btop i3lock \
                 ttf-meslo-nerd noto-fonts-emoji ttf-jetbrains-mono \
@@ -156,10 +156,10 @@ install_dependencies() {
                 || warn "Failed to enable Hyprland COPR (non-fatal)"
 
             sudo dnf install -y \
-                polybar i3 rofi maim imwheel xclip flameshot lxappearance thunar \
+                polybar i3 rofi git xclip flameshot lxappearance thunar \
                 xorg-x11-server-Xorg xorg-x11-xinit xrandr gtk3 gtk4 \
                 gnome-settings-daemon gnome-keyring neovim btop i3lock \
-                network-manager-applet blueman pasystray git \
+                network-manager-applet blueman pasystray \
                 jetbrains-mono-fonts-all google-noto-color-emoji-fonts \
                 google-noto-emoji-fonts wget unzip curl zoxide yad tmux fish \
                 nwg-look qt5ct qt6ct kvantum alacritty dunst fastfetch picom slock xautolock brightnessctl
@@ -184,7 +184,7 @@ verify_dependencies() {
     local deps=(
         i3 polybar rofi alacritty picom dunst flameshot thunar
         gnome-keyring starship fastfetch git curl wget unzip
-        nm-applet xrandr zoxide maim xclip imwheel fish eza
+        nm-applet xrandr zoxide xclip fish eza
         pasystray nvim slock xautolock brightnessctl yad tmux i3lock
     )
 

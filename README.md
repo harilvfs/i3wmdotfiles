@@ -48,8 +48,6 @@ chmod +x setup.sh
 > - `rofi`
 > - `alacritty`
 > - `picom`
-> - `maim`
-> - `imwheel`
 > - `polkit-gnome`
 > - `xclip`
 > - `flameshot`
