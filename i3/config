@@ -72,6 +72,12 @@ bindsym $mod+r exec "rofi -modi drun,run -show drun"
 bindsym $mod+e exec --no-startup-id thunar
 bindsym $mod+b exec --no-startup-id "xdg-open https://"
 
+# Keybindings script (Mod + /)
+bindsym $mod+slash exec --no-startup-id ~/.config/i3/scripts/keybindings.sh
+
+# Welcome Popup (Mod + ?) Added --manual flag to bypass the disable check
+bindsym $mod+Shift+slash exec --no-startup-id ~/.config/i3/scripts/welcome.sh --manual
+
 ### Window switcher
 bindsym Mod1+Tab exec "rofi -modi window,run -show window"
 

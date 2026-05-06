@@ -1,0 +1,105 @@
+/* ~/.config/rofi/themes/keybindings.rasi */
+
+* {
+    bg-col:         #1f222d;
+    bg-col-light:   #252836;
+    border-col:     #81a1c1;
+    selected-col:   #2e3440;
+    blue:           #81a1c1;
+    fg-col:         #e5e9f0;
+    fg-col2:        #88c0d0;
+    grey:           #4c566a;
+    urgent:         #bf616a;
+    font:           "JetBrainsMono Nerd Font 10";
+}
+
+element-text, element-icon, mode-switcher {
+    background-color: inherit;
+    text-color:       inherit;
+}
+
+window {
+    height:           520px;
+    width:            680px;
+    border:           2px solid;
+    border-color:     @border-col;
+    background-color: @bg-col;
+    border-radius:    8px;
+}
+
+mainbox {
+    background-color: @bg-col;
+    children:         [ inputbar, message, listview ];
+}
+
+inputbar {
+    children:         [ prompt, entry ];
+    background-color: @bg-col;
+    border-radius:    6px;
+    padding:          6px 10px;
+    border:           0 0 2px 0;
+    border-color:     @border-col;
+}
+
+prompt {
+    background-color: @blue;
+    padding:          6px 12px;
+    text-color:       @bg-col;
+    border-radius:    4px;
+    margin:           0 10px 0 0;
+    font:             "JetBrainsMono Nerd Font Bold 10";
+}
+
+entry {
+    padding:          6px;
+    margin:           0;
+    text-color:       @fg-col;
+    background-color: transparent;
+}
+
+message {
+    background-color: @bg-col-light;
+    padding:          4px 14px;
+    border:           0 0 1px 0;
+    border-color:     @grey;
+}
+
+textbox {
+    text-color:       @grey;
+    background-color: transparent;
+    font:             "JetBrainsMono Nerd Font 9";
+}
+
+listview {
+    border:           0;
+    padding:          8px 4px;
+    margin:           0;
+    columns:          1;
+    lines:            12;
+    background-color: @bg-col;
+    scrollbar:        false;
+}
+
+element {
+    padding:          8px 14px;
+    margin:           2px 6px;
+    background-color: transparent;
+    text-color:       @fg-col;
+    border-radius:    4px;
+    orientation:      horizontal;
+}
+
+element selected {
+    background-color: @selected-col;
+    text-color:       @fg-col2;
+    border:           1px solid;
+    border-color:     @border-col;
+}
+
+element-text {
+    font:             "JetBrainsMono Nerd Font 10";
+    expand:           true;
+    horizontal-align: 0;
+    vertical-align:   0.5;
+    margin:           0;
+}

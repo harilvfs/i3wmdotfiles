@@ -109,10 +109,7 @@ chmod +x setup.sh
 
 > A welcome popup appears on your first i3wm startup showing basic keybindings and helpful links.
 >
-> You can click **Don't show again** to disable the popup on next startup. If you want to re-enable it (I know you don't need to, but just in case) run:
-> ```bash
-> rm ~/.config/i3/scripts/.welcome_disabled
-> ```
+> You can click **Don't show again** to disable the popup at startup. To view it again, simply press `Super+?`.
 
 ### Themes & Icons Source
  
@@ -139,6 +136,8 @@ chmod +x setup.sh
 | <kbd>Super</kbd> + <kbd>U</kbd> | Lock Screen (i3lock) |
 | <kbd>Super</kbd> + <kbd>I</kbd> | Toggle Bar |
 | <kbd>Super</kbd> + <kbd>Shift</kbd> + <kbd>I</kbd> | Hide Bar |
+| <kbd>Super</kbd> + <kbd>/</kbd> | Search All Keybindings (Rofi) |
+| <kbd>Super</kbd> + <kbd>?</kbd> | Open Welcome/Quick Start Menu |
  
 ### Brightness
 | Key Combo | Action |
