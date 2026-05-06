@@ -1,13 +1,6 @@
 #!/usr/bin/env bash
 iatest=$(expr index "$-" i)
 
-#######################################################
-# SOURCED ALIAS'S AND SCRIPTS BY zachbrowne.me
-#######################################################
-#if [ -f /usr/bin/fastfetch ]; then
-#	fastfetch
-#fi
-
 # Source global definitions
 if [ -f /etc/bashrc ]; then
 	. /etc/bashrc
@@ -99,26 +92,8 @@ export LESS_TERMCAP_so=$'\E[01;44;33m'
 export LESS_TERMCAP_ue=$'\E[0m'
 export LESS_TERMCAP_us=$'\E[01;32m'
 
-#######################################################
-# MACHINE SPECIFIC ALIAS'S
-#######################################################
-
-# Alias's for SSH
-# alias SERVERNAME='ssh YOURWEBSITE.com -l USERNAME -p PORTNUMBERHERE'
-
 # Alias's to change the directory
 alias web='cd /var/www/html'
-
-# Alias's to mount ISO files
-# mount -o loop /home/NAMEOFISO.iso /home/ISOMOUNTDIR/
-# umount /home/NAMEOFISO.iso
-# (Both commands done as root only.)
-
-#######################################################
-# GENERAL ALIAS'S
-#######################################################
-# To temporarily bypass an alias, we precede the command with a \
-# EG: the ls command is aliased, but to use the normal ls command you would type \ls
 
 # Add an "alert" alias for long running commands.  Use like so:
 #   sleep 10; alert
@@ -442,7 +417,6 @@ distribution () {
     echo $dtype
 }
 
-
 DISTRIBUTION=$(distribution)
 if [ "$DISTRIBUTION" = "redhat" ] || [ "$DISTRIBUTION" = "arch" ]; then
       alias cat='bat'
@@ -603,7 +577,6 @@ mysqlconfig() {
 	fi
 }
 
-
 # Trim leading and trailing spaces (for scripts)
 trim() {
 	local var=$*
@@ -622,31 +595,6 @@ lazyg() {
 	git commit -m "$1"
 	git push
 }
-
-function hb {
-    if [ $# -eq 0 ]; then
-        echo "No file path specified."
-        return
-    elif [ ! -f "$1" ]; then
-        echo "File path does not exist."
-        return
-    fi
-
-    uri="http://bin.christitus.com/documents"
-    response=$(curl -s -X POST -d @"$1" "$uri")
-    if [ $? -eq 0 ]; then
-        hasteKey=$(echo $response | jq -r '.key')
-        echo "http://bin.christitus.com/$hasteKey"
-    else
-        echo "Failed to upload the document."
-    fi
-}
-
-#######################################################
-# Set the ultimate amazing command prompt
-#######################################################
-
-alias hug="hugo server -F --bind=10.0.0.97 --baseURL=http://10.0.0.97"
 
 # Check if the shell is interactive
 if [[ $- == *i* ]]; then
@@ -670,17 +618,12 @@ alias termdown="termdown --title Countdown --time-format %H:%M:%S --text \"T i m
 #fi
 
 # Display Pokemon
-pokemon-colorscripts --no-title -r 1,3,6
-
-# fzf
-fzf_cd() {
-  local dir
-  dir=$(find . -maxdepth 3 -type d | fzf) && cd "$dir"
-}
-alias cdf="fzf_cd"
+# pokemon-colorscripts --no-title -r 1,3,6
 
 export PATH="$HOME/.cargo/bin:$PATH"
 
 export EDITOR=nvim # neovim
 
 export QT_QPA_PLATFORMTHEME=qt5ct
+
+nitch
