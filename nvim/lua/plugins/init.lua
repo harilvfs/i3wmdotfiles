@@ -6,44 +6,7 @@ return {
   },
 
   -- These are some examples, uncomment them if you want to see them work!
-  {
-  "neovim/nvim-lspconfig",
-  lazy = false,
-  config = function()
-    local lspconfig = require("lspconfig")
-    local cmp_nvim_lsp = require("cmp_nvim_lsp")
-
-    local capabilities = cmp_nvim_lsp.default_capabilities()
-
-    local servers = {
-      "lua_ls",        -- Lua
-      "pyright",       -- Python
-      "clangd",        -- C/C++
-      "rust_analyzer", -- Rust
-      "bashls",        -- Bash
-      "jsonls",        -- JSON
-      "yamlls",        -- YAML
-    }
-
-    for _, server in ipairs(servers) do
-      local opts = {}
-
-      if server == "clangd" then
-        opts = {
-          capabilities = capabilities,
-          cmd = {
-            "clangd",
-            "--offset-encoding=utf-16",
-          },
-        }
-      end
-
-      lspconfig[server].setup(opts)
-    end
-  end
-  },
-
-  {
+    {
   "williamboman/mason.nvim",
   lazy = false,
   config = function()
@@ -194,16 +157,12 @@ return {
     lazy = false,
   },
 
-    -- Markview for markdown preview
   {
     "OXY2DEV/markview.nvim",
-    lazy = false,      -- Recommended
-    -- ft = "markdown" -- If you decide to lazy-load anyway
+    lazy = false,
 
-    dependencies = {
-        "nvim-treesitter/nvim-treesitter",
-        "nvim-tree/nvim-web-devicons"
-    }
+    -- Completion for `blink.cmp`
+    -- dependencies = { "saghen/blink.cmp" },
   },
 
     -- Dropbar for breadcrumbs
@@ -322,14 +281,4 @@ return {
   end
   }
 
-
-  -- {
-  -- 	"nvim-treesitter/nvim-treesitter",
-  -- 	opts = {
-  -- 		ensure_installed = {
-  -- 			"vim", "lua", "vimdoc",
-  --      "html", "css"
-  -- 		},
-  -- 	},
-  -- },
   }
