@@ -17,7 +17,7 @@
 <img src="https://raw.githubusercontent.com/harilvfs/i3wmdotfiles/refs/heads/main/preview/preview-3.png"/></td><td>
 <img src="https://raw.githubusercontent.com/harilvfs/i3wmdotfiles/refs/heads/main/preview/preview-4.png"/></td></tr></table></div>
 
-### Installation
+## Installation
 
 > [!CAUTION]
 > The installation should work great on a freshly installed system like Arch Linux. Unfortunately, Fedora doesn't come as clean (obviously, GNOME and KDE come pre-baked). That said, it should also work fine on an already configured system, as long as you don't have hard-coded configs.
@@ -27,14 +27,16 @@
 > bash
 > ```
  
-**One-Liner:**
+### One-Liner
+
 ```bash
 bash <(curl -L https://chalisehari.com.np/i3wm)
 ```
 
 Or
  
-**Manually:**
+### Manually
+
 ```bash
 git clone https://github.com/harilvfs/i3wmdotfiles
 cd ~/i3wmdotfiles
@@ -42,7 +44,7 @@ chmod +x setup.sh
 ./setup.sh
 ```
 
-### Dependencies
+## Dependencies
 
 > - `polybar`
 > - `rofi`
@@ -81,7 +83,7 @@ chmod +x setup.sh
 > - `fish`
 > - `eza`
 
-### Default Apps
+## Default Apps
 
 > - **Browser:** `Brave`
 > - **File Manager:** `Thunar`
@@ -93,7 +95,7 @@ chmod +x setup.sh
 > - **Shell:** `Bash`
 > - **Screen Locker:** `slock` / `i3lock`
 
-### Wallpapers
+## Wallpapers
 
 > ```bash
 > git clone https://github.com/harilvfs/wallpapers ~/Pictures/wallpapers
@@ -101,15 +103,15 @@ chmod +x setup.sh
 >
 > Set Wallpaper using `feh`
 
-### Welcome
+## Welcome
 
-<img src="https://raw.githubusercontent.com/harilvfs/i3wmdotfiles/refs/heads/main/preview/welcome0.png" width="500" height="auto" />
+<img src="https://raw.githubusercontent.com/harilvfs/i3wmdotfiles/refs/heads/main/preview/welcome0.png" />
 
 > A welcome popup appears on your first i3wm startup showing basic keybindings and helpful links.
 >
 > You can click **Don't show again** to disable the popup at startup. To view it again, simply press `Super+?`.
 
-### Themes & Icons Source
+## Themes & Icons Source
  
 > Change theme, icons and mouse cursor from `lxappearance`.
 >
