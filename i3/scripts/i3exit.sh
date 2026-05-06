@@ -3,7 +3,7 @@
 
 case "$1" in
     lock)
-        i3lock -i ~/Pictures/tower-nord.png
+        i3lock -i ~/Pictures/wallpapers/bg.png
         ;;
     logout)
         i3-msg exit
