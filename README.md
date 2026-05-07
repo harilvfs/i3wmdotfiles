@@ -39,7 +39,7 @@ Or
 
 ```bash
 git clone https://github.com/harilvfs/i3wmdotfiles
-cd ~/i3wmdotfiles
+cd /i3wmdotfiles
 chmod +x setup.sh
 ./setup.sh
 ```
