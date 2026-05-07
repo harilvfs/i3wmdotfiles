@@ -92,7 +92,7 @@ chmod +x setup.sh
 > - **Terminal:** `Alacritty`
 > - **Launcher:** `Rofi`
 > - **Status Bar:** `Polybar`
-> - **Shell:** `Bash`
+> - **Shell:** `Bash` / `fish`
 > - **Screen Locker:** `slock` / `i3lock`
 
 ## Wallpapers
