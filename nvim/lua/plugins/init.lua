@@ -5,8 +5,7 @@ return {
     opts = require "configs.conform",
   },
 
-  -- These are some examples, uncomment them if you want to see them work!
-    {
+  {
   "williamboman/mason.nvim",
   lazy = false,
   config = function()
