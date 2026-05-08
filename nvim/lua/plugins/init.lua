@@ -120,13 +120,6 @@ return {
     end,
   },
 
-    -- GitHub Copilot
-  {
-    "github/copilot.vim",
-    lazy = false,
-    event = "InsertEnter",
-  },
-
     -- Rust support
   {
     "rust-lang/rust.vim",
@@ -134,13 +127,7 @@ return {
     ft = "rust",
   },
 
-    -- Clang autocompletion
-  {
-    "deoplete-plugins/deoplete-clang",
-    lazy = false,
-  },
-
-    -- Null-ls for diagnostics and formatting
+  -- Null-ls for diagnostics and formatting
   {
     "jose-elias-alvarez/null-ls.nvim",
     lazy = false,
@@ -191,26 +178,6 @@ return {
     opts = {
         -- your configuration
     },
-  },
-
-  {
-    "nvzone/typr",
-    dependencies = "nvzone/volt",
-    opts = {},
-    cmd = { "Typr", "TyprStats" },
-  },
-
-  {
-  "rachartier/tiny-inline-diagnostic.nvim",
-  lazy = false,
-  event = "LspAttach",  -- Load only when LSP starts
-  config = function()
-    require('tiny-inline-diagnostic').setup({
-      highlight = "DiagnosticVirtualTextError", -- Adjust highlight group
-      prefix = "⚠ ", -- Add a prefix if needed
-    })
-    vim.diagnostic.config({ virtual_text = false }) -- Disable native inline diagnostics
-  end
   },
 
 ---@type LazySpec
