@@ -105,14 +105,6 @@ chmod +x setup.sh
 >
 > Set Wallpaper using `feh`
 
-## Welcome
-
-<img src="https://raw.githubusercontent.com/harilvfs/i3wmdotfiles/refs/heads/main/preview/welcome0.png" />
-
-> A welcome popup appears on your first i3wm startup showing basic keybindings and helpful links.
->
-> You can click **Don't show again** to disable the popup at startup. To view it again, simply press `Super+?`.
-
 ## Themes & Icons Source
  
 > Change theme, icons and mouse cursor from `lxappearance`.
