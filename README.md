@@ -1,3 +1,5 @@
+<img src="https://raw.githubusercontent.com/harilvfs/i3wmdotfiles/refs/heads/main/preview/welcome0.png" />
+
 > [!NOTE]
 > These days, I'm not daily driving i3 as my window manager. So if you run into any problems, feel free to open an issue.
 
