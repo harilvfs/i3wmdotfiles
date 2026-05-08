@@ -1,6 +1,6 @@
 if status is-interactive
 
-    set -g fish_greeting "Welcome back, $USER 🐟"
+     set -g fish_greeting "HEy, $USER 🐟"
     # Commands to run in interactive sessions can go here
 
     zoxide init fish | source
@@ -43,11 +43,10 @@ alias .3 'cd ../../..'
 alias .4 'cd ../../../..'
 alias .5 'cd ../../../../..'
 
-alias mkdir 'mkdir -p'
-
 # if you wanna add github token
+# set -x GITHUB_TOKEN  
 
-# set -x GITHUB_TOKEN 
+alias mkdir 'mkdir -p'
 
 function yayf
   yay -Slq | fzf --multi --preview 'yay -Sii {1}' --preview-window=down:75% | xargs -ro yay -S
@@ -60,7 +59,12 @@ function lazyg
 end
 
 end
-
 set -gx PATH $HOME/.local/bin $PATH
 
 nitch
+
+set -x QT_QPA_PLATFORMTHEME qt5ct
+
+# tty window manager launchers
+alias startxdwm 'startx ~/.xinitrc dwm'
+alias startxi3 'startx ~/.xinitrc i3'

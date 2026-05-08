@@ -627,3 +627,7 @@ export EDITOR=nvim # neovim
 export QT_QPA_PLATFORMTHEME=qt5ct
 
 nitch
+
+# tty window manager launchers
+alias startxdwm='startx ~/.xinitrc dwm'
+alias startxi3='startx ~/.xinitrc i3'
