@@ -305,9 +305,23 @@ apply_configs() {
     header "Applying Configs"
     mkdir -p "$BACKUP_DIR"
 
-    for cfg in alacritty dunst fastfetch fish gtk-3.0 i3 Kvantum nvim picom polybar rofi tmux xsettingsd; do
+    for cfg in alacritty dunst fastfetch fish gtk-3.0 i3 Kvantum nvim polybar rofi tmux xsettingsd; do
         backup_and_replace "$cfg"
     done
+
+    if ask_config "picom"; then
+        local picom_src="$DOTFILES_DIR/picom/picom.conf"
+        local picom_dst="$HOME/.config/picom.conf"
+        if [[ -f "$picom_src" ]]; then
+            [[ -f "$picom_dst" ]] && mv "$picom_dst" "$BACKUP_DIR/picom.conf.bak"
+            cp "$picom_src" "$picom_dst"
+            msg "picom.conf applied."
+        else
+            err "picom/picom.conf not found in dotfiles."
+        fi
+    else
+        warn "Skipping picom."
+    fi
 
     if ask_config "starship"; then
         local starship_src="$DOTFILES_DIR/starship/starship.toml"
