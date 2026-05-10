@@ -39,4 +39,8 @@ vim.keymap.set("n", "<A-k>", ":m .-2<CR>==", { noremap = true, silent = true })
 vim.keymap.set("v", "<A-j>", ":m '>+1<CR>gv=gv", { noremap = true, silent = true })
 vim.keymap.set("v", "<A-k>", ":m '<-2<CR>gv=gv", { noremap = true, silent = true })
 
-
+-- Diffview
+map("n", "<leader>gd", "<cmd>DiffviewOpen<cr>",         { desc = "Diff view open" })
+map("n", "<leader>gh", "<cmd>DiffviewFileHistory %<cr>", { desc = "File git history" })
+map("n", "<leader>gH", "<cmd>DiffviewFileHistory<cr>",   { desc = "Repo git history" })
+map("n", "<leader>gx", "<cmd>DiffviewClose<cr>",         { desc = "Diff view close" })
