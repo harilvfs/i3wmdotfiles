@@ -110,7 +110,7 @@ chmod +x setup.sh
 > Change theme, icons and mouse cursor from `lxappearance`.
 >
 > - **Download themes and icons from my repositories:** [Themes](https://github.com/harilvfs/themes) | [Icons](https://github.com/harilvfs/icons)
-> - *Widget Theme:* `NordArc-Theme` / `Catppuccin-Mocha-Standard`
+> - *Widget Theme:* `NordArc-Theme` / `Catppuccin-Mocha-Standard` / `Rose-Pine`
 > - *Icon Theme:* `NordArc` / `Nordzy`
 > - *Mouse Cursor:* `Capitaine Cursors - Light` / `Bibata-Modern-Ice`
 
