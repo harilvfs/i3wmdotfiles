@@ -50,7 +50,7 @@ chmod +x setup.sh
 
 > - `polybar`
 > - `rofi`
-> - `alacritty`
+> - `kitty`
 > - `picom`
 > - `polkit-gnome`
 > - `xclip`
@@ -91,7 +91,7 @@ chmod +x setup.sh
 > - **File Manager:** `Thunar`
 > - **Code Editor:** `Neovim` aka `nvim`
 > - **Screenshot Tool:** `Flameshot`
-> - **Terminal:** `Alacritty`
+> - **Terminal:** `Kitty`
 > - **Launcher:** `Rofi`
 > - **Status Bar:** `Polybar`
 > - **Shell:** `Bash` / `fish`
@@ -119,7 +119,7 @@ chmod +x setup.sh
 ### Launchers
 | Key Combo | Action |
 |:---------:|:-------|
-| <kbd>Super</kbd> + <kbd>X</kbd> | Open Terminal (Alacritty) |
+| <kbd>Super</kbd> + <kbd>X</kbd> | Open Terminal (Kitty) |
 | <kbd>Super</kbd> + <kbd>R</kbd> | Open App Launcher (Rofi) |
 | <kbd>Super</kbd> + <kbd>E</kbd> | Open File Manager (Thunar) |
 | <kbd>Super</kbd> + <kbd>B</kbd> | Open Default Browser |

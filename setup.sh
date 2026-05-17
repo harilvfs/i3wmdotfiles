@@ -148,7 +148,7 @@ install_dependencies() {
                 ttf-meslo-nerd noto-fonts-emoji ttf-jetbrains-mono \
                 network-manager-applet blueman pasystray wget unzip \
                 curl zoxide nwg-look qt5ct qt6ct yad tmux fish eza \
-                kvantum alacritty dunst fastfetch picom starship slock brightnessctl
+                kvantum kitty dunst fastfetch picom starship slock brightnessctl
             "$AUR_HELPER" -S --noconfirm --needed xautolock
             ;;
         Fedora)
@@ -162,7 +162,7 @@ install_dependencies() {
                 network-manager-applet blueman pasystray \
                 jetbrains-mono-fonts-all google-noto-color-emoji-fonts \
                 google-noto-emoji-fonts wget unzip curl zoxide yad tmux fish \
-                nwg-look qt5ct qt6ct kvantum alacritty dunst fastfetch picom slock xautolock brightnessctl
+                nwg-look qt5ct qt6ct kvantum kitty dunst fastfetch picom slock xautolock brightnessctl
 
             if ! command -v eza &> /dev/null; then
                 install_eza_manually
@@ -182,7 +182,7 @@ verify_dependencies() {
     header "Verifying Dependencies"
 
     local deps=(
-        i3 polybar rofi alacritty picom dunst flameshot thunar
+        i3 polybar rofi kitty picom dunst flameshot thunar
         gnome-keyring starship fastfetch git curl wget unzip
         nm-applet xrandr zoxide xclip fish eza tree-sitter
         pasystray nvim slock xautolock brightnessctl yad tmux i3lock
@@ -305,7 +305,7 @@ apply_configs() {
     header "Applying Configs"
     mkdir -p "$BACKUP_DIR"
 
-    for cfg in alacritty dunst fastfetch fish gtk-3.0 i3 Kvantum nvim polybar rofi tmux xsettingsd; do
+    for cfg in kitty dunst fastfetch fish gtk-3.0 i3 Kvantum nvim polybar rofi tmux xsettingsd; do
         backup_and_replace "$cfg"
     done
 
@@ -343,12 +343,6 @@ apply_configs() {
         msg ".bashrc applied."
     else
         warn "Skipping .bashrc."
-    fi
-
-    # Alacritty migration (remove deprecation warnings)
-    if [[ -d "$HOME/.config/alacritty" ]]; then
-        msg "Running 'alacritty migrate'..."
-        (cd "$HOME/.config/alacritty" && alacritty migrate) 2>/dev/null || true
     fi
 }
 
