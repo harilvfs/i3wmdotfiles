@@ -48,6 +48,7 @@ chmod +x setup.sh
 
 ## Dependencies
 
+> - `i3wm`
 > - `polybar`
 > - `rofi`
 > - `kitty`
