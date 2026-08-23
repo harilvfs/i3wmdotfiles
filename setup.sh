@@ -305,7 +305,7 @@ apply_configs() {
     header "Applying Configs"
     mkdir -p "$BACKUP_DIR"
 
-    for cfg in kitty dunst fastfetch fish gtk-3.0 i3 Kvantum nvim polybar qt5ct qt6ct rofi tmux xsettingsd zellij; do
+    for cfg in kitty dunst fastfetch fish gtk-3.0 i3 Kvantum nvim polybar qt5ct qt6ct rofi xsettingsd; do
         backup_and_replace "$cfg"
     done
 
@@ -343,31 +343,6 @@ apply_configs() {
         msg ".bashrc applied."
     else
         warn "Skipping .bashrc."
-    fi
-}
-
-setup_tmux_plugins() {
-    header "Tmux Plugin Manager (TPM)"
-
-    local tpm_dir="$HOME/.tmux/plugins/tpm"
-
-    if [[ -d "$tpm_dir" ]]; then
-        msg "TPM already installed at $tpm_dir."
-    else
-        msg "Cloning TPM..."
-        git clone https://github.com/tmux-plugins/tpm "$tpm_dir" \
-            || die "Failed to clone TPM."
-        msg "TPM cloned."
-    fi
-
-    msg "Installing tmux plugins..."
-    local install_script="$tpm_dir/scripts/install_plugins.sh"
-    if [[ -f "$install_script" ]]; then
-        chmod +x "$install_script"
-        bash "$install_script"
-        msg "Tmux plugins installed."
-    else
-        err "TPM install script not found at $install_script"
     fi
 }
 
@@ -578,7 +553,6 @@ main() {
     install_brave
     clone_dotfiles
     apply_configs
-    setup_tmux_plugins
     setup_wallpapers
     setup_themes_icons
     setup_sddm
