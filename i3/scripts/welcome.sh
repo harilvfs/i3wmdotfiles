@@ -18,7 +18,7 @@ CONFIG_PATH="<span size='small' foreground='#616E88'>Config: ~/.config/i3/config
 
 yad --title="i3wm Quick Start" \
     --width=500 --height=320 \
-    --center --fixed --resizable=no \
+    --center --fixed \
     --text="$TITLE\n$LINE\n\n$HELP_TEXT\n\n$INFO\n\n$CONFIG_PATH" \
     --text-align=center \
     --button="  Keybindings:2" \
