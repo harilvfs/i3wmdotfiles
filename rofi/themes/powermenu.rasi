@@ -1,54 +1,109 @@
 configuration {
-    font:                           "JetBrainsMono Nerd Font 12";
-    show-icons:                     false;
-    display-dmenu:                  "󰐥";
+    font:                           "JetBrainsMono Nerd Font 14";
+    show-icons:                     true;
+    icon-theme:                     "Papirus";
+    display-dmenu:                  "⏻";
+    hover-select:                   true;
+    me-select-entry:                "";
+    me-accept-entry:                "MousePrimary";
 }
 
 * {
-    /* Nordic Colors to match your i3 config */
-    background:     #2e3440;
-    background-alt: #3b4252;
-    foreground:     #eceff4;
-    selected:       #81a1c1;
-    urgent:         #bf616a;
+    /* Nordic Palette */
+    background:         #2e3440;
+    background-alt:     #3b4252;
+    background-light:   #434c5e;
+    foreground:         #eceff4;
+    foreground-dim:     #d8dee9;
+    selected:           #81a1c1;
+    selected-active:    #88c0d0;
+    urgent:             #bf616a;
+    green:              #a3be8c;
+    yellow:             #ebcb8b;
+    orange:             #d08770;
+    red:                #bf616a;
 }
 
 window {
     transparency:                   "real";
     background-color:               @background;
     text-color:                     @foreground;
-    border:                         2px;
-    border-color:                   @selected;
-    border-radius:                  12px;
-    width:                          300px;
+    border:                         0px;
+    border-color:                   @background;
+    border-radius:                  16px;
+    width:                          320px;
     location:                       center;
     x-offset:                       0;
     y-offset:                       0;
+    padding:                        0px;
+}
+
+mainbox {
+    background-color:               @background;
+    children:                       [ inputbar, listview ];
+    spacing:                        0px;
+    padding:                        0px;
+}
+
+inputbar {
+    children:                       [ prompt, message ];
+    background-color:               @background-alt;
+    text-color:                     @foreground;
+    expand:                         false;
+    border-radius:                  14px 14px 0px 0px;
+    margin:                         0px;
+    padding:                        16px 20px;
+}
+
+prompt {
+    background-color:               inherit;
+    text-color:                     @selected;
+    padding:                        0px 8px 0px 0px;
+}
+
+message {
+    background-color:               inherit;
+    text-color:                     @foreground-dim;
 }
 
 listview {
     background-color:               @background;
     columns:                        1;
     lines:                          5;
-    spacing:                        5px;
+    spacing:                        4px;
     cycle:                          true;
     dynamic:                        true;
     layout:                         vertical;
-}
-
-mainbox {
-    background-color:               @background;
-    children:                       [ inputbar, listview ];
-    spacing:                        10px;
-    padding:                        20px;
+    padding:                        12px;
+    border-radius:                  0px 0px 14px 14px;
 }
 
 element {
-    background-color:               @background;
+    background-color:               transparent;
     text-color:                     @foreground;
     orientation:                    horizontal;
-    border-radius:                  6px;
-    padding:                        8px;
+    border-radius:                  8px;
+    padding:                        10px 12px;
+    margin:                         2px 4px;
+    cursor:                         pointer;
+}
+
+element normal.normal {
+    background-color:               transparent;
+    text-color:                     @foreground;
+}
+
+element alternate.normal {
+    background-color:               transparent;
+    text-color:                     @foreground;
+}
+
+element-icon {
+    background-color:               inherit;
+    text-color:                     inherit;
+    size:                           28px;
+    margin:                         0px 10px 0px 4px;
+    cursor:                         inherit;
 }
 
 element-text {
@@ -57,19 +112,35 @@ element-text {
     expand:                         true;
     horizontal-align:               0;
     vertical-align:                 0.5;
+    cursor:                         inherit;
 }
 
-element selected {
+element selected.normal {
     background-color:               @selected;
     text-color:                     @background;
 }
 
-inputbar {
-    children:                       [ prompt ];
-    background-color:               @background-alt;
-    text-color:                     @foreground;
-    expand:                         false;
-    border-radius:                  6px;
-    margin:                         0px;
-    padding:                        10px;
+element selected alternate {
+    background-color:               @selected;
+    text-color:                     @background;
+}
+
+element selected.active {
+    background-color:               @selected-active;
+    text-color:                     @background;
+}
+
+element selected.urgent {
+    background-color:               @urgent;
+    text-color:                     @background;
+}
+
+element active {
+    background-color:               @background-light;
+    text-color:                     @selected;
+}
+
+element urgent {
+    background-color:               transparent;
+    text-color:                     @urgent;
 }
