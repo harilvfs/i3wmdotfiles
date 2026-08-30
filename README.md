@@ -132,7 +132,7 @@ chmod +x setup.sh
 | <kbd>Super</kbd> + <kbd>I</kbd> | Toggle Bar |
 | <kbd>Super</kbd> + <kbd>Shift</kbd> + <kbd>I</kbd> | Hide Bar |
 | <kbd>Super</kbd> + <kbd>/</kbd> | Search All Keybindings (Rofi) |
-| <kbd>Super</kbd> + <kbd>?</kbd> | Open Welcome/Quick Start Menu |
+| <kbd>Super</kbd> + <kbd>Shift</kbd> + <kbd>/</kbd> | Open Welcome/Quick Start Menu |
  
 ### Brightness
 | Key Combo | Action |
