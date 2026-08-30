@@ -12,7 +12,7 @@ fi
 TITLE="<span foreground='#81A1C1' size='xx-large'><b>Welcome, $USER_NAME!</b></span>"
 LINE="<span foreground='#4C566A'>__________________________________________________</span>"
 
-HELP_TEXT="<span foreground='#A3BE8C'><b>Super + /</b> Keybindings  |  <b>Super + ?</b> This Menu</span>"
+HELP_TEXT="<span foreground='#A3BE8C'><b>Super + /</b> Keybindings  |  <b>Super + Shift + /</b> Welcome Menu</span>"
 INFO="Essential: Super+X (Term) | Super+R (Menu) | Super+Q (Kill)"
 CONFIG_PATH="<span size='small' foreground='#616E88'>Config: ~/.config/i3/config</span>"
 
